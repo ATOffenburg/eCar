@@ -24,6 +24,11 @@ namespace e_Cars.UI.Kunden
                 //    adress = kunde.Adresse;
                 //    bank = kunde.Bank;
                 //}
+
+                kunde = k;
+                adress = kunde.Adresse;
+                bank = kunde.Bank;
+
             }
         }
 
