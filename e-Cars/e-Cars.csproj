@@ -335,6 +335,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <SplashScreen Include="e-car.png" />
     <Content Include="html\GMaps.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

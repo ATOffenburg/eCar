@@ -73,6 +73,8 @@ namespace e_Cars {
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
         public static void Main() {
+            SplashScreen splashScreen = new SplashScreen("e-car.png");
+            splashScreen.Show(true);
             e_Cars.App app = new e_Cars.App();
             app.InitializeComponent();
             app.Run();
