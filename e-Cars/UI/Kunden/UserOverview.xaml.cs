@@ -29,8 +29,8 @@ namespace e_Cars.UI.Kunden
         {
             this.mw = mw;
             this.DataContext = this;
+            //this.Visibility = Visibility.Collapsed;
             InitializeComponent();
-
         }
 
         private List<UserInfo> listuserinfo = null;
@@ -55,13 +55,32 @@ namespace e_Cars.UI.Kunden
             }
         }
 
+        public ProgressDialog pg = null;
+
         private void loadData()
         {
             // Hier die User Daten laden...
             if (listuserinfo == null)
             {
-                listUserInfo = getListOfUserInfo(null);
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.DoWork += new DoWorkEventHandler(workerDoWork);
+                worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(workerRunWorkerCompleted);
+                worker.RunWorkerAsync();
+                pg = new ProgressDialog();
+                pg.ShowDialog();
+
             }
+        }
+
+        void workerDoWork(object sender, DoWorkEventArgs e)
+        {
+            listUserInfo = getListOfUserInfo(null);
+        }
+
+        void workerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            pg.Close();
+            //this.Visibility = Visibility.Visible;
         }
 
         private List<UserInfo> getListOfUserInfo(string filter)

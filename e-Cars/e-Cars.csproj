@@ -152,6 +152,9 @@
       <DependentUpon>UserDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Kunden\UserInfo.cs" />
+    <Compile Include="UI\Kunden\ProgressDialog.xaml.cs">
+      <DependentUpon>ProgressDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Kunden\UserNew.xaml.cs">
       <DependentUpon>UserNew.xaml</DependentUpon>
     </Compile>
@@ -210,6 +213,10 @@
     <Page Include="UI\Kunden\UserDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Kunden\ProgressDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\Kunden\UserNew.xaml">
       <SubType>Designer</SubType>
