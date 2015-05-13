@@ -74,7 +74,11 @@ namespace e_Cars {
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
         public static void Main() {
             SplashScreen splashScreen = new SplashScreen("e-car.png");
-            splashScreen.Show(true);
+            splashScreen.Show(false, true);
+            // TODO Hier kann das Sleep entfernt werden falls gewünscht/nicht benötigt
+            System.Threading.Thread.Sleep(1000);
+
+            splashScreen.Close(TimeSpan.FromSeconds(1));
             e_Cars.App app = new e_Cars.App();
             app.InitializeComponent();
             app.Run();

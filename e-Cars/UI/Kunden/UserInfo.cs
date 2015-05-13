@@ -52,7 +52,7 @@ namespace e_Cars.UI.Kunden
             get { return adress.PLZ; }
         }
 
-        public String HausNummer
+        public String Hausnummer
         {
             get { return adress.Hausnummer; }
         }

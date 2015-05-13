@@ -49,7 +49,7 @@
                             <GridViewColumn Header="Vorname" Width="Auto" DisplayMemberBinding="{Binding Vorname}"></GridViewColumn>
                             
                             <GridViewColumn Header="Strasse" Width="Auto" DisplayMemberBinding="{Binding Strasse}"></GridViewColumn>
-                            <GridViewColumn Header="Hausnummer" Width="Auto" DisplayMemberBinding="{Binding HausNummer}"></GridViewColumn>
+                            <GridViewColumn Header="Hausnummer" Width="Auto" DisplayMemberBinding="{Binding Hausnummer}"></GridViewColumn>
 
                             <GridViewColumn Header="PLZ" Width="Auto" DisplayMemberBinding="{Binding PLZ}"></GridViewColumn>
                             <GridViewColumn Header="Ort" Width="Auto" DisplayMemberBinding="{Binding Ort}"></GridViewColumn>
