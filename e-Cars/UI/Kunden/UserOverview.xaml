@@ -41,10 +41,11 @@
                     </ListBox.ItemsPanel>
                 </ListBox>-->
 
-                <ListView x:Name="myListView" ItemsSource="{Binding listUserInfo}" MouseDoubleClick="myListView_MouseDoubleClick">
+                <ListView x:Name="myListView" ItemsSource="{Binding listUserInfo}" MouseDoubleClick="myListView_MouseDoubleClick" GridViewColumnHeader.Click="GridViewColumnHeaderClickedHandler">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Name" Width="Auto" DisplayMemberBinding="{Binding KundeName}"></GridViewColumn>
+                            
+                            <GridViewColumn Header="Name" Width="Auto" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
                             <GridViewColumn Header="Vorname" Width="Auto" DisplayMemberBinding="{Binding Vorname}"></GridViewColumn>
                             
                             <GridViewColumn Header="Strasse" Width="Auto" DisplayMemberBinding="{Binding Strasse}"></GridViewColumn>

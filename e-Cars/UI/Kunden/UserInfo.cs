@@ -32,7 +32,7 @@ namespace e_Cars.UI.Kunden
             }
         }
 
-        public String KundeName
+        public String Name
         {
             get { return kunde.Name; }
         }
