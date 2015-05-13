@@ -23,6 +23,7 @@ namespace e_Cars.UI.Kunden
     /// </summary>
     public partial class UserOverview : UserControl, INotifyPropertyChanged
     {
+
         private MainWindow mw { get; set; }
         public UserOverview(MainWindow mw)
         {
@@ -33,6 +34,7 @@ namespace e_Cars.UI.Kunden
         }
 
         private List<UserInfo> listuserinfo = null;
+
         public List<UserInfo> listUserInfo
         {
             get { return listuserinfo; }
@@ -42,6 +44,7 @@ namespace e_Cars.UI.Kunden
                 NotifyPropertyChanged("listUserInfo");
             }
         }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void NotifyPropertyChanged(String info)
@@ -55,7 +58,10 @@ namespace e_Cars.UI.Kunden
         private void loadData()
         {
             // Hier die User Daten laden...
-            listUserInfo = getListOfUserInfo(null);
+            if (listuserinfo == null)
+            {
+                listUserInfo = getListOfUserInfo(null);
+            }
         }
 
         private List<UserInfo> getListOfUserInfo(string filter)
@@ -94,8 +100,13 @@ namespace e_Cars.UI.Kunden
             var item = ((FrameworkElement)e.OriginalSource).DataContext as UserInfo;
             if (item != null)
             {
-                    mw.setUserDetail(item);
+                mw.setUserDetail(item);
             }
+        }
+
+        private void TextBoxFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
