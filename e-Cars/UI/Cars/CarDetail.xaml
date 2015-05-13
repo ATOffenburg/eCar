@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="e_Cars.UI.Cars.CarDetail"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:loc="clr-namespace:e_Cars.UI.Cars"
+             mc:Ignorable="d"
+             Style="{StaticResource UserControlStyle}"
+             d:DesignHeight="400" d:DesignWidth="600">
+
+    <UserControl.Resources>
+        <loc:IntToProzentConverter x:Key="converter" />
+    </UserControl.Resources>
+    <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Margin="0" Grid.Row="0" Orientation="Horizontal">
+                    <Button x:Name="ButtonZurueck" Content="_Zurück" Click="ButtonZurueck_Click" Width="60"/>
+                </StackPanel>
+
+                <Grid Grid.Row="1">
+
+                    <StackPanel>
+
+                        <Grid>
+                            <Button x:Name="ButtonFahrzeugOrten" Content="Fahrzeug orten..." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="130" Grid.ColumnSpan="2" Click="ButtonFahrzeugOrten_Click"/>
+                            <Button x:Name="ButtonFahrtenliste" Content="Fahrtenliste..." HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="130" Grid.ColumnSpan="2" Click="ButtonFahrtenliste_Click"/>
+                            <Button x:Name="ButtonReservierung" Content="Reservierungen..." HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="130" Grid.ColumnSpan="2" Click="ButtonReservierung_Click"/>
+                        </Grid>
+
+                        <Grid>
+                            <GroupBox Header="Stammdaten" Margin="5" VerticalAlignment="Top" Grid.ColumnSpan="2">
+                                <Grid>
+                                    <Label x:Name="LabelSeriennummer" Margin="10,10,0,0" Content="Seriennummer: " VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
+                                    <TextBox x:Name="TextBoxSeriennummer" Text="{Binding Path=Seriennummer, UpdateSourceTrigger=PropertyChanged}" Margin="120,10,10,0"  VerticalAlignment="Top"/>
+                                    <Label Margin="10,41,0,0" Content="Wartungstermin: "  VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
+                                    <DatePicker x:Name="DatepickerWartungstermin" SelectedDate="{Binding WartungsTermin, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="120,42,0,0" VerticalAlignment="Top" Width="140"/>
+                                    <Label Margin="10,72,0,0" Content="Batterieladung: "  VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
+                                    <Label Margin="120,72,0,0" Content="{Binding Path=Batterieladung, Converter={StaticResource ResourceKey=converter} }"  VerticalAlignment="Top" HorizontalAlignment="Left" Width="55" Height="26"/>
+                                    <Slider Value="{Binding Path=Batterieladung, UpdateSourceTrigger=PropertyChanged}" Minimum="0" SmallChange="1" Maximum="100" VerticalAlignment="Top" Margin="180,72,10,0" Height="26"/>
+
+                                    <Label x:Name="LabelKilometerstand" Margin="10,103,0,0" Content="Kilometerstand: " VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
+                                    <TextBox x:Name="TextBoxKilometerstand" MaxLength="7" DataObject.Pasting="TextBoxPasting" PreviewTextInput="Event_PreviewTextInput" Text="{Binding Path=Kilometerstand, UpdateSourceTrigger=PropertyChanged}" Margin="120,107,10,0" VerticalAlignment="Top"/>
+
+                                    <Label x:Name="LabelTankvorgaenge" Margin="10,134,0,0" Content="Tankvorgänge: " VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
+                                    <TextBox x:Name="TextBoxTankvorgaenge" MaxLength="7" DataObject.Pasting="TextBoxPasting" PreviewTextInput="Event_PreviewTextInput" Text="{Binding Path=Tankvorgaenge, UpdateSourceTrigger=PropertyChanged}" Margin="120,138,10,0" VerticalAlignment="Top"/>
+
+                                    <Label x:Name="LabelStatus" Margin="10,165,0,0" Content="Status: " VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
+                                    <ComboBox x:Name="ComboBoxStatus" Margin="120,168,10,0" ItemsSource="{Binding Path=listStatus}" SelectedItem="{Binding selectedStatus}" IsSynchronizedWithCurrentItem="True">
+
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Status_ID}" Width="30" Margin="0,2,5,2" />
+                                                    <TextBlock Text="{Binding Statusbezeichnung}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+
+                                    </ComboBox>
+                                    
+                                </Grid>
+                            </GroupBox>
+                        </Grid>
+
+                        <Grid>
+                            <CheckBox x:Name="CheckBoxGesperrt" Margin="5,0,5,0" Content="Gesperrt" IsChecked="{Binding Path=Gesperrt, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Grid.ColumnSpan="2"></CheckBox>
+                            <CheckBox x:Name="CheckBoxSpontannutzung" Margin="5,20,5,0" Content="für Spontanenutzung gesperrt" IsChecked="{Binding Path=SpontaneNutzungGesperrt, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Grid.ColumnSpan="2"></CheckBox>
+                            <CheckBox x:Name="CheckBoxReservierung" Margin="5,40,5,0" Content="für Reservierungen gesperrt" IsChecked="{Binding Path=ReservierungGesperrt, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Grid.ColumnSpan="2"></CheckBox>
+                        </Grid>
+
+                    </StackPanel>
+
+                    <Button x:Name="ButtonAenderungenSpeichern" Content="Änderungen speichern" Margin="0,0,10,10" HorizontalAlignment="Right" Width="148" Click="ButtonAenderungenSpeichern_Click" Height="20" VerticalAlignment="Bottom" Grid.Column="1" />
+
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>
