@@ -105,9 +105,31 @@ namespace e_Cars.UI.Kunden
             mw.setMenuStammdatenVerwaltung();
         }
 
+        /// <summary>
+        /// Öffnet das UserNew Fenster um neue Kunden anzulegen. Diese speichert diese dann in der Datenbank.
+        /// Daraufhin folgt eine DB Abfrage die die Liste aktualisert.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
         private void ButtonCreateNew_Click(object sender, RoutedEventArgs e)
         {
-            mw.setUserNew();
+            //mw.setUserNew();
+            UserNew unew = new UserNew(mw);
+
+            unew.ShowDialog();
+
+            using (Projekt2Entities con = new Projekt2Entities())
+            {
+                foreach (Kunde k in con.Kunde.Where(s => s.Kunde_ID > listuserinfo.Count-1))
+                {
+                    UserInfo ui = new UserInfo(k);
+                    listuserinfo.Add(ui);
+                }
+            }
+
+            myListView.Items.Refresh();
+
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -218,9 +240,9 @@ namespace e_Cars.UI.Kunden
             else
             {
                 var userI = (UserInfo)item;
-                return (userI.Name.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) || 
-                    userI.Vorname.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) || 
-                    userI.Ort.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) || 
+                return (userI.Name.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
+                    userI.Vorname.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
+                    userI.Ort.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
                     userI.Strasse.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
                     userI.PLZ.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
                     userI.Hausnummer.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||

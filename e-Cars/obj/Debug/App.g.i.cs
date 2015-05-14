@@ -31,60 +31,50 @@ using System.Windows.Shapes;
 using System.Windows.Shell;
 
 
-namespace e_Cars
-{
-
-
+namespace e_Cars {
+    
+    
     /// <summary>
     /// App
     /// </summary>
-    public partial class App : System.Windows.Application
-    {
-
+    public partial class App : System.Windows.Application {
+        
         private bool _contentLoaded;
-
+        
         /// <summary>
         /// InitializeComponent
         /// </summary>
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
-        public void InitializeComponent()
-        {
-            if (_contentLoaded)
-            {
+        public void InitializeComponent() {
+            if (_contentLoaded) {
                 return;
             }
             _contentLoaded = true;
-
-#line 4 "..\..\App.xaml"
+            
+            #line 4 "..\..\App.xaml"
             this.StartupUri = new System.Uri("MainWindow.xaml", System.UriKind.Relative);
-
-#line default
-#line hidden
+            
+            #line default
+            #line hidden
             System.Uri resourceLocater = new System.Uri("/e-Cars;component/app.xaml", System.UriKind.Relative);
-
-#line 1 "..\..\App.xaml"
+            
+            #line 1 "..\..\App.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
-
-#line default
-#line hidden
+            
+            #line default
+            #line hidden
         }
-
+        
         /// <summary>
         /// Application Entry Point.
         /// </summary>
         [System.STAThreadAttribute()]
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "4.0.0.0")]
-        public static void Main()
-        {
+        public static void Main() {
             SplashScreen splashScreen = new SplashScreen("e-car.png");
-            
-            splashScreen.Show(false, true);
-
-            // ACHTUNG FALSCHE DATEI
-            //splashScreen.Close(TimeSpan.FromSeconds(3));
-
+            splashScreen.Show(true);
             e_Cars.App app = new e_Cars.App();
             app.InitializeComponent();
             app.Run();

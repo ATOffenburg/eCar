@@ -20,19 +20,19 @@ namespace e_Cars.UI.Kunden
     /// <summary>
     /// Interaktionslogik für UserNew.xaml
     /// </summary>
-    public partial class UserNew : UserControl, INotifyPropertyChanged
+    public partial class UserNew : Window, INotifyPropertyChanged
     {
 
         private MainWindow mw { get; set; }
 
         private string name;
-        public String KundeName
+        public String Nname
         {
             get { return name; }
             set
             {
                 name = value;
-                NotifyPropertyChanged("KundeName");
+                NotifyPropertyChanged("Nname");
             }
         }
 
@@ -46,6 +46,29 @@ namespace e_Cars.UI.Kunden
                 NotifyPropertyChanged("Vorname");
             }
         }
+
+        private string email;
+        public String Email
+        {
+            get { return email; }
+            set
+            {
+                email = value;
+                NotifyPropertyChanged("Email");
+            }
+        }
+
+        private string passwort;
+        public String Passwort
+        {
+            get { return passwort; }
+            set
+            {
+                passwort = value;
+                NotifyPropertyChanged("Passwort");
+            }
+        }
+
 
         private string ort;
         public String Ort
@@ -70,13 +93,13 @@ namespace e_Cars.UI.Kunden
         }
 
         private string hausnummer;
-        public String HausNummer
+        public String Hausnummer
         {
             get { return hausnummer; }
             set
             {
                 hausnummer = value;
-                NotifyPropertyChanged("HausNummer");
+                NotifyPropertyChanged("Hausnummer");
             }
         }
 
@@ -113,7 +136,7 @@ namespace e_Cars.UI.Kunden
             }
         }
 
-        
+
         public UserNew(MainWindow mw)
         {
             this.mw = mw;
@@ -133,18 +156,20 @@ namespace e_Cars.UI.Kunden
 
         private void ButtonZurueck_Click(object sender, RoutedEventArgs e)
         {
-            mw.setUserOverview();
+            this.Close();
         }
 
         private void clearFields()
         {
 
-            KundeName = "";
+            Nname = "";
             Vorname = "";
+            Email = "";
+            Passwort = "";
             PLZ = "";
             Ort = "";
             Strasse = "";
-            HausNummer = "";
+            Hausnummer = "";
             BIC = "";
             IBAN = "";
 
@@ -156,7 +181,7 @@ namespace e_Cars.UI.Kunden
 
             bool bData = false;
 
-            if (String.IsNullOrWhiteSpace(KundeName))
+            if (String.IsNullOrWhiteSpace(Nname))
             {
                 bData = true;
             }
@@ -176,7 +201,7 @@ namespace e_Cars.UI.Kunden
             {
                 bData = true;
             }
-            if (String.IsNullOrWhiteSpace(HausNummer))
+            if (String.IsNullOrWhiteSpace(Hausnummer))
             {
                 bData = true;
             }
@@ -188,11 +213,18 @@ namespace e_Cars.UI.Kunden
             {
                 bData = true;
             }
-
+            if (String.IsNullOrWhiteSpace(Email))
+            {
+                bData = true;
+            }
+            if (String.IsNullOrWhiteSpace(Passwort))
+            {
+                bData = true;
+            }
             return bData;
 
         }
-
+                
         private void ButtonAnlegen_Click(object sender, RoutedEventArgs e)
         {
 
@@ -203,14 +235,16 @@ namespace e_Cars.UI.Kunden
             }
 
             Kunde k = new Kunde();
-            k.Name = KundeName;
+            k.Name = Nname;
             k.Vorname = Vorname;
-      
+            k.Email = Email;
+            k.Passwort = Passwort;
+
             Adresse a = new Adresse();
             a.Ort = Ort;
             a.PLZ = PLZ;
             a.Strasse = Strasse;
-            a.Hausnummer = HausNummer;
+            a.Hausnummer = Hausnummer;
 
             Bank b = new Bank();
             b.BIC = BIC;
@@ -228,7 +262,7 @@ namespace e_Cars.UI.Kunden
 
                 con.Kunde.Add(k);
                 con.SaveChanges();
-
+                
             }
 
             clearFields();

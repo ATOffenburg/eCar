@@ -78,7 +78,7 @@ namespace e_Cars {
             // TODO Hier kann das Sleep entfernt werden falls gewünscht/nicht benötigt
             System.Threading.Thread.Sleep(1000);
 
-            splashScreen.Close(TimeSpan.FromSeconds(3));
+            splashScreen.Close(TimeSpan.FromSeconds(1.5));
             e_Cars.App app = new e_Cars.App();
             app.InitializeComponent();
             app.Run();
