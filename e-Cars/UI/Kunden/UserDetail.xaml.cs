@@ -20,7 +20,7 @@ namespace e_Cars.UI.Kunden
     /// <summary>
     /// Interaktionslogik für UserDetail.xaml
     /// </summary>
-    public partial class UserDetail : UserControl
+    public partial class UserDetail : Window
     {
 
         public MainWindow mw { get; set; }
@@ -50,6 +50,29 @@ namespace e_Cars.UI.Kunden
                 NotifyPropertyChanged("Vorname");
             }
         }
+
+        private string email;
+        public String Email
+        {
+            get { return email; }
+            set
+            {
+                email = value;
+                NotifyPropertyChanged("Email");
+            }
+        }
+
+        private string passwort;
+        public String Passwort
+        {
+            get { return passwort; }
+            set
+            {
+                passwort = value;
+                NotifyPropertyChanged("Passwort");
+            }
+        }
+
 
         private string ort;
         public String Ort
@@ -156,6 +179,8 @@ namespace e_Cars.UI.Kunden
 
                     KundeName = k.Name;
                     Vorname = k.Vorname;
+                    Email = k.Email;
+                    Passwort = k.Passwort;
                     Gesperrt = k.Gesperrt;
 
                     if (a != null)
@@ -193,7 +218,8 @@ namespace e_Cars.UI.Kunden
 
         private void ButtonZurueck_Click(object sender, RoutedEventArgs e)
         {
-            mw.setUserOverview();
+            //mw.setUserOverview();
+            this.Close();
         }
 
 
@@ -207,6 +233,14 @@ namespace e_Cars.UI.Kunden
                 bData = true;
             }
             if (String.IsNullOrWhiteSpace(Vorname))
+            {
+                bData = true;
+            }
+            if (String.IsNullOrWhiteSpace(Email))
+            {
+                bData = true;
+            }
+            if (String.IsNullOrWhiteSpace(Passwort))
             {
                 bData = true;
             }
@@ -238,6 +272,8 @@ namespace e_Cars.UI.Kunden
             return bData;
 
         }
+
+        public bool sthChanged = false;
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
@@ -292,10 +328,16 @@ namespace e_Cars.UI.Kunden
                 knew.Bank_ID = bnew.Bank_ID;
                 knew.Name = KundeName;
                 knew.Vorname = Vorname;
+                knew.Email = Email;
+                knew.Passwort = Passwort;
                 knew.Gesperrt = Gesperrt;
+
+                ui = new UserInfo(knew);
 
                 con.Entry(knew).State = System.Data.Entity.EntityState.Modified;
                 con.SaveChanges();
+
+                sthChanged = true;
 
                 MessageBox.Show("Änderungen gespeichert!");
             }

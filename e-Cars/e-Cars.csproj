@@ -346,7 +346,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image1.png" />
     <SplashScreen Include="e-car.png" />
     <Content Include="html\GMaps.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

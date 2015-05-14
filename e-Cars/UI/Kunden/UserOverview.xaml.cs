@@ -119,16 +119,19 @@ namespace e_Cars.UI.Kunden
 
             unew.ShowDialog();
 
-            using (Projekt2Entities con = new Projekt2Entities())
+            if (unew.sthChanged != false)
             {
-                foreach (Kunde k in con.Kunde.Where(s => s.Kunde_ID > listuserinfo.Count-1))
+                using (Projekt2Entities con = new Projekt2Entities())
                 {
-                    UserInfo ui = new UserInfo(k);
-                    listuserinfo.Add(ui);
+                    foreach (Kunde k in con.Kunde.Where(s => s.Kunde_ID > listuserinfo.Count - 1))
+                    {
+                        UserInfo ui = new UserInfo(k);
+                        listuserinfo.Add(ui);
+                    }
                 }
-            }
 
-            myListView.Items.Refresh();
+                myListView.Items.Refresh();
+            }
 
         }
 
@@ -142,7 +145,18 @@ namespace e_Cars.UI.Kunden
             var item = ((FrameworkElement)e.OriginalSource).DataContext as UserInfo;
             if (item != null)
             {
-                mw.setUserDetail(item);
+                //mw.setUserDetail(item);
+                UserDetail uDt = new UserDetail(mw, item);
+                uDt.ShowDialog();
+
+                if (uDt.sthChanged != false)
+                {
+                    int index = listuserinfo.FindIndex(s => s.kunde.Kunde_ID == uDt.ui.kunde.Kunde_ID);
+                    listuserinfo[index] = uDt.ui;
+
+                    ICollectionView view = CollectionViewSource.GetDefaultView(listuserinfo);
+                    view.Refresh();
+                }
             }
         }
 

@@ -224,7 +224,7 @@ namespace e_Cars.UI.Kunden
             return bData;
 
         }
-                
+        public bool sthChanged = false;        
         private void ButtonAnlegen_Click(object sender, RoutedEventArgs e)
         {
 
@@ -262,6 +262,7 @@ namespace e_Cars.UI.Kunden
 
                 con.Kunde.Add(k);
                 con.SaveChanges();
+                sthChanged = true;
                 
             }
 
