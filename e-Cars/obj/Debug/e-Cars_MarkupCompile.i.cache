@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Torsten\Dropbox\Github\eCar\e-Cars\e-Cars\obj\Debug\
+E:\eCar\e-Cars\obj\Debug\
 e_Cars
 none
 false
 DEBUG;TRACE
-C:\Users\Torsten\Dropbox\Github\eCar\e-Cars\e-Cars\App.xaml
-151966606476
+E:\eCar\e-Cars\App.xaml
+162075321530
 2-494253336
-44831285977
-211778875285
-MainWindow.xaml;Menu.xaml;MenuStammdatenVerwalten.xaml;UI\Kunden\UserDetail.xaml;UI\Kunden\UserNew.xaml;UI\Kunden\UserOverview.xaml;UI\Cars\CarNew.xaml;UI\Cars\CarOverview.xaml;UI\Cars\CarDetail.xaml;UI\Map\GMaps.xaml;UI\Reservierung\ReservierungNew.xaml;UI\Reservierung\ReservierungOverview.xaml;UI\Tankstellen\TankstelleDetail.xaml;UI\Tankstellen\TankstelleNew.xaml;UI\Tankstellen\TankstelleOverview.xaml;
-
-True
+45-1327493229
+212120850484
+MainWindow.xaml;Menu.xaml;MenuStammdatenVerwalten.xaml;UI\Kunden\UserDetail.xaml;UI\Kunden\ProgressDialog.xaml;UI\Kunden\UserNew.xaml;UI\Kunden\UserOverview.xaml;UI\Cars\CarNew.xaml;UI\Cars\CarOverview.xaml;UI\Cars\CarDetail.xaml;UI\Map\GMaps.xaml;UI\Reservierung\ReservierungNew.xaml;UI\Reservierung\ReservierungOverview.xaml;UI\Tankstellen\TankstelleDetail.xaml;UI\Tankstellen\TankstelleNew.xaml;UI\Tankstellen\TankstelleOverview.xaml;
+e-car.png
+False
 

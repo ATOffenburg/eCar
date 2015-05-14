@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Daniel\Dropbox\P2-e-car\Desktop Anwendung\e-Cars\e-Cars\obj\Release\
+E:\eCar\e-Cars\obj\Release\
 e_Cars
 none
 false
 TRACE
-C:\Users\Daniel\Dropbox\P2-e-car\Desktop Anwendung\e-Cars\e-Cars\App.xaml
-11-1695465261
-
-33878395540
-21-782674836
-MainWindow.xaml;Menu.xaml;MenuStammdatenVerwalten.xaml;UI\Kunden\UserDetail.xaml;UI\Kunden\UserInfo.xaml;UI\Kunden\UserNew.xaml;UI\Kunden\UserOverview.xaml;UI\Cars\CarNew.xaml;UI\Cars\CarOverview.xaml;UI\Cars\CarDetail.xaml;UI\Cars\CarInfo.xaml;
+E:\eCar\e-Cars\App.xaml
+151966606476
+2-494253336
+441718625356
+212120850484
+MainWindow.xaml;Menu.xaml;MenuStammdatenVerwalten.xaml;UI\Kunden\UserDetail.xaml;UI\Kunden\UserNew.xaml;UI\Kunden\UserOverview.xaml;UI\Cars\CarNew.xaml;UI\Cars\CarOverview.xaml;UI\Cars\CarDetail.xaml;UI\Map\GMaps.xaml;UI\Reservierung\ReservierungNew.xaml;UI\Reservierung\ReservierungOverview.xaml;UI\Tankstellen\TankstelleDetail.xaml;UI\Tankstellen\TankstelleNew.xaml;UI\Tankstellen\TankstelleOverview.xaml;
 
 True
 

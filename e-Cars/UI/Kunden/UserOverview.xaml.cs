@@ -30,6 +30,8 @@ namespace e_Cars.UI.Kunden
             this.mw = mw;
             this.DataContext = this;
             InitializeComponent();
+
+
         }
 
         private List<UserInfo> listuserinfo = null;
@@ -79,6 +81,7 @@ namespace e_Cars.UI.Kunden
         void workerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             pg.Close();
+
         }
 
         private List<UserInfo> getListOfUserInfo(string filter)
@@ -121,10 +124,9 @@ namespace e_Cars.UI.Kunden
             }
         }
 
-        private void TextBoxFilter_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
+        /// <summary>
+        /// Sortieren der Tabelle durch klicken auf einer der Spalten
+        /// </summary>
 
         GridViewColumnHeader _lastHeaderClicked = null;
         ListSortDirection _lastDirection = ListSortDirection.Ascending;
@@ -193,6 +195,40 @@ namespace e_Cars.UI.Kunden
             dataView.SortDescriptions.Add(sd);
             dataView.Refresh();
         }
+
+
+
+        /// <summary>
+        /// Sobald eine Eingabe getätigt wird, soll nach dem Gefiltert werden
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+
+        private void TextBoxFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(myListView.ItemsSource).Filter = UserFilter;
+            CollectionViewSource.GetDefaultView(myListView.ItemsSource).Refresh();
+        }
+
+        private bool UserFilter(object item)
+        {
+            if (String.IsNullOrEmpty(TextBoxFilter.Text))
+                return true;
+            else
+            {
+                var userI = (UserInfo)item;
+                return (userI.Name.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) || 
+                    userI.Vorname.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) || 
+                    userI.Ort.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) || 
+                    userI.Strasse.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
+                    userI.PLZ.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
+                    userI.Hausnummer.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
+                    userI.BIC.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
+                    userI.IBAN.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase));
+            }
+        }
+
 
 
 
