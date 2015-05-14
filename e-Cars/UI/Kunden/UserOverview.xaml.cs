@@ -34,7 +34,7 @@ namespace e_Cars.UI.Kunden
 
         }
 
-        private List<UserInfo> listuserinfo = null;
+        private static List<UserInfo> listuserinfo = null;
 
         public List<UserInfo> listUserInfo
         {
