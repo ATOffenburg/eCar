@@ -9,8 +9,8 @@
     MinWidth="585"
     ResizeMode="CanResizeWithGrip"
     ShowInTaskbar="False"
-    WindowStartupLocation="CenterScreen" 
-    FocusManager.FocusedElement="{Binding ElementName=leftMarginTextBox}">
+    WindowStartupLocation="CenterScreen" >
+    <!-- FocusManager.FocusedElement="{Binding ElementName=leftMarginTextBox}"> -->
     <UserControl 
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -50,13 +50,13 @@
                 <CheckBox Margin="15,229,0,0" VerticalAlignment="Top" Content="Gesperrt"></CheckBox>
                 <Grid>
 
-                    <ListView x:Name="myListView" ItemsSource="{Binding listTankstelleInfo}" Margin="8,253,10,43" >
+                    <ListView x:Name="myListView" ItemsSource="{Binding listTanksaeuleInfo}" Margin="8,253,10,43" >
 
                         <ListView.View>
                             <GridView>
+                                <GridViewColumn Header="Nr" Width="Auto" DisplayMemberBinding="{Binding Tanksaeulen_Nr}"></GridViewColumn>
                                 <GridViewColumn Header="Tankstellen_ID" Width="Auto" DisplayMemberBinding="{Binding Tankstelle_ID}"></GridViewColumn>
-                                <GridViewColumn Header="Tanksäulen_ID" Width="Auto" DisplayMemberBinding="{Binding Tanksaeule_ID}"></GridViewColumn>
-                                <GridViewColumn Header="Nr" Width="Auto" DisplayMemberBinding="{Binding Tankaeulen_Nr}"></GridViewColumn>
+                                <GridViewColumn Header="Tanksäulen_ID" Width="Auto" DisplayMemberBinding="{Binding Tanksaeulen_ID}"></GridViewColumn>                         
                                 <GridViewColumn Header="Car_ID" Width="Auto" DisplayMemberBinding="{Binding Car_ID}"></GridViewColumn>
                             </GridView>
 

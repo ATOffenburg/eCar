@@ -36,7 +36,34 @@ namespace e_Cars.UI.Tankstellen
 
             this.DataContext = this;
 
+            List<TanksaeuleInfo> listTanksaeule = new List<TanksaeuleInfo>();
+
+            var tanks = from t in con.Tanksaeule
+                        where t.Tankstelle_ID == ti.ID
+                        select t;
+
+                foreach (var vt in tanks)
+                {
+                    TanksaeuleInfo tsi = new TanksaeuleInfo(vt);
+                    listTanksaeule.Add(tsi);
+                }
+                listTanksaeuleInfo = listTanksaeule;
+            
+
             InitializeComponent();
+        }
+
+        private List<TanksaeuleInfo> listtanksaeuleinfo = null;
+
+
+        public List<TanksaeuleInfo> listTanksaeuleInfo
+        {
+            get { return listtanksaeuleinfo; }
+            set
+            {
+                listtanksaeuleinfo = value;
+                NotifyPropertyChanged("listTanksaeuleInfo");
+            }
         }
 
         private void ButtonZurueck_Click(object sender, RoutedEventArgs e)

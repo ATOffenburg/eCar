@@ -188,6 +188,7 @@
     <Compile Include="UI\Reservierung\ReservierungOverview.xaml.cs">
       <DependentUpon>ReservierungOverview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Tankstellen\TanksaeuleInfo.cs" />
     <Compile Include="UI\Tankstellen\TankstelleDetail.xaml.cs">
       <DependentUpon>TankstelleDetail.xaml</DependentUpon>
     </Compile>
