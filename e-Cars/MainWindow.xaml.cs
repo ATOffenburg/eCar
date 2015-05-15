@@ -31,6 +31,8 @@ namespace e_Cars
         private TankstelleOverview to { get; set; }
         private ReservierungOverview ro { get; set; }
 
+        private CarDetail cd { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -78,8 +80,28 @@ namespace e_Cars
         internal void setCarDetail(CarInfo ci)
         {
             MainGrid.Children.Clear();
-            CarDetail cd = new CarDetail(this, ci);
+            cd = new CarDetail(this, ci);
             MainGrid.Children.Add(cd);
+        }
+
+        internal void setCarDetail()
+        {
+            MainGrid.Children.Clear();
+            if (cd != null)
+            {
+                MainGrid.Children.Add(cd);
+            }
+            else
+            {
+                MainGrid.Children.Add(co);
+            }
+        }
+
+        internal void setCarFahrtenliste(CarInfo ci)
+        {
+            MainGrid.Children.Clear();
+            CarFahrtenliste cf = new CarFahrtenliste(this, ci);
+                MainGrid.Children.Add(cf);
         }
 
         internal void setUserOverview(bool reset = false)

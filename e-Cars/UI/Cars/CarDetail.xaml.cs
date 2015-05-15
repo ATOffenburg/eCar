@@ -43,7 +43,6 @@ namespace e_Cars.UI.Cars
         }
 
         private bool gesperrt;
-
         public bool Gesperrt
         {
             get { return gesperrt; }
@@ -249,8 +248,6 @@ namespace e_Cars.UI.Cars
                     || !Equals(ci.c.Tankvorgaenge, Tankvorgaenge)
 
                     || !Equals(ci.c.Status_ID, selectedStatus.Status_ID)
-
-
                     )
                 {
                     // Wenn ja die Änderungen speichern...
@@ -297,7 +294,7 @@ namespace e_Cars.UI.Cars
 
         private void ButtonFahrtenliste_Click(object sender, RoutedEventArgs e)
         {
-
+            mw.setCarFahrtenliste(ci);
         }
 
         private void ButtonReservierung_Click(object sender, RoutedEventArgs e)

@@ -151,7 +151,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceECars.resx</DependentUpon>
     </Compile>
+    <Compile Include="UI\Cars\CarFahrtenliste.xaml.cs">
+      <DependentUpon>CarFahrtenliste.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Cars\CarInfo.cs" />
+    <Compile Include="UI\Helper\SortAdorner.cs" />
     <Compile Include="UI\Kunden\UserDetail.xaml.cs">
       <DependentUpon>UserDetail.xaml</DependentUpon>
     </Compile>
@@ -211,6 +215,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MenuStammdatenVerwalten.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Cars\CarFahrtenliste.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

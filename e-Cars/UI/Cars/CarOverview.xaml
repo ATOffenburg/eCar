@@ -23,8 +23,8 @@
         </StackPanel>
 
         <Grid Grid.Row="2">
-            <Label Margin="10,8,0,7" HorizontalAlignment="Left"  >Filter:</Label>
-            <TextBox x:Name="TextBoxFilter" TextAlignment="Left" VerticalAlignment="Top" Margin="54,12,10,0" Height="18"/>
+            <Label Margin="10,8,0,7" HorizontalAlignment="Left" >Filter:</Label>
+            <TextBox x:Name="TextBoxFilter" TextChanged="TextBoxFilter_TextChanged" TextAlignment="Left" VerticalAlignment="Top" Margin="54,12,10,0" Height="18"/>
         </Grid>
 
         <Grid Grid.Row="4">
@@ -32,41 +32,53 @@
                 <ListView x:Name="myListView" ItemsSource="{Binding listCarsInfo}" MouseDoubleClick="myListView_MouseDoubleClick">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Seriennummer" Width="Auto" DisplayMemberBinding="{Binding Seriennummer}"></GridViewColumn>
-                            <GridViewColumn Header="Wartungstermin" Width="Auto" DisplayMemberBinding="{Binding Wartungstermin}"></GridViewColumn>
-                            <GridViewColumn Header="Kilometer" Width="Auto" DisplayMemberBinding="{Binding Kilometer}"></GridViewColumn>
-                            <GridViewColumn Header="Batterieladung" Width="Auto" DisplayMemberBinding="{Binding Batterieladung}"></GridViewColumn>
-                            <GridViewColumn Header="Tankvorgänge" Width="Auto" DisplayMemberBinding="{Binding Tankvorgaenge}"></GridViewColumn>
-                            <!--<GridViewColumn Header="Gesperrt" Width="Auto" DisplayMemberBinding="{Binding Gesperrt}"></GridViewColumn>-->
-                            <!--<GridViewColumn Header="Spontanenutzung gesperrt" Width="Auto" DisplayMemberBinding="{Binding SpontaneNutzungGesperrt}"></GridViewColumn>-->
-                            <!--<GridViewColumn Header="Reservierung gesperrt" Width="Auto" DisplayMemberBinding="{Binding ReservierungGesperrt}"></GridViewColumn>-->
-
-                            <GridViewColumn Header="Gesperrt" Width="Auto">
+                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Seriennummer}">
+                                <GridViewColumnHeader Click="SortClick" Tag="Seriennummer" Content="Seriennummer" />
+                            </GridViewColumn>
+                            
+                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Wartungstermin}">
+                                <GridViewColumnHeader Click="SortClick" Tag="Wartungstermin" Content="Wartungstermin" />
+                            </GridViewColumn>
+                            
+                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Kilometer}">
+                                <GridViewColumnHeader Click="SortClick" Tag="Kilometer" Content="Kilometer" />
+                            </GridViewColumn>
+                            
+                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Batterieladung}">
+                                <GridViewColumnHeader Click="SortClick" Tag="Batterieladung" Content="Batterieladung" />
+                            </GridViewColumn>
+                            
+                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Tankvorgaenge}">
+                                <GridViewColumnHeader Click="SortClick" Tag="Tankvorgänge" Content="Tankvorgänge" />
+                            </GridViewColumn>
+                            
+                            <GridViewColumn Width="Auto">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <CheckBox IsChecked="{Binding Path=Gesperrt}" IsHitTestVisible="False" Focusable="False"></CheckBox>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
+
+                                <GridViewColumnHeader Click="SortClick" Tag="Gesperrt" Content="Gesperrt" />
                             </GridViewColumn>
 
-
-                            <GridViewColumn Header="Spontanenutzung gesperrt" Width="Auto">
+                            <GridViewColumn Width="Auto">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <CheckBox IsChecked="{Binding Path=SpontaneNutzungGesperrt}" IsHitTestVisible="False" Focusable="False"></CheckBox>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
+                                <GridViewColumnHeader Click="SortClick" Tag="SpontaneNutzungGesperrt" Content="Spontanenutzung gesperrt" />
                             </GridViewColumn>
 
-
-                            <GridViewColumn Header="Reservierung gesperrt" Width="Auto">
+                            <GridViewColumn Width="Auto">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <CheckBox IsChecked="{Binding Path=ReservierungGesperrt}" IsHitTestVisible="False" Focusable="False"></CheckBox>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
+                                <GridViewColumnHeader Click="SortClick" Tag="ReservierungGesperrt" Content="Reservierung gesperrt" />
                             </GridViewColumn>
-
 
                         </GridView>
                     </ListView.View>                    

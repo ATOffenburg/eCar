@@ -1,4 +1,5 @@
 ﻿using e_Cars.Datenbank;
+using e_Cars.UI.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,10 @@ namespace e_Cars.UI.Cars
     /// </summary>
     public partial class CarOverview : UserControl, INotifyPropertyChanged
     {
+
+        private GridViewColumnHeader _CurSortCol = null;
+        private SortAdorner _CurAdorner = null;
+
         private MainWindow mw { get; set; }
         public CarOverview(MainWindow mw)
         {
@@ -47,7 +52,7 @@ namespace e_Cars.UI.Cars
         private void loadData()
         {
             // Hier die Car Daten laden...
-            listCarsInfo = getListOfCarsInfo(null);
+            listCarsInfo = getListOfCarsInfo(TextBoxFilter.Text);
         }
 
         private List<CarInfo> getListOfCarsInfo(string filter)
@@ -57,13 +62,11 @@ namespace e_Cars.UI.Cars
             {
                 foreach (Car c in con.Car)
                 {
-
-                    
-
-
-                    
                     CarInfo ci = new CarInfo(c);
-                    listCarsInfo.Add(ci);
+                    if (UseFilter(filter, ci))
+                    {
+                        listCarsInfo.Add(ci);
+                    }
                 }
             }
             return listCarsInfo;
@@ -102,5 +105,79 @@ namespace e_Cars.UI.Cars
             }
         }
 
+
+        private void SortClick(object sender, RoutedEventArgs e)
+        {
+            GridViewColumnHeader column = sender as GridViewColumnHeader;
+            String field = column.Tag as String;
+
+            if (_CurSortCol != null)
+            {
+                AdornerLayer.GetAdornerLayer(_CurSortCol).Remove(_CurAdorner);
+                myListView.Items.SortDescriptions.Clear();
+            }
+
+            ListSortDirection newDir = ListSortDirection.Ascending;
+            if (_CurSortCol == column && _CurAdorner.Direction == newDir)
+                newDir = ListSortDirection.Descending;
+
+            _CurSortCol = column;
+            _CurAdorner = new SortAdorner(_CurSortCol, newDir);
+            AdornerLayer.GetAdornerLayer(_CurSortCol).Add(_CurAdorner);
+            myListView.Items.SortDescriptions.Add(new SortDescription(field, newDir));
+        }
+
+        private void TextBoxFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            var textbox = sender as TextBox;
+            if (textbox != null)
+            {
+               listCarsInfo = getListOfCarsInfo(textbox.Text);
+            }
+
+        }
+
+        private bool UseFilter(String filter, CarInfo ci)
+        {
+            
+            if (String.IsNullOrWhiteSpace(filter))
+                return true;
+
+            foreach (var sel in filter.Split(new Char[] { ' ' } , StringSplitOptions.RemoveEmptyEntries))
+            {
+
+                if (containsWithException(ci.Kilometer, sel))
+                    return true;
+
+                if (containsWithException(ci.Seriennummer, sel))
+                    return true;
+
+                if (containsWithException(ci.Tankvorgaenge, sel))
+                    return true;
+
+                if (containsWithException(ci.Wartungstermin, sel))
+                    return true;
+
+            }
+            return false;
+        }
+
+        private bool containsWithException(String s1, String s2){
+            try
+            {
+                if (s1.ToLower().Contains(s2.ToLower()))
+                {
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            return false;
+        }
+
     }
+
 }
