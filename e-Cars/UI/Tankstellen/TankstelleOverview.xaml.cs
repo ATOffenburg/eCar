@@ -90,7 +90,11 @@ namespace e_Cars.UI.Tankstellen
             var item = ((FrameworkElement)e.OriginalSource).DataContext as TankstelleInfo;
             if (item != null)
             {
-                mw.setTankstelleDetail(item);
+                using (Projekt2Entities con = new Projekt2Entities())
+                {
+                    TankstelleDetail td = new TankstelleDetail(mw, item, con);
+                    td.ShowDialog();
+                }
             }
         }
 

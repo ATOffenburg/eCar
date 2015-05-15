@@ -16,29 +16,93 @@ namespace e_Cars.UI.Tankstellen
             this.tankstelle = t;
         }
 
-        public string Wartungsdatum
-        {
-            get
-            {
-                return null;
-            }
-        }
-
-        public string Standort
-        {
-            get
-            {
-                return null;
-            }
-        }
-
         public int ID
         {
             get
             {
                 return tankstelle.Tankstelle_ID;
             }
+            set
+            {
+                tankstelle.Tankstelle_ID = value;
+            }
         }
+
+        public double? breitengrad
+        {
+            get
+            {
+                return tankstelle.breitengrad;
+            }
+            set
+            {
+                tankstelle.breitengrad = value;
+            }
+        }
+
+        public double? laengengrad
+        {
+            get
+            {
+                return tankstelle.laengengrad;
+            }
+            set
+            {
+                tankstelle.laengengrad = value;
+            }
+        }
+
+        public string PLZ
+        {
+            get
+            {
+                return tankstelle.PLZ;
+            }
+            set
+            {
+                tankstelle.PLZ = value;
+            }
+        }
+
+
+        public string Ort
+        {
+            get
+            {
+                return tankstelle.Ort;
+            }
+            set
+            {
+                tankstelle.Ort = value;
+            }
+        }
+
+        public string Strasse
+        {
+            get
+            {
+                return tankstelle.Stasse;
+            }
+            set
+            {
+                tankstelle.Stasse = value;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return tankstelle.Name;
+            }
+            set
+            {
+                tankstelle.Name = value;
+            }
+        }
+
+
+
 
     }
 }

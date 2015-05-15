@@ -134,8 +134,8 @@ namespace e_Cars
         internal void setTankstelleDetail(TankstelleInfo item)
         {
             MainGrid.Children.Clear();
-            TankstelleDetail td = new TankstelleDetail(this, item);
-            MainGrid.Children.Add(td);
+            //TankstelleDetail td = new TankstelleDetail(this, item);
+            //MainGrid.Children.Add(td);
         }
 
         internal void setGMaps()

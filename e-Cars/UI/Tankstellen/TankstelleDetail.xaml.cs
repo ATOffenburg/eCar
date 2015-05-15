@@ -1,4 +1,5 @@
-﻿using System;
+﻿using e_Cars.Datenbank;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -19,15 +20,15 @@ namespace e_Cars.UI.Tankstellen
     /// <summary>
     /// Interaktionslogik für TankstelleDetail.xaml
     /// </summary>
-    public partial class TankstelleDetail : UserControl
+    public partial class TankstelleDetail : Window
     {
 
         MainWindow mw { get; set; }
 
-        TankstelleInfo ti { get; set; }
+        public TankstelleInfo ti { get; set; }
 
 
-        public TankstelleDetail(MainWindow mw, TankstelleInfo ti)
+        public TankstelleDetail(MainWindow mw, TankstelleInfo ti, Projekt2Entities con)
         {
 
             this.mw = mw;
@@ -40,40 +41,103 @@ namespace e_Cars.UI.Tankstellen
 
         private void ButtonZurueck_Click(object sender, RoutedEventArgs e)
         {
-            mw.setTankstelleOverview();
+            //mw.setTankstelleOverview();
+            this.Close();
         }
 
-        private string state;
-        public String State
+        public int ID
         {
-            get { return state; }
-            set
+            get
             {
-                state = value;
-                NotifyPropertyChanged("State");
+                return ti.ID;
+                
             }
-        }
-        private string standort;
-        public String Standort
-        {
-            get { return standort; }
             set
             {
-                standort = value;
-                NotifyPropertyChanged("Standort");
+                ti.ID = value;
+                NotifyPropertyChanged("ID");
             }
         }
 
-        private DateTime? wartungstermin;
-        public DateTime? WartungsTermin
+        public Double? breitengrad
         {
-            get { return wartungstermin; }
+            get
+            {
+                return ti.breitengrad;
+            }
             set
             {
-                wartungstermin = value;
-                NotifyPropertyChanged("WartungsTermin");
+                ti.breitengrad = value;
+                NotifyPropertyChanged("breitengrad");
             }
         }
+
+        public Double? laengengrad
+        {
+            get
+            {
+                return ti.laengengrad;
+            }
+            set
+            {
+                ti.laengengrad = value;
+                NotifyPropertyChanged("laengengrad");            
+            }
+        }
+
+
+        public String PLZ
+        {
+            get
+            {
+                return ti.PLZ;
+            }
+            set
+            {
+                ti.PLZ = value;
+                NotifyPropertyChanged("PLZ");
+            }
+        }
+
+        public String Ort
+        {
+            get
+            {
+                return ti.Ort;
+            }
+            set
+            {
+                ti.Ort = value;
+                NotifyPropertyChanged("Ort");
+            }
+        }
+
+        public String Strasse
+        {
+            get
+            {
+                return ti.Strasse;
+            }
+            set
+            {
+                ti.Strasse = value;
+                NotifyPropertyChanged("Strasse");
+            }
+        }
+
+        public String TName
+        {
+            get
+            {
+                return ti.Name;
+            }
+            set
+            {
+                ti.Name = value;
+                NotifyPropertyChanged("TName");
+            }
+        }
+       
 
         public event PropertyChangedEventHandler PropertyChanged;
 

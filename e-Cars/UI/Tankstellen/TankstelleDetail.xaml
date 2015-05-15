@@ -1,38 +1,72 @@
-﻿<UserControl x:Class="e_Cars.UI.Tankstellen.TankstelleDetail"
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="e_Cars.UI.Tankstellen.TankstelleDetail"
+    Title="Laden"
+    Height="565"
+    Width="585"
+    MinHeight="565"
+    MinWidth="585"
+    ResizeMode="CanResizeWithGrip"
+    ShowInTaskbar="False"
+    WindowStartupLocation="CenterScreen" 
+    FocusManager.FocusedElement="{Binding ElementName=leftMarginTextBox}">
+    <UserControl 
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             Style="{StaticResource UserControlStyle}"
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
+             Style="{StaticResource UserControlStyle}" Width="576" Height="535">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
 
-        <StackPanel Margin="0"  Orientation="Horizontal">
-            <Button x:Name="ButtonZurueck" Content="_Zurück" Click="ButtonZurueck_Click" Width="60"/>
-        </StackPanel>
+            <StackPanel Margin="0"  Orientation="Horizontal">
+                <Button x:Name="ButtonZurueck" Content="_Zurück" Click="ButtonZurueck_Click" Width="60"/>
+            </StackPanel>
 
-        <Grid Grid.Row="1">
+            <Grid Grid.Row="1">
 
-            <Label Margin="10,11,0,0" Content="Wartungstermin: "  VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
-            <DatePicker x:Name="DatepickerWartungstermin" SelectedDate="{Binding WartungsTermin, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="120,11,0,0" VerticalAlignment="Top" Width="140"/>
+                <Label Content="ID:" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.708,0.308"/>
+                <Label Content="Name:" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
+                <Label Content="Straße:" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top"/>
+                <Label Content="PLZ:" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top"/>
+                <Label Content="Ort:" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top"/>
+                <Label Content="Breitengrad:" HorizontalAlignment="Left" Margin="10,167,0,0" VerticalAlignment="Top"/>
+                <Label Content="Längengrad:" HorizontalAlignment="Left" Margin="10,198,0,0" VerticalAlignment="Top"/>
 
-            <Label Content="Standort:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-            <Label Content="Status:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
-            <Label Content="ID:" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top"/>
-            
-            <TextBox x:Name="TBStandort" Height="23" Margin="87,43,10,0" TextWrapping="Wrap" Text="{Binding Path=Standort, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
-            <TextBox x:Name="TBState" Height="23" Margin="87,76,10,0" TextWrapping="Wrap" Text="{Binding Path=State, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
-            <TextBox x:Name="TBID" IsEnabled="False" Height="23" Margin="87,109,10,0" TextWrapping="Wrap" Text="{Binding Path=ID, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
+                <TextBox x:Name="TBID" IsEnabled="False" Height="23" Margin="91,15,0,0" TextWrapping="Wrap" Text="{Binding Path=ID, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
+                <TextBox x:Name="TBName" Height="23" Margin="91,43,0,0" TextWrapping="Wrap" Text="{Binding Path=TName, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
+                <TextBox x:Name="TBStraße" Height="23" Margin="91,71,0,0" TextWrapping="Wrap" Text="{Binding Path=Strasse, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
+                <TextBox x:Name="TBPLZ" Height="23" Margin="91,102,0,0" TextWrapping="Wrap" Text="{Binding Path=PLZ, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
+                <TextBox x:Name="TBOrt" Height="23" Margin="91,133,0,0" TextWrapping="Wrap" Text="{Binding Path=Ort, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
+                <TextBox x:Name="TBLängengrad" Height="23" Margin="91,198,0,0" TextWrapping="Wrap" Text="{Binding Path=laengengrad, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
+                <TextBox x:Name="TBBreitengrad" Height="23" Margin="91,167,0,0" TextWrapping="Wrap" Text="{Binding Path=breitengrad, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
 
-            <CheckBox Margin="15,138,0,0" VerticalAlignment="Top" Content="Gesperrt"></CheckBox>
-            
-            <Button x:Name="ButtonSave" Click="ButtonSave_Click" Content="Änderungen speichern" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="135"/>
+                <CheckBox Margin="15,229,0,0" VerticalAlignment="Top" Content="Gesperrt"></CheckBox>
+                <Grid>
+
+                    <ListView x:Name="myListView" ItemsSource="{Binding listTankstelleInfo}" Margin="8,253,10,43" >
+
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Tankstellen_ID" Width="Auto" DisplayMemberBinding="{Binding Tankstelle_ID}"></GridViewColumn>
+                                <GridViewColumn Header="Tanksäulen_ID" Width="Auto" DisplayMemberBinding="{Binding Tanksaeule_ID}"></GridViewColumn>
+                                <GridViewColumn Header="Nr" Width="Auto" DisplayMemberBinding="{Binding Tankaeulen_Nr}"></GridViewColumn>
+                                <GridViewColumn Header="Car_ID" Width="Auto" DisplayMemberBinding="{Binding Car_ID}"></GridViewColumn>
+                            </GridView>
+
+                        </ListView.View>
+                    </ListView>
+
+                </Grid>
+
+                <Button x:Name="ButtonSave" Click="ButtonSave_Click" Content="Änderungen speichern" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="135"/>
+            </Grid>
         </Grid>
-    </Grid>
-</UserControl>
+    </UserControl>
+</Window>
