@@ -28,6 +28,7 @@ namespace e_Cars.UI.Tankstellen
 
         public TankstelleInfo ti { get; set; }
 
+        public Projekt2Entities connect = null;
 
         public TankstelleDetail(MainWindow mw, TankstelleInfo ti, Projekt2Entities con)
         {
@@ -49,7 +50,8 @@ namespace e_Cars.UI.Tankstellen
                     listTanksaeule.Add(tsi);
                 }
                 listTanksaeuleInfo = listTanksaeule;
-            
+
+                connect = con;
 
             InitializeComponent();
         }
@@ -260,9 +262,70 @@ namespace e_Cars.UI.Tankstellen
             dataView.Refresh();
         }
 
+        public bool checkData()
+        {
+            bool bData = false;
+
+            if (String.IsNullOrWhiteSpace(ID.ToString()))
+            {
+                bData = true;
+            }
+            if (String.IsNullOrWhiteSpace(breitengrad.ToString()))
+            {
+                bData = true;
+            }
+            if (String.IsNullOrWhiteSpace(laengengrad.ToString()))
+            {
+                bData = true;
+            }
+            if (String.IsNullOrWhiteSpace(TName))
+            {
+                bData = true;
+            }
+            if (String.IsNullOrWhiteSpace(PLZ))
+            {
+                bData = true;
+            }
+            if (String.IsNullOrWhiteSpace(Ort))
+            {
+                bData = true;
+            }
+            if (String.IsNullOrWhiteSpace(Strasse))
+            {
+                bData = true;
+            }
+            
+
+            return bData;
+        }
+
+        public bool sthChanged = false;
+
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
+            
 
+            if (checkData())
+            {
+                MessageBox.Show("Die Daten müssen vollständig sein bevor die Änderungen gespeichert werden können.");
+                return;
+            }
+
+            Tankstelle ta = connect.Tankstelle.SingleOrDefault(s => s.Tankstelle_ID == ID);
+
+            ta.Tankstelle_ID = ID;
+            ta.breitengrad = breitengrad;
+            ta.laengengrad = laengengrad;
+            ta.Name = TName;
+            ta.Ort = Ort;
+            ta.Stasse = Strasse;
+            ta.PLZ = PLZ;
+
+            connect.Entry(ta).State = System.Data.Entity.EntityState.Modified;
+            connect.SaveChanges();
+
+            sthChanged = true;
+            MessageBox.Show("Änderungen gespeichert!");
         }
 
     }

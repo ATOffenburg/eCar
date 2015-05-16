@@ -95,9 +95,21 @@ namespace e_Cars.UI.Tankstellen
                 {
                     TankstelleDetail td = new TankstelleDetail(mw, item, con);
                     td.ShowDialog();
+
+                    if (td.sthChanged != false)
+                    {
+                        int index = listtankstelleinfo.FindIndex(s => s.tankstelle.Tankstelle_ID == td.ti.ID);
+                        listtankstelleinfo[index] = td.ti;
+
+                        ICollectionView view = CollectionViewSource.GetDefaultView(listtankstelleinfo);
+                        view.Refresh();
+                    }
                 }
+
+                myListView.Items.Refresh();
             }
         }
+
 
 
         /// <summary>
