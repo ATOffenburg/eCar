@@ -50,14 +50,14 @@
                 <CheckBox Margin="15,229,0,0" VerticalAlignment="Top" Content="Gesperrt"></CheckBox>
                 <Grid>
 
-                    <ListView x:Name="myListView" ItemsSource="{Binding listTanksaeuleInfo}" Margin="8,253,10,43" >
+                    <ListView x:Name="myListView" ItemsSource="{Binding listTanksaeuleInfo}" Margin="8,253,10,43" GridViewColumnHeader.Click="GridViewColumnHeaderClickedHandler">
 
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Nr" Width="Auto" DisplayMemberBinding="{Binding Tanksaeulen_Nr}"></GridViewColumn>
-                                <GridViewColumn Header="Tankstellen_ID" Width="Auto" DisplayMemberBinding="{Binding Tankstelle_ID}"></GridViewColumn>
-                                <GridViewColumn Header="Tanksäulen_ID" Width="Auto" DisplayMemberBinding="{Binding Tanksaeulen_ID}"></GridViewColumn>                         
-                                <GridViewColumn Header="Car_ID" Width="Auto" DisplayMemberBinding="{Binding Car_ID}"></GridViewColumn>
+                                <GridViewColumn Header="Nr" Width="50" DisplayMemberBinding="{Binding Nr}"></GridViewColumn>
+                                <GridViewColumn Header="Tankstelle_ID" Width="100" DisplayMemberBinding="{Binding Tankstelle_ID}"></GridViewColumn>
+                                <GridViewColumn Header="Tanksäule_ID" Width="100" DisplayMemberBinding="{Binding Tanksäule_ID}"></GridViewColumn>
+                                <GridViewColumn Header="Car_ID" Width="100" DisplayMemberBinding="{Binding Car_ID}"></GridViewColumn>
                             </GridView>
 
                         </ListView.View>

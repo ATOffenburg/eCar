@@ -1,4 +1,5 @@
-﻿using e_Cars.Datenbank;
+﻿using e_Cars.UI.Helper;
+using e_Cars.Datenbank;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -167,6 +168,9 @@ namespace e_Cars.UI.Kunden
         GridViewColumnHeader _lastHeaderClicked = null;
         ListSortDirection _lastDirection = ListSortDirection.Ascending;
 
+        private GridViewColumnHeader _CurSortCol = null;
+        private SortAdorner _CurAdorner = null;
+
         void GridViewColumnHeaderClickedHandler(object sender,
                                                 RoutedEventArgs e)
         {
@@ -195,7 +199,15 @@ namespace e_Cars.UI.Kunden
                     }
 
                     string header = headerClicked.Column.Header as string;
+
+                    if(_CurAdorner != null)
+                        AdornerLayer.GetAdornerLayer(_CurSortCol).Remove(_CurAdorner);
+                    _CurSortCol = headerClicked;
+                    _CurAdorner = new SortAdorner(_CurSortCol, direction);
+                    AdornerLayer.GetAdornerLayer(_CurSortCol).Add(_CurAdorner);
+                    String field = headerClicked.Tag as String;
                     Sort(header, direction);
+                    
 
                     if (direction == ListSortDirection.Ascending)
                     {
@@ -221,6 +233,8 @@ namespace e_Cars.UI.Kunden
             }
         }
 
+
+
         private void Sort(string sortBy, ListSortDirection direction)
         {
             ICollectionView dataView =
@@ -229,6 +243,7 @@ namespace e_Cars.UI.Kunden
             dataView.SortDescriptions.Clear();
             SortDescription sd = new SortDescription(sortBy, direction);
             dataView.SortDescriptions.Add(sd);
+            
             dataView.Refresh();
         }
 

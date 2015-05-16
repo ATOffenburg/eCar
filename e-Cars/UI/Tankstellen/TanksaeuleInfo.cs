@@ -15,7 +15,7 @@ namespace e_Cars.UI.Tankstellen
             this.tanksaeule = t;
         }
 
-        public int Tanksaeulen_ID
+        public int Tanksäule_ID
         {
             get
             {
@@ -39,7 +39,7 @@ namespace e_Cars.UI.Tankstellen
             }
         }
 
-        public int Tanksaeulen_Nr
+        public int Nr
         {
             get
             {

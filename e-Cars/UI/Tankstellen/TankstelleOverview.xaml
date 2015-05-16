@@ -27,17 +27,17 @@
         </Grid>
         <Grid Grid.Row="3">
             <Border Margin="5" BorderBrush="Black" BorderThickness="1">
-                <ListView x:Name="myListView" ItemsSource="{Binding listTankstelleInfo}" MouseDoubleClick="myListView_MouseDoubleClick">
+                <ListView x:Name="myListView" ItemsSource="{Binding listTankstelleInfo}" MouseDoubleClick="myListView_MouseDoubleClick" GridViewColumnHeader.Click="GridViewColumnHeaderClickedHandler">
 
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="ID" Width="Auto" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
-                            <GridViewColumn Header="Name" Width="Auto" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
-                            <GridViewColumn Header="Strasse" Width="Auto" DisplayMemberBinding="{Binding Strasse}"></GridViewColumn>
-                            <GridViewColumn Header="PLZ" Width="Auto" DisplayMemberBinding="{Binding PLZ}"></GridViewColumn>
-                            <GridViewColumn Header="Ort" Width="Auto" DisplayMemberBinding="{Binding Ort}"></GridViewColumn>
-                            <GridViewColumn Header="Breitengrad" Width="Auto" DisplayMemberBinding="{Binding breitengrad}"></GridViewColumn>
-                            <GridViewColumn Header="Längengrad" Width="Auto" DisplayMemberBinding="{Binding laengengrad}"></GridViewColumn>
+                            <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding ID}"></GridViewColumn>
+                            <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                            <GridViewColumn Header="Strasse" Width="150" DisplayMemberBinding="{Binding Strasse}"></GridViewColumn>
+                            <GridViewColumn Header="PLZ" Width="50" DisplayMemberBinding="{Binding PLZ}"></GridViewColumn>
+                            <GridViewColumn Header="Ort" Width="50" DisplayMemberBinding="{Binding Ort}"></GridViewColumn>
+                            <GridViewColumn Header="Breitengrad" Width="100" DisplayMemberBinding="{Binding Breitengrad}"></GridViewColumn>
+                            <GridViewColumn Header="Längengrad" Width="100" DisplayMemberBinding="{Binding Längengrad}"></GridViewColumn>
                         </GridView>
 
                     </ListView.View>

@@ -28,7 +28,7 @@ namespace e_Cars.UI.Tankstellen
             }
         }
 
-        public double? breitengrad
+        public double? Breitengrad
         {
             get
             {
@@ -40,7 +40,7 @@ namespace e_Cars.UI.Tankstellen
             }
         }
 
-        public double? laengengrad
+        public double? Längengrad
         {
             get
             {
