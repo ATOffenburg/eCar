@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace e_Cars.UI.Kartenverwaltung
 {
-    class KartenInfo
+    public class KartenInfo
     {
 
         public Karte k { get; set; }

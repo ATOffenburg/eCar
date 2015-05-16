@@ -1,5 +1,4 @@
-﻿using e_Cars.UI.Helper;
-using e_Cars.Datenbank;
+﻿using e_Cars.Datenbank;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,157 +15,106 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace e_Cars.UI.Tankstellen
+namespace e_Cars.UI.Kartenverwaltung
 {
     /// <summary>
-    /// Interaktionslogik für TankstelleNew.xaml
+    /// Interaktionslogik für KartenNew.xaml
     /// </summary>
-    public partial class TankstelleNew : Window, INotifyPropertyChanged
+    public partial class KartenNew : Window, INotifyPropertyChanged
     {
         MainWindow mw { get; set; }
 
-        private TankstelleInfo ti { get; set; }
+        private KartenInfo ki { get; set; }
 
         public Projekt2Entities connect = null;
 
-        public TankstelleNew(MainWindow mw, Projekt2Entities con)
+        public KartenNew(MainWindow mw, Projekt2Entities con)
         {
 
             this.mw = mw;
-            this.ti = new TankstelleInfo(new Tankstelle());
+            this.ki = new KartenInfo(new Karte());
 
             this.DataContext = this;
 
             connect = con;
-
             InitializeComponent();
         }
 
-        private List<TanksaeuleInfo> listtanksaeuleinfo = null;
-
-
-        public List<TanksaeuleInfo> listTanksaeuleInfo
-        {
-            get { return listtanksaeuleinfo; }
-            set
-            {
-                listtanksaeuleinfo = value;
-                NotifyPropertyChanged("listTanksaeuleInfo");
-            }
-        }
 
         private void ButtonZurueck_Click(object sender, RoutedEventArgs e)
         {
-            //mw.setTankstelleOverview();
+            
             this.Close();
         }
 
-        public int ID
+        public int Karten_ID
         {
             get
             {
-                return ti.ID;
+                return ki.Karten_ID;
 
             }
             set
             {
-                ti.ID = value;
-                NotifyPropertyChanged("ID");
+                ki.Karten_ID = value;
+                NotifyPropertyChanged("Karten_ID");
             }
         }
 
-        public Double? breitengrad
+        public int Kunden_ID
         {
             get
             {
-                return ti.Breitengrad;
+                return ki.Kunde_ID;
+
             }
             set
             {
-                String s = TBBreitengrad.Text;
-
-                for (int i = 0; i < s.Length; i++)
-                {
-                    Char c = s[i];
-                    if (!Char.IsNumber(c))
-                    {
-                        MessageBox.Show("Bitte nur Zahlen eingeben", "Achtung!", MessageBoxButton.OK, MessageBoxImage.Hand);
-                        continue;
-                    }
-
-                }
-                ti.Breitengrad = value;
-                NotifyPropertyChanged("breitengrad");
+                ki.Kunde_ID = value;
+                NotifyPropertyChanged("Kunde_ID");
             }
         }
 
-        public Double? laengengrad
+        public bool Aktiv
         {
             get
             {
-                return ti.Längengrad;
+                return ki.Aktiv;
             }
             set
             {
-                ti.Längengrad = value;
-                NotifyPropertyChanged("laengengrad");
+                ki.Aktiv = value;
+                NotifyPropertyChanged("Aktiv");
             }
         }
 
-
-        public String PLZ
+        public Nullable<System.DateTime> Sperrdatum
         {
             get
             {
-                return ti.PLZ;
+                return ki.Sperrdatum;
             }
             set
             {
-                ti.PLZ = value;
-                NotifyPropertyChanged("PLZ");
+                ki.Sperrdatum = value;
+                NotifyPropertyChanged("Sperrdatum");
             }
         }
 
-        public String Ort
+
+        public String Sperrvermerk
         {
             get
             {
-                return ti.Ort;
+                return ki.Sperrvermerk;
             }
             set
             {
-                ti.Ort = value;
-                NotifyPropertyChanged("Ort");
+                ki.Sperrvermerk = value;
+                NotifyPropertyChanged("Sperrvermerk");
             }
         }
-
-        public String Strasse
-        {
-            get
-            {
-                return ti.Strasse;
-            }
-            set
-            {
-                ti.Strasse = value;
-                NotifyPropertyChanged("Strasse");
-            }
-        }
-
-        public String TName
-        {
-            get
-            {
-                return ti.Name;
-            }
-            set
-            {
-                ti.Name = value;
-                NotifyPropertyChanged("TName");
-            }
-        }
-
-
+          
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void NotifyPropertyChanged(String info)
@@ -177,123 +125,30 @@ namespace e_Cars.UI.Tankstellen
             }
         }
 
-        /// <summary>
-        /// Sortieren der Tabelle durch klicken auf einer der Spalten
-        /// </summary>
-
-        GridViewColumnHeader _lastHeaderClicked = null;
-        ListSortDirection _lastDirection = ListSortDirection.Ascending;
-
-        private GridViewColumnHeader _CurSortCol = null;
-        private SortAdorner _CurAdorner = null;
-
-        void GridViewColumnHeaderClickedHandler(object sender,
-                                                RoutedEventArgs e)
-        {
-            GridViewColumnHeader headerClicked =
-                  e.OriginalSource as GridViewColumnHeader;
-            ListSortDirection direction;
-
-            if (headerClicked != null)
-            {
-                if (headerClicked.Role != GridViewColumnHeaderRole.Padding)
-                {
-                    if (headerClicked != _lastHeaderClicked)
-                    {
-                        direction = ListSortDirection.Ascending;
-                    }
-                    else
-                    {
-                        if (_lastDirection == ListSortDirection.Ascending)
-                        {
-                            direction = ListSortDirection.Descending;
-                        }
-                        else
-                        {
-                            direction = ListSortDirection.Ascending;
-                        }
-                    }
-
-                    string header = headerClicked.Column.Header as string;
-
-                    if (_CurAdorner != null)
-                        AdornerLayer.GetAdornerLayer(_CurSortCol).Remove(_CurAdorner);
-                    _CurSortCol = headerClicked;
-                    _CurAdorner = new SortAdorner(_CurSortCol, direction);
-                    AdornerLayer.GetAdornerLayer(_CurSortCol).Add(_CurAdorner);
-                    String field = headerClicked.Tag as String;
-                    Sort(header, direction);
-
-
-                    if (direction == ListSortDirection.Ascending)
-                    {
-                        headerClicked.Column.HeaderTemplate =
-                          Resources["HeaderTemplateArrowUp"] as DataTemplate;
-                    }
-                    else
-                    {
-                        headerClicked.Column.HeaderTemplate =
-                          Resources["HeaderTemplateArrowDown"] as DataTemplate;
-                    }
-
-                    // Remove arrow from previously sorted header
-                    if (_lastHeaderClicked != null && _lastHeaderClicked != headerClicked)
-                    {
-                        _lastHeaderClicked.Column.HeaderTemplate = null;
-                    }
-
-
-                    _lastHeaderClicked = headerClicked;
-                    _lastDirection = direction;
-                }
-            }
-        }
-
-        private void Sort(string sortBy, ListSortDirection direction)
-        {
-            ICollectionView dataView =
-              CollectionViewSource.GetDefaultView(myListView.ItemsSource);
-
-            dataView.SortDescriptions.Clear();
-            SortDescription sd = new SortDescription(sortBy, direction);
-            dataView.SortDescriptions.Add(sd);
-            dataView.Refresh();
-        }
+        
 
         public bool checkData()
         {
             bool bData = false;
 
-            if (String.IsNullOrWhiteSpace(ID.ToString()))
+            if (String.IsNullOrWhiteSpace(Karten_ID.ToString()))
             {
                 bData = true;
             }
-            if (String.IsNullOrWhiteSpace(breitengrad.ToString()))
+            if (String.IsNullOrWhiteSpace(Kunden_ID.ToString()))
             {
                 bData = true;
             }
-            if (String.IsNullOrWhiteSpace(laengengrad.ToString()))
+            
+            if (String.IsNullOrWhiteSpace(Sperrdatum.ToString()))
             {
                 bData = true;
             }
-            if (String.IsNullOrWhiteSpace(TName))
+            if (String.IsNullOrWhiteSpace(Sperrvermerk))
             {
                 bData = true;
             }
-            if (String.IsNullOrWhiteSpace(PLZ))
-            {
-                bData = true;
-            }
-            if (String.IsNullOrWhiteSpace(Ort))
-            {
-                bData = true;
-            }
-            if (String.IsNullOrWhiteSpace(Strasse))
-            {
-                bData = true;
-            }
-
-
+            
             return bData;
         }
 
@@ -307,60 +162,36 @@ namespace e_Cars.UI.Tankstellen
                 return;
             }
 
-            Tankstelle ta = new Tankstelle();
-            ta.Name = ti.Name;
-            ta.breitengrad = ti.Breitengrad;
-            ta.laengengrad = ti.Längengrad;
-            ta.Ort = ti.Ort;
-            ta.PLZ = ti.PLZ;
-            ta.Stasse = ti.Strasse;
-            ta.Tankstelle_ID = ti.ID;
-
-            ta = connect.Tankstelle.Add(ta);
+            Karte ka = new Karte();
+            ka.Karten_ID = ki.Karten_ID;
+            ka.Kunde_ID = ki.Kunde_ID;
+            ka.Aktiv = ki.Aktiv;
+            ka.Sperrdatum = ki.Sperrdatum;
+            ka.Sperrvermerk = ki.Sperrvermerk;
+            
+            ka = connect.Karte.Add(ka);
             connect.SaveChanges();
-            MessageBox.Show("Die Tankstelle wurde erfolgreich angelegt");
-            List<TanksaeuleInfo> listTanksaeule = new List<TanksaeuleInfo>();
-
-            ti.ID = ta.Tankstelle_ID;
-
-            var tanks = from t in connect.Tanksaeule
-                        where t.Tankstelle_ID == ti.ID
-                        select t;
-
-            foreach (var vt in tanks)
-            {
-                TanksaeuleInfo tsi = new TanksaeuleInfo(vt);
-                listTanksaeule.Add(tsi);
-            }
-            listTanksaeuleInfo = listTanksaeule;
-            myListView.Items.Refresh();
-
+            MessageBox.Show("Die Karte wurde erfolgreich angelegt");
+            clearFields();
             sthChanged = true;
-
 
         }
 
-        public TankstelleInfo tAngelegt = null;
+        public KartenInfo kAngelegt = null;
 
         private void clearFields()
         {
-            tAngelegt = ti;
-            ti = new TankstelleInfo(new Tankstelle());
+            kAngelegt = ki;
+            ki = new KartenInfo(new Karte());
 
-            ID = 0;
-            breitengrad = null;
-            laengengrad = null;
-            Ort = "";
-            PLZ = "";
-            Strasse = "";
-            TName = "";
-
+            Karten_ID = 0;
+            Kunden_ID = 0;
+            Aktiv = false;
+            Sperrdatum = null;
+            Sperrvermerk = "";
+            
         }
 
-        private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
-        {
-            clearFields();
-        }
 
     }
 }

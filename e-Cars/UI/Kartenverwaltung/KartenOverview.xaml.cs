@@ -16,32 +16,32 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace e_Cars.UI.Tankstellen
+namespace e_Cars.UI.Kartenverwaltung
 {
     /// <summary>
     /// Interaktionslogik für TankstellenOverview.xaml
     /// </summary>
-    public partial class TankstelleOverview : UserControl, INotifyPropertyChanged
+    public partial class KartenOverview : UserControl, INotifyPropertyChanged
     {
 
         private MainWindow mw { get; set; }
 
 
-        private List<TankstelleInfo> listtankstelleinfo = null;
+        private List<KartenInfo> listkarteninfo = null;
 
 
-        public List<TankstelleInfo> listTankstelleInfo
+        public List<KartenInfo> listKartenInfo
         {
-            get { return listtankstelleinfo; }
+            get { return listkarteninfo; }
             set
             {
-                listtankstelleinfo = value;
-                NotifyPropertyChanged("listTankstelleInfo");
+                listkarteninfo = value;
+                NotifyPropertyChanged("listKartenInfo");
             }
         }
 
 
-        public TankstelleOverview(MainWindow mw)
+        public KartenOverview(MainWindow mw)
         {
             this.mw = mw;
             this.DataContext = this;
@@ -57,30 +57,30 @@ namespace e_Cars.UI.Tankstellen
         {
             using (Projekt2Entities con = new Projekt2Entities())
             {
-                TankstelleNew tnew = new TankstelleNew(mw, con);
+                KartenNew knew = new KartenNew(mw, con);
 
-                tnew.ShowDialog();
+                knew.ShowDialog();
 
-                if (tnew.sthChanged != false)
+                if (knew.sthChanged != false)
                 {
-                    listTankstelleInfo.Add(tnew.tAngelegt);
+                    listKartenInfo.Add(knew.kAngelegt);
                     myListView.Items.Refresh();
                 }
             }
         }
 
-        private List<TankstelleInfo> getListOfTankstelleInfo(string filter)
+        private List<KartenInfo> getListOfKartenInfo(string filter)
         {
-            List<TankstelleInfo> listTankstelleInfo = new List<TankstelleInfo>();
+            List<KartenInfo> listKartenInfo = new List<KartenInfo>();
             using (Projekt2Entities con = new Projekt2Entities())
             {
-                foreach (Tankstelle t in con.Tankstelle)
+                foreach (Karte k in con.Karte)
                 {
-                    TankstelleInfo ti = new TankstelleInfo(t);
-                    listTankstelleInfo.Add(ti);
+                    KartenInfo ki = new KartenInfo(k);
+                    listKartenInfo.Add(ki);
                 }
             }
-            return listTankstelleInfo;
+            return listKartenInfo;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -94,25 +94,25 @@ namespace e_Cars.UI.Tankstellen
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            listTankstelleInfo = getListOfTankstelleInfo(null);
+            listKartenInfo = getListOfKartenInfo(null);
         }
 
         private void myListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var item = ((FrameworkElement)e.OriginalSource).DataContext as TankstelleInfo;
+            var item = ((FrameworkElement)e.OriginalSource).DataContext as KartenInfo;
             if (item != null)
             {
                 using (Projekt2Entities con = new Projekt2Entities())
                 {
-                    TankstelleDetail td = new TankstelleDetail(mw, item, con);
-                    td.ShowDialog();
+                    KartenDetail kd = new KartenDetail(mw, item, con);
+                    kd.ShowDialog();
 
-                    if (td.sthChanged != false)
+                    if (kd.sthChanged != false)
                     {
-                        int index = listtankstelleinfo.FindIndex(s => s.tankstelle.Tankstelle_ID == td.ti.ID);
-                        listtankstelleinfo[index] = td.ti;
+                        int index = listkarteninfo.FindIndex(s => s.Karten_ID == kd.Karten_ID);
+                        listkarteninfo[index] = kd.ki;
 
-                        ICollectionView view = CollectionViewSource.GetDefaultView(listtankstelleinfo);
+                        ICollectionView view = CollectionViewSource.GetDefaultView(listkarteninfo);
                         view.Refresh();
                     }
                 }
@@ -218,14 +218,12 @@ namespace e_Cars.UI.Tankstellen
                 return true;
             else
             {
-                var userI = (TankstelleInfo)item;
-                return (userI.Name.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
-                    userI.ID.ToString().StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
-                    userI.Breitengrad.ToString().StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
-                    userI.Längengrad.ToString().StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
-                    userI.PLZ.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
-                    userI.Ort.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
-                    userI.Strasse.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase));
+                var kartI = (KartenInfo)item;
+                return (
+                    kartI.Karten_ID.ToString().StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
+                    kartI.Kunde_ID.ToString().StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
+                    kartI.Sperrdatum.ToString().StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
+                    kartI.Sperrvermerk.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase));
             }
         }
 

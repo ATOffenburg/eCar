@@ -273,3 +273,9 @@ C:\Users\Torsten\Documents\GitHub\eCar\e-Cars\obj\Debug\UI\Cars\CarFahrtenliste.
 C:\Users\Torsten\Documents\GitHub\eCar\e-Cars\obj\Debug\UI\Cars\CarFahrtenliste.g.cs
 E:\eCar\e-Cars\obj\Debug\UI\Cars\CarFahrtenliste.baml
 E:\eCar\e-Cars\obj\Debug\UI\Cars\CarFahrtenliste.g.cs
+E:\eCar\e-Cars\obj\Debug\UI\Kartenverwaltung\KartenDetail.baml
+E:\eCar\e-Cars\obj\Debug\UI\Kartenverwaltung\KartenNew.baml
+E:\eCar\e-Cars\obj\Debug\UI\Kartenverwaltung\KartenOverview.baml
+E:\eCar\e-Cars\obj\Debug\UI\Kartenverwaltung\KartenDetail.g.cs
+E:\eCar\e-Cars\obj\Debug\UI\Kartenverwaltung\KartenNew.g.cs
+E:\eCar\e-Cars\obj\Debug\UI\Kartenverwaltung\KartenOverview.g.cs

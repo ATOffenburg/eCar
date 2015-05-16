@@ -3,6 +3,7 @@ using e_Cars.UI.Kunden;
 using e_Cars.UI.Map;
 using e_Cars.UI.Reservierung;
 using e_Cars.UI.Tankstellen;
+using e_Cars.UI.Kartenverwaltung;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace e_Cars
         private UserOverview uo { get; set; }
         private TankstelleOverview to { get; set; }
         private ReservierungOverview ro { get; set; }
+        private KartenOverview ko { get; set; }
 
         private CarDetail cd { get; set; }
 
@@ -116,6 +118,20 @@ namespace e_Cars
                 this.uo = new UserOverview(this);
             }
             MainGrid.Children.Add(uo);
+        }
+
+        internal void setKartenOverview(bool reset = false)
+        {
+            MainGrid.Children.Clear();
+            if (reset == true)
+            {
+                this.ko = null;
+            }
+            if (this.ko == null)
+            {
+                this.ko = new KartenOverview(this);
+            }
+            MainGrid.Children.Add(ko);
         }
 
 

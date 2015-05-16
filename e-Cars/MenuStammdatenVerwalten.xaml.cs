@@ -47,8 +47,8 @@ namespace e_Cars
 
         private void ButtonKarte_Click(object sender, RoutedEventArgs e)
         {
-            // neues UserOverview setzen
-            mw.setUserOverview(true);
+            // neues KartenOverview setzen
+            mw.setKartenOverview(true);
         }
 
         private void ButtonTankstelle_Click(object sender, RoutedEventArgs e)

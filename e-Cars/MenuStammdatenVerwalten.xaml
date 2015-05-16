@@ -5,14 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              Style="{StaticResource UserControlStyle}"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="570" d:DesignWidth="770">
     <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
@@ -20,14 +20,21 @@
         </Grid.ColumnDefinitions>
 
         <Button x:Name="ButtonBack" Margin="5" Grid.ColumnSpan="3" Click="ButtonBack_Click" Content="_Zurück"/>
-        
+
         <Grid Grid.Column="0" Grid.Row="1">
-            <Button x:Name="Button_Auto" Margin="5" Click="ButtonAuto_Click" Content="_Auto"/> 
+            <Button x:Name="Button_Auto" Margin="5" Click="ButtonAuto_Click" Content="_Auto"/>
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="1">
-            <Button x:Name="Button_Kunde" Margin="5,5,5,133" Content="_Kunde" Click="ButtonKunde_Click"/>
-            <Button x:Name="Button_Karte" Margin="5,132,5,5" Content="_NFC-Karte" Click="ButtonKarte_Click"/>
+
+            <Grid Grid.Column="0" Grid.Row="0" Margin="5,0,5,272">
+                <Button x:Name="Button_Kunde" Content="_Kunde" Click="ButtonKunde_Click" VerticalAlignment="Stretch" Margin="0,5,0,0"/>
+            </Grid>
+
+            <Grid Grid.Row="0" Margin="5,263,5,0" >
+                <Button x:Name="Button_Karte" Content="_NFC-Karte" Click="ButtonKarte_Click" VerticalAlignment="Stretch" Margin="0,0,0,5"/>
+            </Grid>
+
         </Grid>
 
         <Grid Grid.Column="2" Grid.Row="1">

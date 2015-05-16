@@ -52,3 +52,13 @@ E:\eCar\e-Cars\obj\Release\e_Cars.Resources.ResourceECars.resources
 E:\eCar\e-Cars\obj\Release\e-Cars.csproj.GenerateResource.Cache
 E:\eCar\e-Cars\obj\Release\e-Cars.exe
 E:\eCar\e-Cars\obj\Release\e-Cars.pdb
+E:\eCar\e-Cars\obj\Release\UI\Cars\CarFahrtenliste.baml
+E:\eCar\e-Cars\obj\Release\UI\Kartenverwaltung\KartenDetail.baml
+E:\eCar\e-Cars\obj\Release\UI\Kartenverwaltung\KartenNew.baml
+E:\eCar\e-Cars\obj\Release\UI\Kartenverwaltung\KartenOverview.baml
+E:\eCar\e-Cars\obj\Release\UI\Kunden\ProgressDialog.baml
+E:\eCar\e-Cars\obj\Release\UI\Cars\CarFahrtenliste.g.cs
+E:\eCar\e-Cars\obj\Release\UI\Kartenverwaltung\KartenDetail.g.cs
+E:\eCar\e-Cars\obj\Release\UI\Kartenverwaltung\KartenNew.g.cs
+E:\eCar\e-Cars\obj\Release\UI\Kartenverwaltung\KartenOverview.g.cs
+E:\eCar\e-Cars\obj\Release\UI\Kunden\ProgressDialog.g.cs
