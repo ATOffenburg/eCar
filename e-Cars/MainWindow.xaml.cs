@@ -149,8 +149,8 @@ namespace e_Cars
         internal void setTankstelleNew()
         {
             MainGrid.Children.Clear();
-            TankstelleNew tn = new TankstelleNew(this);
-            MainGrid.Children.Add(tn);
+            //TankstelleNew tn = new TankstelleNew(this);
+            //MainGrid.Children.Add(tn);
         }
 
         internal void setTankstelleDetail(TankstelleInfo item)

@@ -224,6 +224,8 @@ namespace e_Cars.UI.Kunden
             return bData;
 
         }
+        public UserInfo ui = null;
+
         public bool sthChanged = false;        
         private void ButtonAnlegen_Click(object sender, RoutedEventArgs e)
         {
@@ -260,7 +262,8 @@ namespace e_Cars.UI.Kunden
                 k.Bank_ID = b.Bank_ID;
                 k.Adress_ID = a.Adress_ID;
 
-                con.Kunde.Add(k);
+                k = con.Kunde.Add(k);
+                ui = new UserInfo(k);
                 con.SaveChanges();
                 sthChanged = true;
                 

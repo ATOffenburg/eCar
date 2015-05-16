@@ -55,7 +55,18 @@ namespace e_Cars.UI.Tankstellen
 
         private void ButtonCreateNew_Click(object sender, RoutedEventArgs e)
         {
-            mw.setTankstelleNew();
+            using (Projekt2Entities con = new Projekt2Entities())
+            {
+                TankstelleNew tnew = new TankstelleNew(mw, con);
+
+                tnew.ShowDialog();
+
+                if (tnew.sthChanged != false)
+                {
+                    listTankstelleInfo.Add(tnew.tAngelegt);
+                    myListView.Items.Refresh();
+                }
+            }
         }
 
         private List<TankstelleInfo> getListOfTankstelleInfo(string filter)

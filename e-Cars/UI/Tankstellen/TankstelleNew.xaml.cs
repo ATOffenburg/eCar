@@ -1,4 +1,5 @@
-﻿using e_Cars.Datenbank;
+﻿using e_Cars.UI.Helper;
+using e_Cars.Datenbank;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,41 +21,151 @@ namespace e_Cars.UI.Tankstellen
     /// <summary>
     /// Interaktionslogik für TankstelleNew.xaml
     /// </summary>
-    public partial class TankstelleNew : UserControl, INotifyPropertyChanged
+    public partial class TankstelleNew : Window, INotifyPropertyChanged
     {
         MainWindow mw { get; set; }
 
-        private string state;
-        public String State
+        private TankstelleInfo ti { get; set; }
+
+        public Projekt2Entities connect = null;
+
+        public TankstelleNew(MainWindow mw, Projekt2Entities con)
         {
-            get { return state; }
-            set
-            {
-                state = value;
-                NotifyPropertyChanged("State");
-            }
+
+            this.mw = mw;
+            this.ti = new TankstelleInfo(new Tankstelle());
+
+            this.DataContext = this;
+
+            connect = con;
+
+            InitializeComponent();
         }
-        private string standort;
-        public String Standort
+
+        private List<TanksaeuleInfo> listtanksaeuleinfo = null;
+
+
+        public List<TanksaeuleInfo> listTanksaeuleInfo
         {
-            get { return standort; }
+            get { return listtanksaeuleinfo; }
             set
             {
-                standort = value;
-                NotifyPropertyChanged("Standort");
+                listtanksaeuleinfo = value;
+                NotifyPropertyChanged("listTanksaeuleInfo");
             }
         }
 
-        private DateTime? wartungstermin;
-        public DateTime? WartungsTermin
+        private void ButtonZurueck_Click(object sender, RoutedEventArgs e)
         {
-            get { return wartungstermin; }
+            //mw.setTankstelleOverview();
+            this.Close();
+        }
+
+        public int ID
+        {
+            get
+            {
+                return ti.ID;
+
+            }
             set
             {
-                wartungstermin = value;
-                NotifyPropertyChanged("WartungsTermin");
+                ti.ID = value;
+                NotifyPropertyChanged("ID");
             }
         }
+
+        public Double? breitengrad
+        {
+            get
+            {
+                return ti.Breitengrad;
+            }
+            set
+            {
+                String s = TBBreitengrad.Text;
+
+                for (int i = 0; i < s.Length; i++)
+                {
+                    Char c = s[i];
+                    if (!Char.IsNumber(c))
+                    {
+                        MessageBox.Show("Bitte nur Zahlen eingeben", "Achtung!", MessageBoxButton.OK, MessageBoxImage.Hand);
+                        continue;
+                    }
+
+                }
+                ti.Breitengrad = value;
+                NotifyPropertyChanged("breitengrad");
+            }
+        }
+
+        public Double? laengengrad
+        {
+            get
+            {
+                return ti.Längengrad;
+            }
+            set
+            {
+                ti.Längengrad = value;
+                NotifyPropertyChanged("laengengrad");
+            }
+        }
+
+
+        public String PLZ
+        {
+            get
+            {
+                return ti.PLZ;
+            }
+            set
+            {
+                ti.PLZ = value;
+                NotifyPropertyChanged("PLZ");
+            }
+        }
+
+        public String Ort
+        {
+            get
+            {
+                return ti.Ort;
+            }
+            set
+            {
+                ti.Ort = value;
+                NotifyPropertyChanged("Ort");
+            }
+        }
+
+        public String Strasse
+        {
+            get
+            {
+                return ti.Strasse;
+            }
+            set
+            {
+                ti.Strasse = value;
+                NotifyPropertyChanged("Strasse");
+            }
+        }
+
+        public String TName
+        {
+            get
+            {
+                return ti.Name;
+            }
+            set
+            {
+                ti.Name = value;
+                NotifyPropertyChanged("TName");
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -66,40 +177,190 @@ namespace e_Cars.UI.Tankstellen
             }
         }
 
-        public TankstelleNew(MainWindow mw)
-        {
-            this.mw = mw;
-            this.DataContext = this;
-            InitializeComponent();
-        }
+        /// <summary>
+        /// Sortieren der Tabelle durch klicken auf einer der Spalten
+        /// </summary>
 
-        private void ButtonZurueck_Click(object sender, RoutedEventArgs e)
-        {
-            mw.setTankstelleOverview();
-        }
+        GridViewColumnHeader _lastHeaderClicked = null;
+        ListSortDirection _lastDirection = ListSortDirection.Ascending;
 
-        private void ButtonAnlegen_Click(object sender, RoutedEventArgs e)
-        {
+        private GridViewColumnHeader _CurSortCol = null;
+        private SortAdorner _CurAdorner = null;
 
-            if (!String.IsNullOrWhiteSpace(State) ||
-                !String.IsNullOrWhiteSpace(Standort) ||
-                WartungsTermin != null)
+        void GridViewColumnHeaderClickedHandler(object sender,
+                                                RoutedEventArgs e)
+        {
+            GridViewColumnHeader headerClicked =
+                  e.OriginalSource as GridViewColumnHeader;
+            ListSortDirection direction;
+
+            if (headerClicked != null)
             {
-                using (Projekt2Entities con = new Projekt2Entities())
+                if (headerClicked.Role != GridViewColumnHeaderRole.Padding)
                 {
-                    Tankstelle t = new Tankstelle();
-                    
-                    
-                    con.Tankstelle.Add(t);
-                    con.SaveChanges();
+                    if (headerClicked != _lastHeaderClicked)
+                    {
+                        direction = ListSortDirection.Ascending;
+                    }
+                    else
+                    {
+                        if (_lastDirection == ListSortDirection.Ascending)
+                        {
+                            direction = ListSortDirection.Descending;
+                        }
+                        else
+                        {
+                            direction = ListSortDirection.Ascending;
+                        }
+                    }
 
-                    MessageBox.Show("Tankstelle angelegt");
+                    string header = headerClicked.Column.Header as string;
+
+                    if (_CurAdorner != null)
+                        AdornerLayer.GetAdornerLayer(_CurSortCol).Remove(_CurAdorner);
+                    _CurSortCol = headerClicked;
+                    _CurAdorner = new SortAdorner(_CurSortCol, direction);
+                    AdornerLayer.GetAdornerLayer(_CurSortCol).Add(_CurAdorner);
+                    String field = headerClicked.Tag as String;
+                    Sort(header, direction);
+
+
+                    if (direction == ListSortDirection.Ascending)
+                    {
+                        headerClicked.Column.HeaderTemplate =
+                          Resources["HeaderTemplateArrowUp"] as DataTemplate;
+                    }
+                    else
+                    {
+                        headerClicked.Column.HeaderTemplate =
+                          Resources["HeaderTemplateArrowDown"] as DataTemplate;
+                    }
+
+                    // Remove arrow from previously sorted header
+                    if (_lastHeaderClicked != null && _lastHeaderClicked != headerClicked)
+                    {
+                        _lastHeaderClicked.Column.HeaderTemplate = null;
+                    }
+
+
+                    _lastHeaderClicked = headerClicked;
+                    _lastDirection = direction;
                 }
             }
-            else
-            {
-                MessageBox.Show("Felder nicht gefüllt!");
-            }
         }
+
+        private void Sort(string sortBy, ListSortDirection direction)
+        {
+            ICollectionView dataView =
+              CollectionViewSource.GetDefaultView(myListView.ItemsSource);
+
+            dataView.SortDescriptions.Clear();
+            SortDescription sd = new SortDescription(sortBy, direction);
+            dataView.SortDescriptions.Add(sd);
+            dataView.Refresh();
+        }
+
+        public bool checkData()
+        {
+            bool bData = false;
+
+            if (String.IsNullOrWhiteSpace(ID.ToString()))
+            {
+                bData = true;
+            }
+            if (String.IsNullOrWhiteSpace(breitengrad.ToString()))
+            {
+                bData = true;
+            }
+            if (String.IsNullOrWhiteSpace(laengengrad.ToString()))
+            {
+                bData = true;
+            }
+            if (String.IsNullOrWhiteSpace(TName))
+            {
+                bData = true;
+            }
+            if (String.IsNullOrWhiteSpace(PLZ))
+            {
+                bData = true;
+            }
+            if (String.IsNullOrWhiteSpace(Ort))
+            {
+                bData = true;
+            }
+            if (String.IsNullOrWhiteSpace(Strasse))
+            {
+                bData = true;
+            }
+
+
+            return bData;
+        }
+
+        public bool sthChanged = false;
+
+        private void ButtonSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (checkData())
+            {
+                MessageBox.Show("Die Daten müssen vollständig sein bevor sie gespeichert werden können.");
+                return;
+            }
+
+            Tankstelle ta = new Tankstelle();
+            ta.Name = ti.Name;
+            ta.breitengrad = ti.Breitengrad;
+            ta.laengengrad = ti.Längengrad;
+            ta.Ort = ti.Ort;
+            ta.PLZ = ti.PLZ;
+            ta.Stasse = ti.Strasse;
+            ta.Tankstelle_ID = ti.ID;
+
+            ta = connect.Tankstelle.Add(ta);
+            connect.SaveChanges();
+            MessageBox.Show("Die Tankstelle wurde erfolgreich angelegt");
+            List<TanksaeuleInfo> listTanksaeule = new List<TanksaeuleInfo>();
+
+            ti.ID = ta.Tankstelle_ID;
+
+            var tanks = from t in connect.Tanksaeule
+                        where t.Tankstelle_ID == ti.ID
+                        select t;
+
+            foreach (var vt in tanks)
+            {
+                TanksaeuleInfo tsi = new TanksaeuleInfo(vt);
+                listTanksaeule.Add(tsi);
+            }
+            listTanksaeuleInfo = listTanksaeule;
+            myListView.Items.Refresh();
+
+            sthChanged = true;
+
+
+        }
+
+        public TankstelleInfo tAngelegt = null;
+
+        private void clearFields()
+        {
+            tAngelegt = ti;
+            ti = new TankstelleInfo(new Tankstelle());
+
+            ID = 0;
+            breitengrad = null;
+            laengengrad = null;
+            Ort = "";
+            PLZ = "";
+            Strasse = "";
+            TName = "";
+
+        }
+
+        private void ButtonRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            clearFields();
+        }
+
     }
 }

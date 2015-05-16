@@ -122,15 +122,7 @@ namespace e_Cars.UI.Kunden
 
             if (unew.sthChanged != false)
             {
-                using (Projekt2Entities con = new Projekt2Entities())
-                {
-                    foreach (Kunde k in con.Kunde.Where(s => s.Kunde_ID > listuserinfo.Count - 1))
-                    {
-                        UserInfo ui = new UserInfo(k);
-                        listuserinfo.Add(ui);
-                    }
-                }
-
+                listuserinfo.Add(unew.ui);
                 myListView.Items.Refresh();
             }
 
@@ -200,14 +192,14 @@ namespace e_Cars.UI.Kunden
 
                     string header = headerClicked.Column.Header as string;
 
-                    if(_CurAdorner != null)
+                    if (_CurAdorner != null)
                         AdornerLayer.GetAdornerLayer(_CurSortCol).Remove(_CurAdorner);
                     _CurSortCol = headerClicked;
                     _CurAdorner = new SortAdorner(_CurSortCol, direction);
                     AdornerLayer.GetAdornerLayer(_CurSortCol).Add(_CurAdorner);
                     String field = headerClicked.Tag as String;
                     Sort(header, direction);
-                    
+
 
                     if (direction == ListSortDirection.Ascending)
                     {
@@ -243,7 +235,7 @@ namespace e_Cars.UI.Kunden
             dataView.SortDescriptions.Clear();
             SortDescription sd = new SortDescription(sortBy, direction);
             dataView.SortDescriptions.Add(sd);
-            
+
             dataView.Refresh();
         }
 
