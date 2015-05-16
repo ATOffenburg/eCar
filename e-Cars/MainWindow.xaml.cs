@@ -118,19 +118,6 @@ namespace e_Cars
             MainGrid.Children.Add(uo);
         }
 
-        internal void setUserNew()
-        {
-            MainGrid.Children.Clear();
-            UserNew un = new UserNew(this);
-            MainGrid.Children.Add(un);
-        }
-
-        internal void setUserDetail(UserInfo ui)
-        {
-            MainGrid.Children.Clear();
-            UserDetail ud = new UserDetail(this, ui);
-            MainGrid.Children.Add(ud);
-        }
 
         internal void setTankstelleOverview(bool reset = false)
         {
@@ -146,19 +133,6 @@ namespace e_Cars
             MainGrid.Children.Add(to);
         }
 
-        internal void setTankstelleNew()
-        {
-            MainGrid.Children.Clear();
-            //TankstelleNew tn = new TankstelleNew(this);
-            //MainGrid.Children.Add(tn);
-        }
-
-        internal void setTankstelleDetail(TankstelleInfo item)
-        {
-            MainGrid.Children.Clear();
-            //TankstelleDetail td = new TankstelleDetail(this, item);
-            //MainGrid.Children.Add(td);
-        }
 
         internal void setGMaps()
         {

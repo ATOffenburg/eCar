@@ -26,7 +26,8 @@
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="1">
-            <Button x:Name="Button_Kunde" Margin="5" Content="_Kunde" Click="ButtonKunde_Click"/> 
+            <Button x:Name="Button_Kunde" Margin="5,5,5,133" Content="_Kunde" Click="ButtonKunde_Click"/>
+            <Button x:Name="Button_Karte" Margin="5,132,5,5" Content="_NFC-Karte" Click="ButtonKarte_Click"/>
         </Grid>
 
         <Grid Grid.Column="2" Grid.Row="1">
