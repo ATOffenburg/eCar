@@ -16,14 +16,14 @@
 
         </Grid.RowDefinitions>
 
-        <StackPanel Margin="0" Grid.Row="0" Orientation="Horizontal">
+        <StackPanel Margin="0" Grid.Row="0" Orientation="Horizontal" Height="25" VerticalAlignment="Top" Grid.RowSpan="3">
             <Button x:Name="ButtonBack" Content="_Zurück" Click="ButtonBack_Click" Width="60"/>
             <Button x:Name="ButtonCreateNew" Content="_Neu anlegen..." Click="ButtonCreateNew_Click" Width="100"/>
         </StackPanel>
 
         <Grid Grid.Row="2">
-            <Label Margin="10,8,0,7" HorizontalAlignment="Left"  >Filter:</Label>
-            <TextBox x:Name="TextBoxFilter" TextAlignment="Left" VerticalAlignment="Top" Margin="54,12,10,0" Height="18"/>
+            <Label Margin="10,8,0,0" HorizontalAlignment="Left"  >Filter:</Label>
+            <TextBox x:Name="TextBoxFilter" TextAlignment="Left" VerticalAlignment="Top" Margin="54,12,10,0" Height="21" TextChanged="TextBoxFilter_TextChanged"/>
         </Grid>
         <Grid Grid.Row="3">
             <Border Margin="5" BorderBrush="Black" BorderThickness="1">

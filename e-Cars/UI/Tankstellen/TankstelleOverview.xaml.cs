@@ -183,6 +183,30 @@ namespace e_Cars.UI.Tankstellen
             dataView.Refresh();
         }
 
+        private void TextBoxFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(myListView.ItemsSource).Filter = UserFilter;
+            CollectionViewSource.GetDefaultView(myListView.ItemsSource).Refresh();
+        }
+
+        private bool UserFilter(object item)
+        {
+            if (String.IsNullOrEmpty(TextBoxFilter.Text))
+                return true;
+            else
+            {
+                var userI = (TankstelleInfo)item;
+                return (userI.Name.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
+                    userI.ID.ToString().StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
+                    userI.Breitengrad.ToString().StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
+                    userI.Längengrad.ToString().StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
+                    userI.PLZ.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
+                    userI.Ort.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
+                    userI.Strasse.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase));
+            }
+        }
+
+
     }
 
 
