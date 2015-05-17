@@ -17,18 +17,9 @@ namespace e_Cars.UI.Kunden
         public UserInfo(Kunde k){
             if (k != null)
             {
-                //using (Projekt2Entities con = new Projekt2Entities())
-                //{
-
-                //    kunde = con.Kunde.SingleOrDefault(s => s.Kunde_ID == k.Kunde_ID);
-                //    adress = kunde.Adresse;
-                //    bank = kunde.Bank;
-                //}
-
                 kunde = k;
                 adress = kunde.Adresse;
                 bank = kunde.Bank;
-
             }
         }
 
@@ -70,6 +61,20 @@ namespace e_Cars.UI.Kunden
         public String IBAN
         {
             get { return bank.IBAN; }
+        }
+
+        public byte[] FKopie
+        {
+            get { return kunde.FKopie; }
+
+            set { kunde.FKopie = value; }
+        }
+
+        public bool Gesperrt
+        {
+            get { return kunde.Gesperrt; }
+
+            set { kunde.Gesperrt = value; }
         }
     
     }

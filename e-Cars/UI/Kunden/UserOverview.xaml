@@ -56,7 +56,22 @@
 
                             <GridViewColumn Header="BIC" Width="Auto" DisplayMemberBinding="{Binding BIC}"></GridViewColumn>
                             <GridViewColumn Header="IBAN" Width="Auto" DisplayMemberBinding="{Binding IBAN}"></GridViewColumn>
-
+                            <GridViewColumn Width="75">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding Path=FKopie}" IsHitTestVisible="False" Focusable="False"></CheckBox>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumnHeader Tag="FKopie" Content="FKopie" />
+                            </GridViewColumn>
+                            <GridViewColumn Width="75">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding Path=Gesperrt}" IsHitTestVisible="False" Focusable="False"></CheckBox>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumnHeader Tag="Gesperrt" Content="Gesperrt" />
+                            </GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>

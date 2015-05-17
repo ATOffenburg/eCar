@@ -3,9 +3,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     x:Class="e_Cars.UI.Kunden.UserDetail"
     Title="Detailansicht"
-    Height="510"
+    Height="605"
     Width="320"
-    MinHeight="510"
+    MinHeight="605"
     MinWidth="320"
     ResizeMode="CanResizeWithGrip"
     ShowInTaskbar="False"
@@ -17,7 +17,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             Style="{StaticResource UserControlStyle}" d:DesignWidth="300" Height="480">
+             Style="{StaticResource UserControlStyle}" Margin="1">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
@@ -73,8 +73,11 @@
                     <Grid>
                         <CheckBox x:Name="CheckBoxGesperrt" Content="Gesperrt" IsChecked="{Binding Gesperrt, UpdateSourceTrigger=PropertyChanged}" Margin="10,10,0,0"/>
                     </Grid>
-                </StackPanel>
 
+                </StackPanel>
+                <Button Content="Füherschein anzeigen" Margin="0,0,165,93" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="135"/>
+                <Button Content="Füherschein hochladen" Margin="0,0,165,66" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="135"/>
+                <Button Content="Füherschein löschen" Margin="0,0,165,39" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="135"/>
                 <Button x:Name="ButtonSave" Click="ButtonSave_Click" Content="Änderungen speichern" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="135"/>
             </Grid>
         </Grid>
