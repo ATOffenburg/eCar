@@ -343,5 +343,11 @@ namespace e_Cars.UI.Kunden
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            FK_Window fk = new FK_Window();
+            fk.Show();
+        }
+
     }
 }

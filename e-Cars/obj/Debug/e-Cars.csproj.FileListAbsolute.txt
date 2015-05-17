@@ -279,3 +279,15 @@ E:\eCar\e-Cars\obj\Debug\UI\Kartenverwaltung\KartenOverview.baml
 E:\eCar\e-Cars\obj\Debug\UI\Kartenverwaltung\KartenDetail.g.cs
 E:\eCar\e-Cars\obj\Debug\UI\Kartenverwaltung\KartenNew.g.cs
 E:\eCar\e-Cars\obj\Debug\UI\Kartenverwaltung\KartenOverview.g.cs
+E:\eCar\e-Cars\bin\Debug\Interop.AcroPDFLib.dll
+E:\eCar\e-Cars\bin\Debug\Interop.FOXITREADERLib.dll
+E:\eCar\e-Cars\bin\Debug\AxInterop.AcroPDFLib.dll
+E:\eCar\e-Cars\bin\Debug\AxInterop.FOXITREADERLib.dll
+E:\eCar\e-Cars\obj\Debug\Interop.AcroPDFLib.dll
+E:\eCar\e-Cars\obj\Debug\Interop.FOXITREADERLib.dll
+E:\eCar\e-Cars\obj\Debug\AxInterop.AcroPDFLib.dll
+E:\eCar\e-Cars\obj\Debug\AxInterop.FOXITREADERLib.dll
+E:\eCar\e-Cars\obj\Debug\e-Cars.csproj.ResolveComReference.cache
+E:\eCar\e-Cars\obj\Debug\UI\Kunden\FK_Window.baml
+E:\eCar\e-Cars\obj\Debug\UI\Kunden\FK_Window.g.cs
+E:\eCar\e-Cars\obj\Debug\e_Cars.UI.Kunden.FK_PDF.resources

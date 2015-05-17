@@ -75,7 +75,7 @@
                     </Grid>
 
                 </StackPanel>
-                <Button Content="Füherschein anzeigen" Margin="0,0,165,93" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="135"/>
+                <Button Content="Füherschein anzeigen" Margin="0,0,165,93" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="135" Click="Button_Click"/>
                 <Button Content="Füherschein hochladen" Margin="0,0,165,66" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="135"/>
                 <Button Content="Füherschein löschen" Margin="0,0,165,39" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="135"/>
                 <Button x:Name="ButtonSave" Click="ButtonSave_Click" Content="Änderungen speichern" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="135"/>
