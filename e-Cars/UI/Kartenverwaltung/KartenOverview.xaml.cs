@@ -114,10 +114,11 @@ namespace e_Cars.UI.Kartenverwaltung
 
                         ICollectionView view = CollectionViewSource.GetDefaultView(listkarteninfo);
                         view.Refresh();
+                        myListView.Items.Refresh();
                     }
                 }
 
-                myListView.Items.Refresh();
+                
             }
         }
 

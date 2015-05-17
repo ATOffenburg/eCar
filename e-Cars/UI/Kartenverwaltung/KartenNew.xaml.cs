@@ -33,6 +33,7 @@ namespace e_Cars.UI.Kartenverwaltung
 
             this.mw = mw;
             this.ki = new KartenInfo(new Karte());
+            ki.Aktiv = true;
 
             this.DataContext = this;
 
@@ -43,7 +44,7 @@ namespace e_Cars.UI.Kartenverwaltung
 
         private void ButtonZurueck_Click(object sender, RoutedEventArgs e)
         {
-            
+
             this.Close();
         }
 
@@ -61,7 +62,7 @@ namespace e_Cars.UI.Kartenverwaltung
             }
         }
 
-        public int Kunden_ID
+        public int Kunde_ID
         {
             get
             {
@@ -114,7 +115,7 @@ namespace e_Cars.UI.Kartenverwaltung
                 NotifyPropertyChanged("Sperrvermerk");
             }
         }
-          
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void NotifyPropertyChanged(String info)
@@ -125,30 +126,17 @@ namespace e_Cars.UI.Kartenverwaltung
             }
         }
 
-        
+
 
         public bool checkData()
         {
             bool bData = false;
 
-            if (String.IsNullOrWhiteSpace(Karten_ID.ToString()))
+            if (String.IsNullOrWhiteSpace(Kunde_ID.ToString()))
             {
                 bData = true;
             }
-            if (String.IsNullOrWhiteSpace(Kunden_ID.ToString()))
-            {
-                bData = true;
-            }
-            
-            if (String.IsNullOrWhiteSpace(Sperrdatum.ToString()))
-            {
-                bData = true;
-            }
-            if (String.IsNullOrWhiteSpace(Sperrvermerk))
-            {
-                bData = true;
-            }
-            
+
             return bData;
         }
 
@@ -163,16 +151,20 @@ namespace e_Cars.UI.Kartenverwaltung
             }
 
             Karte ka = new Karte();
+
             ka.Karten_ID = ki.Karten_ID;
             ka.Kunde_ID = ki.Kunde_ID;
             ka.Aktiv = ki.Aktiv;
             ka.Sperrdatum = ki.Sperrdatum;
             ka.Sperrvermerk = ki.Sperrvermerk;
-            
-            ka = connect.Karte.Add(ka);
+
+            connect.Karte.Add(ka);
+
             connect.SaveChanges();
+            ka = connect.Karte.SingleOrDefault(s => s.Kunde_ID == ka.Kunde_ID && s.Aktiv == true);
+            Karten_ID = ka.Karten_ID;
             MessageBox.Show("Die Karte wurde erfolgreich angelegt");
-            clearFields();
+
             sthChanged = true;
 
         }
@@ -185,11 +177,18 @@ namespace e_Cars.UI.Kartenverwaltung
             ki = new KartenInfo(new Karte());
 
             Karten_ID = 0;
-            Kunden_ID = 0;
-            Aktiv = false;
+            TBKart_ID = null;
+            Kunde_ID = 0;
+            TBKund_ID.Text = null;
+            Aktiv = true;
             Sperrdatum = null;
             Sperrvermerk = "";
-            
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            clearFields();
         }
 
 

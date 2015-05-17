@@ -131,23 +131,8 @@ namespace e_Cars.UI.Kartenverwaltung
         {
             bool bData = false;
 
-            if (String.IsNullOrWhiteSpace(Karten_ID.ToString()))
-            {
-                bData = true;
-            }
-            if (String.IsNullOrWhiteSpace(Kunden_ID.ToString()))
-            {
-                bData = true;
-            }
+                       
             
-            if (String.IsNullOrWhiteSpace(Sperrdatum.ToString()))
-            {
-                bData = true;
-            }
-            if (String.IsNullOrWhiteSpace(Sperrvermerk))
-            {
-                bData = true;
-            }
             
             return bData;
         }
@@ -158,23 +143,34 @@ namespace e_Cars.UI.Kartenverwaltung
         {
             if (checkData())
             {
-                MessageBox.Show("Die Daten müssen vollständig sein bevor sie gespeichert werden können.");
+                MessageBox.Show("Die Daten müssen vollständig sein bevor sie gespeichert werden können.", "Achtung", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
+                        
+            var query = from kart in connect.Karte
+                        where kart.Karten_ID == ki.Karten_ID
+                        && kart.Kunde_ID == ki.Kunde_ID
+                        select kart;
 
-            Karte ka = new Karte();
-            ka.Karten_ID = ki.Karten_ID;
-            //ka.Kunde_ID = ki.Kunde_ID;
-            ka.Aktiv = ki.Aktiv;
-            ka.Sperrdatum = ki.Sperrdatum;
-            ka.Sperrvermerk = ki.Sperrvermerk;
-
-            connect.Entry(ka).State = System.Data.Entity.EntityState.Modified;
+            foreach (Karte kart in query)
+            {
+                kart.Aktiv = ki.Aktiv;
+                kart.Sperrdatum = ki.Sperrdatum;
+                kart.Sperrvermerk = ki.Sperrvermerk;
+            }
+            
             connect.SaveChanges();
-            MessageBox.Show("Die Karte wurde erfolgreich angelegt");
+            MessageBox.Show("Erfolgreich gespeichert!", "Speichern", MessageBoxButton.OK, MessageBoxImage.Information);
             
             sthChanged = true;
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Sperrdatum = null;
+            Aktiv = true;
+            Sperrvermerk = null;
         }
 
 
