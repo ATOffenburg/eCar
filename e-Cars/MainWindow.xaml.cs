@@ -1,8 +1,9 @@
 ﻿using e_Cars.UI.Cars;
-using e_Cars.UI.Kunden;
+using e_Cars.UI.Kundenverwaltung;
 using e_Cars.UI.Map;
 using e_Cars.UI.Reservierung;
 using e_Cars.UI.Tankstellen;
+using e_Cars.UI.Kartenverwaltung;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace e_Cars
         private UserOverview uo { get; set; }
         private TankstelleOverview to { get; set; }
         private ReservierungOverview ro { get; set; }
+        private KartenOverview ko { get; set; }
 
         private CarDetail cd { get; set; }
 
@@ -118,19 +120,20 @@ namespace e_Cars
             MainGrid.Children.Add(uo);
         }
 
-        internal void setUserNew()
+        internal void setKartenOverview(bool reset = false)
         {
             MainGrid.Children.Clear();
-            UserNew un = new UserNew(this);
-            MainGrid.Children.Add(un);
+            if (reset == true)
+            {
+                this.ko = null;
+            }
+            if (this.ko == null)
+            {
+                this.ko = new KartenOverview(this);
+            }
+            MainGrid.Children.Add(ko);
         }
 
-        internal void setUserDetail(UserInfo ui)
-        {
-            MainGrid.Children.Clear();
-            UserDetail ud = new UserDetail(this, ui);
-            MainGrid.Children.Add(ud);
-        }
 
         internal void setTankstelleOverview(bool reset = false)
         {
@@ -146,19 +149,6 @@ namespace e_Cars
             MainGrid.Children.Add(to);
         }
 
-        internal void setTankstelleNew()
-        {
-            MainGrid.Children.Clear();
-            //TankstelleNew tn = new TankstelleNew(this);
-            //MainGrid.Children.Add(tn);
-        }
-
-        internal void setTankstelleDetail(TankstelleInfo item)
-        {
-            MainGrid.Children.Clear();
-            //TankstelleDetail td = new TankstelleDetail(this, item);
-            //MainGrid.Children.Add(td);
-        }
 
         internal void setGMaps()
         {

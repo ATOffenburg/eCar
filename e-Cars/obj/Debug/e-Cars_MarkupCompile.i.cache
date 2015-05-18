@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Torsten\Documents\GitHub\eCar\e-Cars\App.xaml
-17-641548697
+21-1013239846
 2-494253336
-48-431475346
-21-1311250528
-MainWindow.xaml;Menu.xaml;MenuStammdatenVerwalten.xaml;UI\Cars\CarFahrtenliste.xaml;UI\Kunden\UserDetail.xaml;UI\Kunden\ProgressDialog.xaml;UI\Kunden\UserNew.xaml;UI\Kunden\UserOverview.xaml;UI\Cars\CarNew.xaml;UI\Cars\CarOverview.xaml;UI\Cars\CarDetail.xaml;UI\Map\GMaps.xaml;UI\Reservierung\ReservierungNew.xaml;UI\Reservierung\ReservierungOverview.xaml;UI\Tankstellen\TankstelleDetail.xaml;UI\Tankstellen\TankstelleNew.xaml;UI\Tankstellen\TankstelleOverview.xaml;
+561120428827
+25-1738480637
+MainWindow.xaml;Menu.xaml;MenuStammdatenVerwalten.xaml;UI\Cars\CarFahrtenliste.xaml;UI\Kartenverwaltung\KartenDetail.xaml;UI\Kartenverwaltung\KartenNew.xaml;UI\Kartenverwaltung\KartenOverview.xaml;UI\Kundenverwaltung\UserDetail.xaml;UI\Kundenverwaltung\ProgressDialog.xaml;UI\Kundenverwaltung\UserNew.xaml;UI\Kundenverwaltung\UserOverview.xaml;UI\Cars\CarNew.xaml;UI\Cars\CarOverview.xaml;UI\Cars\CarDetail.xaml;UI\Kundenverwaltung\FK_Window.xaml;UI\Map\GMaps.xaml;UI\Reservierung\ReservierungNew.xaml;UI\Reservierung\ReservierungOverview.xaml;UI\Tankstellen\TankstelleDetail.xaml;UI\Tankstellen\TankstelleNew.xaml;UI\Tankstellen\TankstelleOverview.xaml;
 e-car.png
-False
+True
 

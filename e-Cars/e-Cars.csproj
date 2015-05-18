@@ -79,9 +79,11 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -156,17 +158,34 @@
     </Compile>
     <Compile Include="UI\Cars\CarInfo.cs" />
     <Compile Include="UI\Helper\SortAdorner.cs" />
-    <Compile Include="UI\Kunden\UserDetail.xaml.cs">
+    <Compile Include="UI\Kartenverwaltung\KartenInfo.cs" />
+    <Compile Include="UI\Kartenverwaltung\KartenDetail.xaml.cs">
+      <DependentUpon>KartenDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Kartenverwaltung\KartenNew.xaml.cs">
+      <DependentUpon>KartenNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Kartenverwaltung\KartenOverview.xaml.cs">
+      <DependentUpon>KartenOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Kundenverwaltung\FK_PDF.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Kundenverwaltung\FK_PDF.Designer.cs">
+      <DependentUpon>FK_PDF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Kundenverwaltung\ByteToBoolConverter.cs" />
+    <Compile Include="UI\Kundenverwaltung\UserDetail.xaml.cs">
       <DependentUpon>UserDetail.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Kunden\UserInfo.cs" />
-    <Compile Include="UI\Kunden\ProgressDialog.xaml.cs">
+    <Compile Include="UI\Kundenverwaltung\UserInfo.cs" />
+    <Compile Include="UI\Kundenverwaltung\ProgressDialog.xaml.cs">
       <DependentUpon>ProgressDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Kunden\UserNew.xaml.cs">
+    <Compile Include="UI\Kundenverwaltung\UserNew.xaml.cs">
       <DependentUpon>UserNew.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Kunden\UserOverview.xaml.cs">
+    <Compile Include="UI\Kundenverwaltung\UserOverview.xaml.cs">
       <DependentUpon>UserOverview.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Cars\CarNew.xaml.cs">
@@ -179,6 +198,9 @@
       <DependentUpon>CarDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Cars\IntToProzentConverter.cs" />
+    <Compile Include="UI\Kundenverwaltung\FK_Window.xaml.cs">
+      <DependentUpon>FK_Window.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Map\GMaps.xaml.cs">
       <DependentUpon>GMaps.xaml</DependentUpon>
     </Compile>
@@ -223,19 +245,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Kunden\UserDetail.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Kunden\ProgressDialog.xaml">
+    <Page Include="UI\Kartenverwaltung\KartenDetail.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UI\Kunden\UserNew.xaml">
+    <Page Include="UI\Kartenverwaltung\KartenNew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Kartenverwaltung\KartenOverview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Kundenverwaltung\UserDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Kunden\UserOverview.xaml">
+    <Page Include="UI\Kundenverwaltung\ProgressDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Kundenverwaltung\UserNew.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Kundenverwaltung\UserOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -248,6 +282,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Cars\CarDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Kundenverwaltung\FK_Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -297,6 +335,9 @@
     <EmbeddedResource Include="Resources\ResourceECars.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceECars.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Kundenverwaltung\FK_PDF.resx">
+      <DependentUpon>FK_PDF.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Datenbank\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -363,7 +404,42 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="AcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AxAcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="AxFOXITREADERLib">
+      <Guid>{3A8BD65E-9922-4162-A649-83F2D5326BBE}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="FOXITREADERLib">
+      <Guid>{3A8BD65E-9922-4162-A649-83F2D5326BBE}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

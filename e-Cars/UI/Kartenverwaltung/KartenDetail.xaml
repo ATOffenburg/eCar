@@ -1,0 +1,47 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="e_Cars.UI.Kartenverwaltung.KartenDetail"
+    Title="Detailansicht"
+    Height="315.847"
+    Width="465.582"
+    MinHeight="315"
+    MinWidth="465"
+    ResizeMode="CanResizeWithGrip"
+    ShowInTaskbar="False"
+    WindowStartupLocation="CenterScreen" >
+    <!-- FocusManager.FocusedElement="{Binding ElementName=leftMarginTextBox}"> -->
+    <UserControl 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             Style="{StaticResource UserControlStyle}" Margin="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="1">
+
+                <Label Content="Karten_ID:" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.708,0.308"/>
+                <Label Content="Kunde_ID:" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top"/>
+                <Label Content="Aktiv:" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top"/>
+                <Label Content="Sperrdatum:" HorizontalAlignment="Left" Margin="10,127,0,0" VerticalAlignment="Top"/>
+                <Label Content="Sperrvermerk:" HorizontalAlignment="Left" Margin="10,158,0,0" VerticalAlignment="Top"/>
+
+                <TextBox x:Name="TBKart_ID" IsEnabled="False" Height="23" Margin="94,40,0,0" TextWrapping="Wrap" Text="{Binding Path=Karten_ID, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
+                <TextBox x:Name="TBKund_ID" IsEnabled="False" Height="23" Margin="94,68,0,0" TextWrapping="Wrap" Text="{Binding Path=Kunden_ID, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
+                <TextBox x:Name="TBSperrV" Height="83" Margin="94,158,0,0" TextWrapping="Wrap" Text="{Binding Path=Sperrvermerk, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="346"/>
+                <DatePicker x:Name="DatePickerSperrdatum" SelectedDate="{Binding Sperrdatum, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="94,127,0,0" VerticalAlignment="Top"/>
+                <CheckBox HorizontalAlignment="Left" IsChecked="{Binding Path=Aktiv, UpdateSourceTrigger=PropertyChanged}" Margin="94,101,0,0" VerticalAlignment="Top"/>
+                <Button x:Name="ButtonSave" Content="Speichern" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="104" Height="23" Click="ButtonSave_Click"/>
+                <Button x:Name="ButtonZurueck" Content="Zurück" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="ButtonZurueck_Click"/>
+                <Button Content="Sperrfelder löschen" HorizontalAlignment="Left" Margin="242,127,0,0" VerticalAlignment="Top" Width="126" Click="Button_Click"/>
+
+            </Grid>
+        </Grid>
+    </UserControl>
+</Window>

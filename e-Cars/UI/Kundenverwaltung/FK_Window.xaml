@@ -1,0 +1,8 @@
+﻿<Window x:Class="e_Cars.UI.Kundenverwaltung.FK_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Führerschienkopie" Height="370" Width="500">
+    <Grid>
+        <WindowsFormsHost   Margin="1" Name="WindowsFormsHost"/>
+    </Grid>
+</Window>
