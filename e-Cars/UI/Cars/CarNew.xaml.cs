@@ -109,6 +109,31 @@ namespace e_Cars.UI.Cars
             }
         }
 
+        private Tankstelle selectedtankstelle;
+        public Tankstelle selectedTankstelle
+        {
+            get { return selectedtankstelle; }
+            set
+            {
+                if (selectedtankstelle != value)
+                {
+                    selectedtankstelle = value;
+                    NotifyPropertyChanged("selectedTankstelle");
+                }
+            }
+        }
+
+        private List<Tankstelle> listtankstelle = new List<Tankstelle>();
+        public List<Tankstelle> listTankstelle
+        {
+            get { return listtankstelle; }
+            set
+            {
+                listtankstelle = value;
+                NotifyPropertyChanged("listTankstelle");
+            }
+        }
+
         private MainWindow mw { get; set; }
 
         public CarNew(MainWindow mw)
@@ -119,9 +144,9 @@ namespace e_Cars.UI.Cars
 
             Projekt2Entities con = new Projekt2Entities();
             listStatus = con.Status.ToList();
+            listTankstelle = con.Tankstelle.ToList();
 
             clearFields();
-
         }
 
         private void ButtonZurueck_Click(object sender, RoutedEventArgs e)
@@ -200,6 +225,11 @@ namespace e_Cars.UI.Cars
             {
                 bData = true;
             }
+
+            if (selectedTankstelle == null)
+            {
+                bData = true;
+            }
             
             return bData;
         }
@@ -224,7 +254,6 @@ namespace e_Cars.UI.Cars
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
-
 
         private static bool IsTextAllowed(string text)
         {
@@ -263,6 +292,5 @@ namespace e_Cars.UI.Cars
             Tankvorgaenge = Tankvorgaenge;
         }
 
-       
     }
 }

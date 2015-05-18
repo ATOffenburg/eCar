@@ -18,6 +18,7 @@ namespace e_Cars.Datenbank
         {
             this.Reservierung = new HashSet<Reservierung>();
             this.Tanksaeule = new HashSet<Tanksaeule>();
+            this.Reservierung1 = new HashSet<Reservierung>();
         }
     
         public int Tankstelle_ID { get; set; }
@@ -30,5 +31,6 @@ namespace e_Cars.Datenbank
     
         public virtual ICollection<Reservierung> Reservierung { get; set; }
         public virtual ICollection<Tanksaeule> Tanksaeule { get; set; }
+        public virtual ICollection<Reservierung> Reservierung1 { get; set; }
     }
 }

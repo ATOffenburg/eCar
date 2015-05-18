@@ -148,6 +148,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Abgabeort_Tankstelle">
+          <End Role="Tankstelle" Type="Self.Tankstelle" Multiplicity="0..1" />
+          <End Role="Reservierung" Type="Self.Reservierung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tankstelle">
+              <PropertyRef Name="Tankstelle_ID" />
+            </Principal>
+            <Dependent Role="Reservierung">
+              <PropertyRef Name="Abgabeort" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Abholort_Tanksaeule">
           <End Role="Tanksaeule" Type="Self.Tanksaeule" Multiplicity="1" />
           <End Role="Fahrt" Type="Self.Fahrt" Multiplicity="*" />
@@ -345,6 +357,10 @@
             <End Role="Tanksaeule" EntitySet="Tanksaeule" />
             <End Role="Fahrt" EntitySet="Fahrt" />
           </AssociationSet>
+          <AssociationSet Name="FK_Abgabeort_Tankstelle" Association="Self.FK_Abgabeort_Tankstelle">
+            <End Role="Tankstelle" EntitySet="Tankstelle" />
+            <End Role="Reservierung" EntitySet="Reservierung" />
+          </AssociationSet>
           <AssociationSet Name="FK_Abholort_Tanksaeule" Association="Self.FK_Abholort_Tanksaeule">
             <End Role="Tanksaeule" EntitySet="Tanksaeule" />
             <End Role="Fahrt" EntitySet="Fahrt" />
@@ -487,6 +503,10 @@
             <End Role="Tankstelle" EntitySet="Tankstelle" />
             <End Role="Tanksaeule" EntitySet="Tanksaeule" />
           </AssociationSet>
+          <AssociationSet Name="FK_Abgabeort_Tankstelle" Association="Projekt2Model.FK_Abgabeort_Tankstelle">
+            <End Role="Tankstelle" EntitySet="Tankstelle" />
+            <End Role="Reservierung" EntitySet="Reservierung" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Adresse">
           <Key>
@@ -615,6 +635,7 @@
           <NavigationProperty Name="Fahrt" Relationship="Projekt2Model.FK_Fahrt_Reservierung" FromRole="Reservierung" ToRole="Fahrt" />
           <NavigationProperty Name="Kunde" Relationship="Projekt2Model.FK_Reservierung_Kunde" FromRole="Reservierung" ToRole="Kunde" />
           <NavigationProperty Name="Tankstelle" Relationship="Projekt2Model.FK_Abholort_Tankstelle" FromRole="Reservierung" ToRole="Tankstelle" />
+          <NavigationProperty Name="Tankstelle1" Relationship="Projekt2Model.FK_Abgabeort_Tankstelle" FromRole="Reservierung" ToRole="Tankstelle" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -650,6 +671,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Reservierung" Relationship="Projekt2Model.FK_Abholort_Tankstelle" FromRole="Tankstelle" ToRole="Reservierung" />
           <NavigationProperty Name="Tanksaeule" Relationship="Projekt2Model.FK_Tanksaeule_Tankstelle" FromRole="Tankstelle" ToRole="Tanksaeule" />
+          <NavigationProperty Name="Reservierung1" Relationship="Projekt2Model.FK_Abgabeort_Tankstelle" FromRole="Tankstelle" ToRole="Reservierung" />
         </EntityType>
         <Association Name="FK_Kunde_Adresse">
           <End Type="Projekt2Model.Adresse" Role="Adresse" Multiplicity="1" />
@@ -840,6 +862,18 @@
             </Principal>
             <Dependent Role="Tanksaeule">
               <PropertyRef Name="Tankstelle_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Abgabeort_Tankstelle">
+          <End Type="Projekt2Model.Tankstelle" Role="Tankstelle" Multiplicity="0..1" />
+          <End Type="Projekt2Model.Reservierung" Role="Reservierung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tankstelle">
+              <PropertyRef Name="Tankstelle_ID" />
+            </Principal>
+            <Dependent Role="Reservierung">
+              <PropertyRef Name="Abgabeort" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

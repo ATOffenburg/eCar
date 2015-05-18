@@ -11,7 +11,6 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="40"/>
                 <RowDefinition Height="0"/>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -21,7 +20,7 @@
 
             </StackPanel>
 
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="1">
                 <ComboBox x:Name="ComboBoxTankst_Fahrz" Margin="10,10" SelectionChanged="ComboBoxTankst_Fahrz_SelectionChanged" >
                     <ComboBoxItem Content="Tankstellen" ></ComboBoxItem>
                     <ComboBoxItem Content="Verfügbare Fahrzeuge" ></ComboBoxItem>

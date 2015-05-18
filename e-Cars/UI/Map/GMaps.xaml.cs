@@ -91,15 +91,32 @@ namespace e_Cars.UI.Map
                
                 // Verfügbare Fahrzeuge
                 webBrowser1.InvokeScript("deleteMarkers");
-                string[] sarr = new String[] { "48.359708", "7.819914", "Test Verfügbare Fahrzeuge" };
-                webBrowser1.InvokeScript("setMarker", sarr);                
+
+
+                foreach (Car c in con.Car)
+                {
+                    if (c.Status_ID == 4)
+                    {
+                        Fahrt f = c.Fahrt.OrderByDescending(s => s.Endzeit).FirstOrDefault();
+                        if (f != null)
+                        {
+                            string[] sarr = new String[] { f.Tanksaeule.Tankstelle.breitengrad.GetValueOrDefault(0).ToString(CultureInfo.InvariantCulture), f.Tanksaeule.Tankstelle.laengengrad.GetValueOrDefault(0).ToString(CultureInfo.InvariantCulture), f.Tanksaeule.Tankstelle.Name };
+                            webBrowser1.InvokeScript("setMarker", sarr);
+                        }
+
+                    }
+                }
+                //string[] sarr = new String[] { "48.359708", "7.819914", "Test Verfügbare Fahrzeuge" };
+                //webBrowser1.InvokeScript("setMarker", sarr);                
+                
+                
                 webBrowser1.InvokeScript("zoomOnMarkers");
 
             }
             else if (selection == 2)
             {
 
-                // Verfügbare Fahrzeuge
+                // Gestohlene Fahrzeuge
                 webBrowser1.InvokeScript("deleteMarkers");
                 string[] sarr = new String[] { "53.548058", "9.961822", "Test Gestohlene Fahrzeuge 1" };
                 webBrowser1.InvokeScript("setMarker", sarr);      

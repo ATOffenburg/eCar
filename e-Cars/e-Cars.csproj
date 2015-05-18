@@ -157,6 +157,7 @@
       <DependentUpon>CarFahrtenliste.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Cars\CarInfo.cs" />
+    <Compile Include="UI\Helper\ReservierungGesperrtHelper.cs" />
     <Compile Include="UI\Helper\SortAdorner.cs" />
     <Compile Include="UI\Kartenverwaltung\KartenInfo.cs" />
     <Compile Include="UI\Kartenverwaltung\KartenDetail.xaml.cs">
@@ -203,10 +204,11 @@
     <Compile Include="UI\Map\GMaps.xaml.cs">
       <DependentUpon>GMaps.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Reservierung\ReservierungNew.xaml.cs">
+    <Compile Include="UI\Reservierungen\ReservierungInfo.cs" />
+    <Compile Include="UI\Reservierungen\ReservierungNew.xaml.cs">
       <DependentUpon>ReservierungNew.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Reservierung\ReservierungOverview.xaml.cs">
+    <Compile Include="UI\Reservierungen\ReservierungOverview.xaml.cs">
       <DependentUpon>ReservierungOverview.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Tankstellen\TanksaeuleInfo.cs" />
@@ -292,11 +294,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Reservierung\ReservierungNew.xaml">
+    <Page Include="UI\Reservierungen\ReservierungNew.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Reservierung\ReservierungOverview.xaml">
+    <Page Include="UI\Reservierungen\ReservierungOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

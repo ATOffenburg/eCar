@@ -32,5 +32,6 @@ namespace e_Cars.Datenbank
         public virtual ICollection<Fahrt> Fahrt { get; set; }
         public virtual Kunde Kunde { get; set; }
         public virtual Tankstelle Tankstelle { get; set; }
+        public virtual Tankstelle Tankstelle1 { get; set; }
     }
 }

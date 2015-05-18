@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace e_Cars.UI.Reservierung
+namespace e_Cars.UI.Reservierungen
 {
     /// <summary>
     /// Interaktionslogik für ReservierungNew.xaml

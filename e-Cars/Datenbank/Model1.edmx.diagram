@@ -33,6 +33,7 @@
         <AssociationConnector Association="Projekt2Model.FK_Reservierung_Kunde" />
         <AssociationConnector Association="Projekt2Model.FK_Abholort_Tankstelle" />
         <AssociationConnector Association="Projekt2Model.FK_Tanksaeule_Tankstelle" />
+        <AssociationConnector Association="Projekt2Model.FK_Abgabeort_Tankstelle" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

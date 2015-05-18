@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="e_Cars.UI.Reservierungen.ReservierungOverview"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             Loaded="UserControl_Loaded"
+             Style="{StaticResource UserControlStyle}"
+             d:DesignHeight="400" d:DesignWidth="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="0" Grid.Row="0" Orientation="Horizontal">
+            <Button x:Name="ButtonBack" Content="_Zurück" Click="ButtonBack_Click" Width="60"/>
+            <Button x:Name="ButtonCreateNew" Content="_Neu anlegen..." Click="ButtonCreateNew_Click" Width="100"/>
+        </StackPanel>
+
+        <Grid Grid.Row="2">
+            <StackPanel>
+                <Grid>
+                    <Label Margin="10,0,0,0" HorizontalAlignment="Left"  >Filter:</Label>
+                    <TextBox x:Name="TextBoxFilter" TextAlignment="Left" VerticalAlignment="Top" Margin="70,4,10,0" Height="18"/>
+                </Grid>
+                <Grid>
+                    <Label Margin="10,0,0,0" Content="Datum: " VerticalAlignment="Top" HorizontalAlignment="Left" Width="50"/>
+                    <DatePicker SelectedDateChanged="DatepickerDatum_SelectedDateChanged" x:Name="DatepickerDatum" SelectedDate="{Binding AnzeigeDatum, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="70,0,0,0" VerticalAlignment="Top" Width="140"/>
+                
+                </Grid>
+                <Grid>
+                    <CheckBox x:Name="CheckBoxReservierung" Click="CheckBoxReservierung_Click" IsChecked="{Binding ReservierungGesperrt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="15,0,0,0" Content="Reservierung gesperrrt"></CheckBox>
+                </Grid>
+                
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Border Margin="5" BorderBrush="Black" BorderThickness="1">
+                <ListView x:Name="myListView" ItemsSource="{Binding listReservierungInfo}" MouseDoubleClick="myListView_MouseDoubleClick">
+                    <ListView.View>
+                        <GridView>
+                            
+                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Startzeit, StringFormat='dd.MM.yy HH:mm'}">
+                                <GridViewColumnHeader Click="SortClick" Tag="Startzeit" Content="Startzeit" />
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Endzeit, StringFormat='dd.MM.yy HH:mm'}">
+                                <GridViewColumnHeader Click="SortClick" Tag="Endzeit" Content="Endzeit" />
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=AbholortName}">
+                                <GridViewColumnHeader Click="SortClick" Tag="AbholortName" Content="Abholort" />
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=AbgabeortName}">
+                                <GridViewColumnHeader Click="SortClick" Tag="AbgabeortName" Content="Abgabeort" />
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=KundeName}">
+                                <GridViewColumnHeader Click="SortClick" Tag="KundeName" Content="Kunde" />
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=CarSeriennummer}">
+                                <GridViewColumnHeader Click="SortClick" Tag="CarSeriennummer" Content="Car Seriennummer" />
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Zeitstempel, StringFormat='dd.MM.yy HH:mm'}">
+                                <GridViewColumnHeader Click="SortClick" Tag="Zeitstempel" Content="Zeitstempel" />
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>
