@@ -7,15 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace e_Cars.UI.Kunden
 {
     public partial class FK_PDF : UserControl
     {
-        public FK_PDF(string filename)
+        public FK_PDF(byte[] fkopie)
         {
             InitializeComponent();
-            this.axFoxitCtl1.OpenFile(filename);
+
+            if (fkopie != null)
+            {
+                File.WriteAllBytes(@"c:\temp\fkopietemp.pdf", fkopie);
+                this.axFoxitCtl1.OpenFile(@"c:\temp\fkopietemp.pdf");
+                
+                                
+            }
+
         }
     }
 }

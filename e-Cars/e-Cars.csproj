@@ -169,6 +169,7 @@
     <Compile Include="UI\Kartenverwaltung\KartenOverview.xaml.cs">
       <DependentUpon>KartenOverview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Kunden\ByteToBoolConverter.cs" />
     <Compile Include="UI\Kunden\FK_PDF.cs">
       <SubType>UserControl</SubType>
     </Compile>

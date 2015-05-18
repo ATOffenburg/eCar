@@ -345,9 +345,38 @@ namespace e_Cars.UI.Kunden
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            FK_Window fk = new FK_Window();
-            fk.Show();
+            if (ui.FKopie != null)
+            {
+                FK_Window fk = new FK_Window(ui.FKopie);
+                fk.ShowDialog();
+
+                fk.Close();
+            }
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.FileName = "Document";
+            dlg.DefaultExt = ".pdf";
+            dlg.Filter = "Pdf documents (.pdf)|*.pdf";
+
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                string filename = dlg.FileName;
+
+                ui.FKopie = System.IO.File.ReadAllBytes(filename);
+
+            }
+
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            ui.FKopie = null;
+        }      
 
     }
 }
