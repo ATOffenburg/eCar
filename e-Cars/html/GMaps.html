@@ -32,15 +32,13 @@
         function initialize() {
             var mapOptions = {
                 center: new google.maps.LatLng(48.458120, 7.943077),
-                zoom: 11,
+                zoom: 8,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             map = new google.maps.Map(document.getElementById("map_canvas"),
                 mapOptions);
 
         }
-
-
 
         // Adds a marker to the map and in the array
         function setMarker(x, y, name) {

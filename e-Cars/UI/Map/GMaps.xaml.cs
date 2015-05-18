@@ -87,14 +87,22 @@ namespace e_Cars.UI.Map
 
                 webBrowser1.InvokeScript("zoomOnMarkers");
 
-            } else {
-                // Fahrzeuge
+            } else if (selection == 1) {
+               
+                // Verfügbare Fahrzeuge
                 webBrowser1.InvokeScript("deleteMarkers");
-                //foreach (Car car in con.Car)
-                //{
-                //    string[] sarr = new String[] { ts.breitengrad.GetValueOrDefault(0).ToString(CultureInfo.InvariantCulture), ts.laengengrad.GetValueOrDefault(0).ToString(CultureInfo.InvariantCulture), ts.Name };
-                //    webBrowser1.InvokeScript("setMarker", sarr);
-                //}
+                string[] sarr = new String[] { "48.359708", "7.819914", "Test Verfügbare Fahrzeuge" };
+                webBrowser1.InvokeScript("setMarker", sarr);                
+                webBrowser1.InvokeScript("zoomOnMarkers");
+
+            }
+            else if (selection == 2)
+            {
+
+                // Verfügbare Fahrzeuge
+                webBrowser1.InvokeScript("deleteMarkers");
+                string[] sarr = new String[] { "53.548058", "9.961822", "Test Gestohlene Fahrzeuge 1" };
+                webBrowser1.InvokeScript("setMarker", sarr);      
                 webBrowser1.InvokeScript("zoomOnMarkers");
 
             }
@@ -117,19 +125,17 @@ namespace e_Cars.UI.Map
                 {
                     loadData(0);
                 }
-                else
+                else if (text.Equals("Verfügbare Fahrzeuge"))
                 {
                     loadData(1);
+                }
+                else if (text.Equals("Gestohlene Fahrzeuge"))
+                {
+                    loadData(2);
                 }
 
             }
         }
-
-        private void ComboBoxTankst_Fahrz_Selected(object sender, RoutedEventArgs e)
-        {
-
-        }
-
      
     }
 

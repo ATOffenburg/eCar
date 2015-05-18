@@ -23,7 +23,7 @@
             </Grid>
 
             <Grid Grid.Column="2">
-                <Button Margin="5" Click="Button_Click_1" Content="Platzhalter ..." /> 
+                <Button Margin="5" Click="Button_Click_1" Content="Google Maps" /> 
             </Grid>
         </Grid>
     </Grid>
