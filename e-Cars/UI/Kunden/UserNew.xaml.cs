@@ -14,7 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.IO;
+using System.Diagnostics;
 namespace e_Cars.UI.Kunden
 {
     /// <summary>
@@ -142,6 +143,7 @@ namespace e_Cars.UI.Kunden
             this.mw = mw;
             this.DataContext = this;
             InitializeComponent();
+            this.ui = new UserInfo(new Kunde());
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -268,24 +270,45 @@ namespace e_Cars.UI.Kunden
                 sthChanged = true;
                 
             }
-
+            MessageBox.Show("Änderungen gespeichert!");
+            File.Delete(@"c:\temp\fkopietemp.pdf");
             clearFields();
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Hochladen(object sender, RoutedEventArgs e)
         {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.FileName = "Document";
+            dlg.DefaultExt = ".pdf";
+            dlg.Filter = "Pdf documents (.pdf)|*.pdf";
 
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                string filename = dlg.FileName;
+
+                ui.FKopie = System.IO.File.ReadAllBytes(filename);
+
+            }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Anzeigen(object sender, RoutedEventArgs e)
         {
+            
+            if (ui.FKopie != null)
+            {
+                string filepath = @"c:\temp\fkopietemp.pdf";
+                File.WriteAllBytes(filepath, ui.FKopie);
+                Process.Start(filepath);
 
+            }
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Button_Loeschen(object sender, RoutedEventArgs e)
         {
-
+            ui.FKopie = null;
         }
     }
 }

@@ -170,12 +170,6 @@
       <DependentUpon>KartenOverview.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Kunden\ByteToBoolConverter.cs" />
-    <Compile Include="UI\Kunden\FK_PDF.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UI\Kunden\FK_PDF.Designer.cs">
-      <DependentUpon>FK_PDF.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\Kunden\UserDetail.xaml.cs">
       <DependentUpon>UserDetail.xaml</DependentUpon>
     </Compile>
@@ -199,9 +193,6 @@
       <DependentUpon>CarDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Cars\IntToProzentConverter.cs" />
-    <Compile Include="UI\Kunden\FK_Window.xaml.cs">
-      <DependentUpon>FK_Window.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UI\Map\GMaps.xaml.cs">
       <DependentUpon>GMaps.xaml</DependentUpon>
     </Compile>
@@ -287,10 +278,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Kunden\FK_Window.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UI\Map\GMaps.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -337,9 +324,6 @@
     <EmbeddedResource Include="Resources\ResourceECars.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceECars.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Kunden\FK_PDF.resx">
-      <DependentUpon>FK_PDF.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Datenbank\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

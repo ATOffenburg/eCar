@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+using System.Diagnostics;
 
 namespace e_Cars.UI.Kunden
 {
@@ -340,6 +342,7 @@ namespace e_Cars.UI.Kunden
                 sthChanged = true;
 
                 MessageBox.Show("Änderungen gespeichert!");
+                File.Delete(@"c:\temp\fkopietemp.pdf");
             }
         }
 
@@ -347,10 +350,10 @@ namespace e_Cars.UI.Kunden
         {
             if (ui.FKopie != null)
             {
-                FK_Window fk = new FK_Window(ui.FKopie);
-                fk.ShowDialog();
-
-                fk.Close();
+                string filepath = @"c:\temp\fkopietemp.pdf";
+                File.WriteAllBytes(filepath, ui.FKopie);
+                Process.Start(filepath);
+                
             }
         }
 
