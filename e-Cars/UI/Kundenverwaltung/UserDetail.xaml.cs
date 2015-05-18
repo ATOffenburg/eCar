@@ -14,8 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
-namespace e_Cars.UI.Kunden
+
+namespace e_Cars.UI.Kundenverwaltung
 {
     /// <summary>
     /// Interaktionslogik für UserDetail.xaml
@@ -331,12 +333,13 @@ namespace e_Cars.UI.Kunden
                 knew.Email = Email;
                 knew.Passwort = Passwort;
                 knew.Gesperrt = Gesperrt;
+                knew.FKopie = ui.FKopie;
 
                 ui = new UserInfo(knew);
 
                 con.Entry(knew).State = System.Data.Entity.EntityState.Modified;
                 con.SaveChanges();
-
+                File.Delete(@"c:\temp\fkopietemp.pdf");
                 sthChanged = true;
 
                 MessageBox.Show("Änderungen gespeichert!");
@@ -345,8 +348,37 @@ namespace e_Cars.UI.Kunden
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            FK_Window fk = new FK_Window();
-            fk.Show();
+            if (ui.FKopie != null)
+            {
+                FK_Window fk = new FK_Window(ui.FKopie);
+                fk.ShowDialog();
+                
+                fk.Close();
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.FileName = "Document"; 
+            dlg.DefaultExt = ".pdf"; 
+            dlg.Filter = "Pdf documents (.pdf)|*.pdf"; 
+
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                string filename = dlg.FileName;
+
+                ui.FKopie = System.IO.File.ReadAllBytes(filename);
+
+            }
+
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            ui.FKopie = null;
         }
 
     }

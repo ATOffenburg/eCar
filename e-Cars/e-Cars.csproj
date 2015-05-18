@@ -168,23 +168,24 @@
     <Compile Include="UI\Kartenverwaltung\KartenOverview.xaml.cs">
       <DependentUpon>KartenOverview.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Kunden\FK_PDF.cs">
+    <Compile Include="UI\Kundenverwaltung\FK_PDF.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\Kunden\FK_PDF.Designer.cs">
+    <Compile Include="UI\Kundenverwaltung\FK_PDF.Designer.cs">
       <DependentUpon>FK_PDF.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Kunden\UserDetail.xaml.cs">
+    <Compile Include="UI\Kundenverwaltung\ByteToBoolConverter.cs" />
+    <Compile Include="UI\Kundenverwaltung\UserDetail.xaml.cs">
       <DependentUpon>UserDetail.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Kunden\UserInfo.cs" />
-    <Compile Include="UI\Kunden\ProgressDialog.xaml.cs">
+    <Compile Include="UI\Kundenverwaltung\UserInfo.cs" />
+    <Compile Include="UI\Kundenverwaltung\ProgressDialog.xaml.cs">
       <DependentUpon>ProgressDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Kunden\UserNew.xaml.cs">
+    <Compile Include="UI\Kundenverwaltung\UserNew.xaml.cs">
       <DependentUpon>UserNew.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Kunden\UserOverview.xaml.cs">
+    <Compile Include="UI\Kundenverwaltung\UserOverview.xaml.cs">
       <DependentUpon>UserOverview.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Cars\CarNew.xaml.cs">
@@ -197,7 +198,7 @@
       <DependentUpon>CarDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Cars\IntToProzentConverter.cs" />
-    <Compile Include="UI\Kunden\FK_Window.xaml.cs">
+    <Compile Include="UI\Kundenverwaltung\FK_Window.xaml.cs">
       <DependentUpon>FK_Window.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Map\GMaps.xaml.cs">
@@ -256,19 +257,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UI\Kunden\UserDetail.xaml">
+    <Page Include="UI\Kundenverwaltung\UserDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Kunden\ProgressDialog.xaml">
+    <Page Include="UI\Kundenverwaltung\ProgressDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UI\Kunden\UserNew.xaml">
+    <Page Include="UI\Kundenverwaltung\UserNew.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Kunden\UserOverview.xaml">
+    <Page Include="UI\Kundenverwaltung\UserOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -284,7 +285,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Kunden\FK_Window.xaml">
+    <Page Include="UI\Kundenverwaltung\FK_Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -335,7 +336,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceECars.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Kunden\FK_PDF.resx">
+    <EmbeddedResource Include="UI\Kundenverwaltung\FK_PDF.resx">
       <DependentUpon>FK_PDF.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Datenbank\Model1.edmx">

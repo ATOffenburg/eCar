@@ -1,4 +1,4 @@
-﻿namespace e_Cars.UI.Kunden
+﻿namespace e_Cars.UI.Kundenverwaltung
 {
     partial class FK_PDF
     {
@@ -16,6 +16,7 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
+                axFoxitCtl1.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace e_Cars.UI.Kunden
+namespace e_Cars.UI.Kundenverwaltung
 {
     /// <summary>
     /// Interaktionslogik für UserNew.xaml
