@@ -1,5 +1,7 @@
-﻿using System;
+﻿using e_Cars.Datenbank;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -22,6 +24,7 @@ namespace e_Cars.UI.Map
     public partial class GMaps : UserControl
     {
 
+       
         String sURL = AppDomain.CurrentDomain.BaseDirectory + "html/GMaps.html";
         private MainWindow mw { get; set; }
 
@@ -36,19 +39,21 @@ namespace e_Cars.UI.Map
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            webBrowser1.InvokeScript("newLoc");      
+           
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            webBrowser1.InvokeScript("setMarker");      
+
+            webBrowser1.InvokeScript("deleteMarkers");
+
+            webBrowser1.InvokeScript("setMarker", new String[] { "76.23334", "45.2342344", "Test" });
+
+            webBrowser1.InvokeScript("zoomOnMarkers");
+
         }
 
         private void webBrowser1_Loaded(object sender, RoutedEventArgs e)
@@ -61,12 +66,71 @@ namespace e_Cars.UI.Map
             //activeX.Silent = true;
 
             ((WebBrowser)sender).ObjectForScripting = new HtmlInteropInternalTestClass();
+
+        }
+
+        private void loadData(int selection)
+        {
+
+            Projekt2Entities con = new Projekt2Entities();
+
+            if (selection == 0)
+            {
+
+                webBrowser1.InvokeScript("deleteMarkers");
+
+                // Tankstellen
+                foreach(Tankstelle ts in con.Tankstelle){
+                    string[] sarr = new String[] { ts.breitengrad.GetValueOrDefault(0).ToString(CultureInfo.InvariantCulture), ts.laengengrad.GetValueOrDefault(0).ToString(CultureInfo.InvariantCulture), ts.Name };
+                    webBrowser1.InvokeScript("setMarker", sarr);      
+                }
+
+                webBrowser1.InvokeScript("zoomOnMarkers");
+
+            } else {
+                // Fahrzeuge
+                webBrowser1.InvokeScript("deleteMarkers");
+                //foreach (Car car in con.Car)
+                //{
+                //    string[] sarr = new String[] { ts.breitengrad.GetValueOrDefault(0).ToString(CultureInfo.InvariantCulture), ts.laengengrad.GetValueOrDefault(0).ToString(CultureInfo.InvariantCulture), ts.Name };
+                //    webBrowser1.InvokeScript("setMarker", sarr);
+                //}
+                webBrowser1.InvokeScript("zoomOnMarkers");
+
+            }
+
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
             mw.setMenu();
         }
+
+        private void ComboBoxTankst_Fahrz_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count != 0)
+            {
+                
+                string text = (e.AddedItems[0] as ComboBoxItem).Content as string;
+
+                if (text.Equals("Tankstellen"))
+                {
+                    loadData(0);
+                }
+                else
+                {
+                    loadData(1);
+                }
+
+            }
+        }
+
+        private void ComboBoxTankst_Fahrz_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+     
     }
 
 

@@ -46,10 +46,10 @@
                                     <Slider Value="{Binding Path=Batterieladung, UpdateSourceTrigger=PropertyChanged}" Minimum="0" SmallChange="1" Maximum="100" VerticalAlignment="Top" Margin="180,72,10,0" Height="26"/>
 
                                     <Label x:Name="LabelKilometerstand" Margin="10,103,0,0" Content="Kilometerstand: " VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
-                                    <TextBox x:Name="TextBoxKilometerstand" MaxLength="7" DataObject.Pasting="TextBoxPasting" PreviewTextInput="Event_PreviewTextInput" Text="{Binding Path=Kilometerstand, UpdateSourceTrigger=PropertyChanged}" Margin="120,107,10,0" VerticalAlignment="Top"/>
+                                    <TextBox x:Name="TextBoxKilometerstand" MaxLength="7" LostFocus="TextBoxKilometerstand_LostFocus" DataObject.Pasting="TextBoxPasting" PreviewTextInput="Event_PreviewTextInput" Text="{Binding Path=Kilometerstand, UpdateSourceTrigger=PropertyChanged}" Margin="120,107,10,0" VerticalAlignment="Top"/>
 
                                     <Label x:Name="LabelTankvorgaenge" Margin="10,134,0,0" Content="Tankvorgänge: " VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
-                                    <TextBox x:Name="TextBoxTankvorgaenge" MaxLength="7" DataObject.Pasting="TextBoxPasting" PreviewTextInput="Event_PreviewTextInput" Text="{Binding Path=Tankvorgaenge, UpdateSourceTrigger=PropertyChanged}" Margin="120,138,10,0" VerticalAlignment="Top"/>
+                                    <TextBox x:Name="TextBoxTankvorgaenge" MaxLength="7" LostFocus="TextBoxTankvorgaenge_LostFocus" DataObject.Pasting="TextBoxPasting" PreviewTextInput="Event_PreviewTextInput" Text="{Binding Path=Tankvorgaenge, UpdateSourceTrigger=PropertyChanged}" Margin="120,138,10,0" VerticalAlignment="Top"/>
 
                                     <Label x:Name="LabelStatus" Margin="10,165,0,0" Content="Status: " VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
                                     <ComboBox x:Name="ComboBoxStatus" Margin="120,168,10,0" ItemsSource="{Binding Path=listStatus}" SelectedItem="{Binding selectedStatus}" IsSynchronizedWithCurrentItem="True">

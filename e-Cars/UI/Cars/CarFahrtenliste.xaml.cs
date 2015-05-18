@@ -74,7 +74,6 @@ namespace e_Cars.UI.Cars
             mw.setCarDetail();
         }
 
-
         private void SortClick(object sender, RoutedEventArgs e)
         {
             GridViewColumnHeader column = sender as GridViewColumnHeader;

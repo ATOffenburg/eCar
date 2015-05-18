@@ -10,7 +10,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="40"/>
+            
+            <!-- Ausgeblendet -->
+            <RowDefinition Height="0"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
@@ -35,13 +37,22 @@
                                 <GridViewColumnHeader Click="SortClick" Tag="Fahrt_ID" Content="Fahrtennummer" />
                             </GridViewColumn>
 
-                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Startzeit}">
+                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Startzeit, StringFormat='dd.MM.yy HH:mm'}">
                                 <GridViewColumnHeader Click="SortClick" Tag="Startzeit" Content="Startzeit" />
                             </GridViewColumn>
 
-                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Endzeit}">
+                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Endzeit, StringFormat='dd.MM.yy HH:mm'}">
                                 <GridViewColumnHeader Click="SortClick" Tag="Endzeit" Content="Endzeit" />
                             </GridViewColumn>
+
+                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Start_KM, StringFormat='F', ConverterCulture='de-DE'}">
+                                <GridViewColumnHeader Click="SortClick" Tag="Start_KM" Content="Startkilometer" />
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=End_KM, StringFormat='F', ConverterCulture='de-DE'}">
+                                <GridViewColumnHeader Click="SortClick" Tag="End_KM" Content="Endkilometer" />
+                            </GridViewColumn>
+
 
 
                         </GridView>

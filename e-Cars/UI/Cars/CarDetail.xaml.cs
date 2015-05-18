@@ -302,6 +302,16 @@ namespace e_Cars.UI.Cars
 
         }
 
+        private void TextBoxKilometerstand_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Kilometerstand = Kilometerstand;
+        }
+
+        private void TextBoxTankvorgaenge_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Tankvorgaenge = Tankvorgaenge;
+        }
+
       
     }
 }

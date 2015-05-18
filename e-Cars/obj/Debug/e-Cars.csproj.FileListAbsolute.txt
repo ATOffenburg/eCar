@@ -273,3 +273,4 @@ C:\Users\Torsten\Documents\GitHub\eCar\e-Cars\obj\Debug\UI\Cars\CarFahrtenliste.
 C:\Users\Torsten\Documents\GitHub\eCar\e-Cars\obj\Debug\UI\Cars\CarFahrtenliste.g.cs
 E:\eCar\e-Cars\obj\Debug\UI\Cars\CarFahrtenliste.baml
 E:\eCar\e-Cars\obj\Debug\UI\Cars\CarFahrtenliste.g.cs
+C:\Users\Torsten\Documents\GitHub\eCar\e-Cars\obj\Debug\e-Cars.csprojResolveAssemblyReference.cache
