@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace e_Cars.UI.Kundenverwaltung
+namespace e_Cars.UI.Kunden
 {
     public class UserInfo
     {

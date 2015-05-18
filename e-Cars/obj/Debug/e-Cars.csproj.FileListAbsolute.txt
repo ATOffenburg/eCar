@@ -297,3 +297,5 @@ E:\eCar\e-Cars\obj\Debug\e-Cars.pdb
 C:\Users\Torsten\Documents\GitHub\eCar\e-Cars\obj\Debug\Interop.AcroPDFLib.dll
 C:\Users\Torsten\Documents\GitHub\eCar\e-Cars\obj\Debug\AxInterop.AcroPDFLib.dll
 C:\Users\Torsten\Documents\GitHub\eCar\e-Cars\obj\Debug\e-Cars.csproj.ResolveComReference.cache
+C:\Users\Torsten\Documents\GitHub\eCar\e-Cars\obj\Debug\Interop.FOXITREADERLib.dll
+C:\Users\Torsten\Documents\GitHub\eCar\e-Cars\obj\Debug\AxInterop.FOXITREADERLib.dll

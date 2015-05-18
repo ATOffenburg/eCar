@@ -12,18 +12,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace e_Cars.UI.Kundenverwaltung
+namespace e_Cars.UI.Kunden
 {
     /// <summary>
     /// Interaktionslogik für FK_Window.xaml
     /// </summary>
     public partial class FK_Window : Window
     {
-        public FK_Window(byte[] fkopie)
+        public FK_Window()
         {
             InitializeComponent();
 
-            var fk = new FK_PDF(fkopie);
+            var fk = new FK_PDF(@"D:\Maschinennahe Programmierung\Werkzeugkasten 2.2\LiesMich.pdf");
             this.WindowsFormsHost.Child = fk;
         }
     }

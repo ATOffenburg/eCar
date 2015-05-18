@@ -16,9 +16,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Globalization;
 
-namespace e_Cars.UI.Kundenverwaltung
+namespace e_Cars.UI.Kunden
 {
     /// <summary>
     /// Interaktionslogik für UserOverview.xaml
@@ -32,7 +31,7 @@ namespace e_Cars.UI.Kundenverwaltung
             this.mw = mw;
             this.DataContext = this;
             InitializeComponent();
-            ByteToBoolConverter bt = new ByteToBoolConverter();
+
 
         }
 
@@ -128,8 +127,6 @@ namespace e_Cars.UI.Kundenverwaltung
             }
 
         }
-
-
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
@@ -275,7 +272,7 @@ namespace e_Cars.UI.Kundenverwaltung
             }
         }
 
-       
+
 
 
     }
