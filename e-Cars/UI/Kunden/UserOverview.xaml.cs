@@ -139,7 +139,12 @@ namespace e_Cars.UI.Kunden
             if (item != null)
             {
                 //mw.setUserDetail(item);
+
                 UserDetail uDt = new UserDetail(mw, item);
+                // Damit es im Vordergrun bleibt...
+                uDt.Owner = mw;
+                // Damit man erkennt das ein Dialog geöffnet ist...
+                uDt.ShowInTaskbar = true;                
                 uDt.ShowDialog();
 
                 if (uDt.sthChanged != false)

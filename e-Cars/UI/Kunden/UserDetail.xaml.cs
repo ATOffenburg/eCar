@@ -342,7 +342,11 @@ namespace e_Cars.UI.Kunden
                 sthChanged = true;
 
                 MessageBox.Show("Änderungen gespeichert!");
-                File.Delete(@"c:\temp\fkopietemp.pdf");
+
+                //string tempPath = System.IO.Path.GetTempPath();
+                //string filepath = tempPath + "fkopietemp.pdf";
+                //File.Delete(filepath);
+
             }
         }
 
@@ -350,7 +354,11 @@ namespace e_Cars.UI.Kunden
         {
             if (ui.FKopie != null)
             {
-                string filepath = @"c:\temp\fkopietemp.pdf";
+
+                // TB: Nimt den Temp ordner des aktuellen Benutzers 
+                // benötig keine Admin rechte (ansonsten wirft es eine Exception falls Admin rechte erfordert werden)
+                string tempPath = System.IO.Path.GetTempPath();
+                string filepath = tempPath + "fkopietemp.pdf";
                 File.WriteAllBytes(filepath, ui.FKopie);
                 Process.Start(filepath);
                 

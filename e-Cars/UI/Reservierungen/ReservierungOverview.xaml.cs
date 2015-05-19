@@ -24,7 +24,6 @@ namespace e_Cars.UI.Reservierungen
     public partial class ReservierungOverview : UserControl, INotifyPropertyChanged
     {
 
-
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
 
@@ -53,10 +52,7 @@ namespace e_Cars.UI.Reservierungen
         private List<ReservierungInfo> listreservierunginfo = null;
         public List<ReservierungInfo> listReservierungInfo
         {
-            get
-            {
-                return listreservierunginfo;
-            }
+            get { return listreservierunginfo; }
             set
             {
                 listreservierunginfo = value;
@@ -74,14 +70,13 @@ namespace e_Cars.UI.Reservierungen
 
             AnzeigeDatum = DateTime.Now;
 
-           listReservierungInfo = loadReservierungsListe(null);
+            listReservierungInfo = loadReservierungsListe(null);
         }
 
         private List<ReservierungInfo> loadReservierungsListe(String filter)
         {
 
             List<ReservierungInfo> listReservierungInfo = new List<ReservierungInfo>();
-
             Projekt2Entities con = new Projekt2Entities();
 
             foreach (Reservierung res in con.Reservierung.Where(s =>
@@ -107,6 +102,7 @@ namespace e_Cars.UI.Reservierungen
                 return;
             }
 
+            mw.setReservierungNew();
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)

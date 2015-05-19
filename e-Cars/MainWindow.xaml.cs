@@ -170,5 +170,12 @@ namespace e_Cars
             }
             MainGrid.Children.Add(ro);
         }
+
+        internal void setReservierungNew()
+        {
+            MainGrid.Children.Clear();
+            ReservierungNew rn = new ReservierungNew(this);
+            MainGrid.Children.Add(rn);
+        }
     }
 }
