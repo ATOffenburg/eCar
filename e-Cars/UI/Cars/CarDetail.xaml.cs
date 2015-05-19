@@ -26,7 +26,6 @@ namespace e_Cars.UI.Cars
 
         private CarInfo ci { get; set; }
         private MainWindow mw { get; set; }
-        
         private string seriennummer;
         public String Seriennummer
         {
@@ -54,7 +53,6 @@ namespace e_Cars.UI.Cars
         }
 
         private bool reservierunggesperrt;
-
         public bool ReservierungGesperrt
         {
             get { return reservierunggesperrt; }
@@ -65,9 +63,7 @@ namespace e_Cars.UI.Cars
             }
         }
 
-
         private bool spontanenutzunggesperrt;
-
         public bool SpontaneNutzungGesperrt
         {
             get { return spontanenutzunggesperrt; }
@@ -77,7 +73,6 @@ namespace e_Cars.UI.Cars
                 NotifyPropertyChanged("SpontaneNutzungGesperrt");
             }
         }
-        
 
         private DateTime? wartungstermin;
         public DateTime? WartungsTermin
@@ -123,8 +118,7 @@ namespace e_Cars.UI.Cars
             }
         }
 
-        private List<Status> liststatus = new List<Status>();
-
+        private List<Status> liststatus;
         public List<Status> listStatus
         {
             get { return liststatus; }
@@ -139,7 +133,6 @@ namespace e_Cars.UI.Cars
         public Status selectedStatus
         {
             get { return selectedstatus; }
-
             set
             {
                 if (selectedstatus != value)
@@ -156,10 +149,10 @@ namespace e_Cars.UI.Cars
             this.ci = ci;
             InitializeComponent();
 
-
-            Projekt2Entities con = new Projekt2Entities();
-            listStatus = con.Status.ToList();
-            
+            using (Projekt2Entities con = new Projekt2Entities())
+            {
+                listStatus = con.Status.ToList();
+            }
 
             this.DataContext = this;
 
@@ -255,7 +248,7 @@ namespace e_Cars.UI.Cars
                     c.Kilometerstand = Kilometerstand;
                     c.Batterieladung = Batterieladung;
                     c.Wartungstermin = WartungsTermin;
-                    
+
                     c.Gesperrt = Gesperrt;
                     c.ReservierungGesperrt = ReservierungGesperrt;
                     c.SpontaneNutzungGesperrt = SpontaneNutzungGesperrt;
@@ -312,6 +305,6 @@ namespace e_Cars.UI.Cars
             Tankvorgaenge = Tankvorgaenge;
         }
 
-      
+
     }
 }

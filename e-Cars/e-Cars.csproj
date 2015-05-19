@@ -220,6 +220,9 @@
     <Compile Include="UI\Map\GMaps.xaml.cs">
       <DependentUpon>GMaps.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Reservierungen\ReservierungDetail.xaml.cs">
+      <DependentUpon>ReservierungDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Reservierungen\ReservierungInfo.cs" />
     <Compile Include="UI\Reservierungen\ReservierungNew.xaml.cs">
       <DependentUpon>ReservierungNew.xaml</DependentUpon>
@@ -303,6 +306,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Map\GMaps.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Reservierungen\ReservierungDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -18,12 +18,13 @@ using System.Windows.Shapes;
 namespace e_Cars.UI.Reservierungen
 {
     /// <summary>
-    /// Interaktionslogik für ReservierungNew.xaml
+    /// Interaktionslogik für ReservierungDetail.xaml
     /// </summary>
-    public partial class ReservierungNew : UserControl, INotifyPropertyChanged
+    public partial class ReservierungDetail : UserControl, INotifyPropertyChanged
     {
 
         private MainWindow mw;
+        private ReservierungInfo ri;
 
         private List<Kunde> listekunden;
         public List<Kunde> listeKunden
@@ -82,27 +83,37 @@ namespace e_Cars.UI.Reservierungen
             }
         }
 
-        public ReservierungNew(MainWindow mw)
+        public ReservierungDetail(MainWindow mw, ReservierungInfo ri)
         {
             this.mw = mw;
+            this.ri = ri;
 
-            InitializeComponent();
-            this.DataContext = this;
+            using (Projekt2Entities con = new Projekt2Entities())
+            {
+                listeTankstellen = con.Tankstelle.ToList();
+                listeKunden = con.Kunde.ToList();
 
-            ReservierungStart = DateTime.Now;
+                InitializeComponent();
+                this.DataContext = this;
+
+                ReservierungStart = ri.Startzeit;
+                selectedTankstelle = listeTankstellen.SingleOrDefault(s => s.Tankstelle_ID == ri.Abholort.Tankstelle_ID);
+                selectedUser = listeKunden.SingleOrDefault(s => s.Kunde_ID == ri.k.Kunde_ID);
+            }
+
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
 
-            using (Projekt2Entities con = new Projekt2Entities())
-            {
-                listeTankstellen = con.Tankstelle.ToList();
-                listeKunden = con.Kunde.Where(s => s.Gesperrt != true).ToList();
-            }
         }
 
-        private void ButtonAnlegen_Click(object sender, RoutedEventArgs e)
+        private void ButtonZurueck_Click(object sender, RoutedEventArgs e)
+        {
+            mw.setReservierungOverview();
+        }
+
+        private void ButtonAenderungenSpeichern_Click(object sender, RoutedEventArgs e)
         {
 
             if (selectedUser == null)
@@ -129,34 +140,28 @@ namespace e_Cars.UI.Reservierungen
                 return;
             }
 
-            Reservierung res = new Reservierung();
-            res.Abholort = selectedTankstelle.Tankstelle_ID;
-            res.Startzeit = ReservierungStart;
-            res.Kunde_ID = selectedUser.Kunde_ID;
-            res.Zeitstempel = DateTime.Now;
-
             using (Projekt2Entities con = new Projekt2Entities())
             {
-                con.Reservierung.Add(res);
-                con.SaveChanges();
+                Reservierung res = con.Reservierung.SingleOrDefault(s => s.Reservierung_ID == ri.res.Reservierung_ID);
+
+                if (res != null)
+                {
+                    res.Abholort = selectedTankstelle.Tankstelle_ID;
+                    res.Startzeit = ReservierungStart;
+                    res.Kunde_ID = selectedUser.Kunde_ID;
+                    res.Zeitstempel = DateTime.Now;
+
+                    con.Entry(res).State = System.Data.Entity.EntityState.Modified;
+                    con.SaveChanges();
+                    MessageBox.Show("Die Reservierung wurde erfolgreich geändert.");
+                }
+                else
+                {
+                    MessageBox.Show("Die Änderungen konnten nicht gespeichert werden.");
+
+                }
             }
 
-            MessageBox.Show("Die Reservierung wurde erfolgreich erstellt.");
-
-            clearFields();
-        }
-
-        private void clearFields()
-        {
-            selectedUser = null;
-            selectedTankstelle = null;
-            ReservierungStart = DateTime.Now;
-        }
-
-
-        private void ButtonZurueck_Click(object sender, RoutedEventArgs e)
-        {
-            mw.setReservierungOverview();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -167,6 +172,5 @@ namespace e_Cars.UI.Reservierungen
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
-
     }
 }

@@ -50,14 +50,11 @@ namespace e_Cars.UI.Cars
 
             if (ci != null)
             {
-
-                Projekt2Entities con = new Projekt2Entities();
-
+                using (Projekt2Entities con = new Projekt2Entities())
+                {
                 listeFahrten = con.Fahrt.Where(s => s.Car_ID == ci.c.Car_ID).ToList();
-
+                }
             }
-
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

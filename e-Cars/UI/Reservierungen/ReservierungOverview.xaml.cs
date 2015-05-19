@@ -77,17 +77,17 @@ namespace e_Cars.UI.Reservierungen
         {
 
             List<ReservierungInfo> listReservierungInfo = new List<ReservierungInfo>();
-            Projekt2Entities con = new Projekt2Entities();
-
-            foreach (Reservierung res in con.Reservierung.Where(s =>
-                                                            s.Startzeit.Year == AnzeigeDatum.Value.Year &&
-                                                            s.Startzeit.Month == AnzeigeDatum.Value.Month &&
-                                                            s.Startzeit.Day == AnzeigeDatum.Value.Day))
+            using (Projekt2Entities con = new Projekt2Entities())
             {
-                ReservierungInfo ri = new ReservierungInfo(res);
-                listReservierungInfo.Add(ri);
+                foreach (Reservierung res in con.Reservierung.Where(s =>
+                                                                s.Startzeit.Year == AnzeigeDatum.Value.Year &&
+                                                                s.Startzeit.Month == AnzeigeDatum.Value.Month &&
+                                                                s.Startzeit.Day == AnzeigeDatum.Value.Day))
+                {
+                    ReservierungInfo ri = new ReservierungInfo(res);
+                    listReservierungInfo.Add(ri);
+                }
             }
-
             return listReservierungInfo;
         }
 
@@ -112,7 +112,11 @@ namespace e_Cars.UI.Reservierungen
 
         private void myListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            var item = ((FrameworkElement)e.OriginalSource).DataContext as ReservierungInfo;
+            if (item != null)
+            {
+                mw.setReservierungDetail(item);
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

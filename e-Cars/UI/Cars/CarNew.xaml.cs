@@ -142,10 +142,11 @@ namespace e_Cars.UI.Cars
             InitializeComponent();
             this.DataContext = this;
 
-            Projekt2Entities con = new Projekt2Entities();
-            listStatus = con.Status.ToList();
-            listTankstelle = con.Tankstelle.ToList();
-
+            using (Projekt2Entities con = new Projekt2Entities())
+            {
+                listStatus = con.Status.ToList();
+                listTankstelle = con.Tankstelle.ToList();
+            }
             clearFields();
         }
 
@@ -201,7 +202,7 @@ namespace e_Cars.UI.Cars
 
             bool bData = false;
 
-            if  (String.IsNullOrWhiteSpace(Seriennummer))
+            if (String.IsNullOrWhiteSpace(Seriennummer))
             {
                 bData = true;
             }
@@ -230,7 +231,7 @@ namespace e_Cars.UI.Cars
             {
                 bData = true;
             }
-            
+
             return bData;
         }
 
@@ -257,7 +258,7 @@ namespace e_Cars.UI.Cars
 
         private static bool IsTextAllowed(string text)
         {
-            Regex regex = new Regex("[^0-9.-]+"); 
+            Regex regex = new Regex("[^0-9.-]+");
             return !regex.IsMatch(text);
         }
 
