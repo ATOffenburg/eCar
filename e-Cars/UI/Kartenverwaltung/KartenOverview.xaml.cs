@@ -23,13 +23,17 @@ namespace e_Cars.UI.Kartenverwaltung
     /// </summary>
     public partial class KartenOverview : UserControl, INotifyPropertyChanged
     {
-
+        /// <summary>
+        /// Accessor Methode von der Variable MainWindow
+        /// </summary>
         private MainWindow mw { get; set; }
 
 
         private List<KartenInfo> listkarteninfo = null;
 
-
+        /// <summary>
+        /// Accesor-Methode von listKartenInfo
+        /// </summary>
         public List<KartenInfo> listKartenInfo
         {
             get { return listkarteninfo; }
@@ -39,7 +43,10 @@ namespace e_Cars.UI.Kartenverwaltung
                 NotifyPropertyChanged("listKartenInfo");
             }
         }
-
+        /// <summary>
+        /// Konstruktor für KartenOverview
+        /// </summary>
+        /// <param name="mw"></param>
 
         public KartenOverview(MainWindow mw)
         {
@@ -48,11 +55,22 @@ namespace e_Cars.UI.Kartenverwaltung
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Zurückkehren zum Menur Stammdatenverwaltung
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
             mw.setMenuStammdatenVerwaltung();
         }
-
+        /// <summary>
+        /// Öffnet das KartenNew Fenster um neue Karten anzulegen. Diese speichert diese dann in der Datenbank.
+        /// Die Liste wird lokal ohne DB Abfrage aktualisiert
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonCreateNew_Click(object sender, RoutedEventArgs e)
         {
             using (Projekt2Entities con = new Projekt2Entities())
@@ -68,7 +86,11 @@ namespace e_Cars.UI.Kartenverwaltung
                 }
             }
         }
-
+        /// <summary>
+        /// holt die Daten aus der Datenbank
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         private List<KartenInfo> getListOfKartenInfo(string filter)
         {
             List<KartenInfo> listKartenInfo = new List<KartenInfo>();
@@ -84,6 +106,10 @@ namespace e_Cars.UI.Kartenverwaltung
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// Meldet wenn sich die Liste listKartenInfo geändert hat
+        /// </summary>
+        /// <param name="info"></param>
         protected void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)
@@ -91,12 +117,20 @@ namespace e_Cars.UI.Kartenverwaltung
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
-
+        /// <summary>
+        /// Sobald die Ansicht geladen wird, startet das Füllen der Liste mit Daten aus der DB
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             listKartenInfo = getListOfKartenInfo(null);
         }
-
+        /// <summary>
+        /// Beim "Doppelklick" auf eine Element der myListView wird die Detailansicht geöffnet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void myListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var item = ((FrameworkElement)e.OriginalSource).DataContext as KartenInfo;
@@ -125,7 +159,7 @@ namespace e_Cars.UI.Kartenverwaltung
 
 
         /// <summary>
-        /// Sortieren der Tabelle durch klicken auf einer der Spalten
+        /// Legt die Sortierrichtung fest und startet das Sortieren
         /// </summary>
 
         GridViewColumnHeader _lastHeaderClicked = null;
@@ -196,6 +230,11 @@ namespace e_Cars.UI.Kartenverwaltung
             }
         }
 
+        /// <summary>
+        /// Sortieren der ListView
+        /// </summary>
+        /// <param name="sortBy"></param> Was sortiert werden soll
+        /// <param name="direction"></param> In welche Richtung..
         private void Sort(string sortBy, ListSortDirection direction)
         {
             ICollectionView dataView =
@@ -207,12 +246,22 @@ namespace e_Cars.UI.Kartenverwaltung
             dataView.Refresh();
         }
 
+        /// <summary>
+        /// Sobald eine Eingabe getätigt wird, soll nach dem Gefiltert werden
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TextBoxFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(myListView.ItemsSource).Filter = UserFilter;
             CollectionViewSource.GetDefaultView(myListView.ItemsSource).Refresh();
         }
 
+        /// <summary>
+        /// Filtert anhand der Eingabe die zur Filterung angegebenen Spalten
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         private bool UserFilter(object item)
         {
             if (String.IsNullOrEmpty(TextBoxFilter.Text))

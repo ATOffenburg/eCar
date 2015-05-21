@@ -23,10 +23,16 @@ namespace e_Cars.UI.Kunden
     /// </summary>
     public partial class UserNew : Window, INotifyPropertyChanged
     {
-
+        /// <summary>
+        /// Accessor Methode für mw
+        /// </summary>
         private MainWindow mw { get; set; }
 
         private string name;
+        /// <summary>
+        /// Accessor Methode für KundenName 
+        /// U.a Benötigt für das Füllen des Objekt ui
+        /// </summary>
         public String Nname
         {
             get { return name; }
@@ -38,6 +44,10 @@ namespace e_Cars.UI.Kunden
         }
 
         private string vorname;
+        /// <summary>
+        /// Accessor Methode für Vorname 
+        /// U.a Benötigt für das Füllen des Objekt ui
+        /// </summary>
         public String Vorname
         {
             get { return vorname; }
@@ -49,6 +59,10 @@ namespace e_Cars.UI.Kunden
         }
 
         private string email;
+        /// <summary>
+        /// Accessor Methode für Email 
+        /// U.a Benötigt für das Füllen des Objekt ui
+        /// </summary>
         public String Email
         {
             get { return email; }
@@ -60,6 +74,10 @@ namespace e_Cars.UI.Kunden
         }
 
         private string passwort;
+        /// <summary>
+        /// Accessor Methode für Passwort 
+        /// U.a Benötigt für das Füllen des Objekt ui
+        /// </summary>
         public String Passwort
         {
             get { return passwort; }
@@ -72,6 +90,10 @@ namespace e_Cars.UI.Kunden
 
 
         private string ort;
+        /// <summary>
+        /// Accessor Methode für Ort 
+        /// U.a Benötigt für das Füllen des Objekt ui
+        /// </summary>
         public String Ort
         {
             get { return ort; }
@@ -83,6 +105,10 @@ namespace e_Cars.UI.Kunden
         }
 
         private string plz;
+        /// <summary>
+        /// Accessor Methode für PlZ 
+        /// U.a Benötigt für das Füllen des Objekt ui
+        /// </summary>
         public String PLZ
         {
             get { return plz; }
@@ -94,6 +120,10 @@ namespace e_Cars.UI.Kunden
         }
 
         private string hausnummer;
+        /// <summary>
+        /// Accessor Methode für Hausnummer 
+        /// U.a Benötigt für das Füllen des Objekt ui
+        /// </summary>
         public String Hausnummer
         {
             get { return hausnummer; }
@@ -105,6 +135,10 @@ namespace e_Cars.UI.Kunden
         }
 
         private string strasse;
+        /// <summary>
+        /// Accessor Methode für Straße 
+        /// U.a Benötigt für das Füllen des Objekt ui
+        /// </summary>
         public String Strasse
         {
             get { return strasse; }
@@ -116,6 +150,10 @@ namespace e_Cars.UI.Kunden
         }
 
         private string bic;
+        /// <summary>
+        /// Accessor Methode für BIC 
+        /// U.a Benötigt für das Füllen des Objekt ui
+        /// </summary>
         public String BIC
         {
             get { return bic; }
@@ -125,7 +163,10 @@ namespace e_Cars.UI.Kunden
                 NotifyPropertyChanged("BIC");
             }
         }
-
+        /// <summary>
+        /// Accessor Methode für IBAN 
+        /// U.a Benötigt für das Füllen des Objekt ui
+        /// </summary>
         private string iban;
         public String IBAN
         {
@@ -137,7 +178,10 @@ namespace e_Cars.UI.Kunden
             }
         }
 
-
+        /// <summary>
+        /// Konstruktor UserNew
+        /// </summary>
+        /// <param name="mw"></param>
         public UserNew(MainWindow mw)
         {
             this.mw = mw;
@@ -148,6 +192,10 @@ namespace e_Cars.UI.Kunden
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// sobald sich das eins der Accesor-Methoden ändert wird diese Methode getriggert
+        /// </summary>
+        /// <param name="info"></param>
         protected void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)
@@ -155,12 +203,18 @@ namespace e_Cars.UI.Kunden
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
-
+        /// <summary>
+        /// Schließt das Window und kehrt somit zur Overview zurück
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonZurueck_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
+        /// <summary>
+        /// Löscht die Inhalte der einzelnen Textboxes
+        /// </summary>
         private void clearFields()
         {
 
@@ -177,7 +231,10 @@ namespace e_Cars.UI.Kunden
 
         }
 
-
+        /// <summary>
+        /// Checked die Eingabefelder auf Ihre Richtigkeit
+        /// </summary>
+        /// <returns></returns>
         private bool checkData()
         {
 
@@ -226,9 +283,19 @@ namespace e_Cars.UI.Kunden
             return bData;
 
         }
+        /// <summary>
+        /// Ein wichtiges globales Objekt das später zum aktualisieren 
+        /// der listUserInfo in der UserOverview dient
+        /// </summary>
         public UserInfo ui = null;
 
-        public bool sthChanged = false;        
+        public bool sthChanged = false;
+
+        /// <summary>
+        /// Speichert den neuen Kunden
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonAnlegen_Click(object sender, RoutedEventArgs e)
         {
 
@@ -278,7 +345,11 @@ namespace e_Cars.UI.Kunden
             clearFields();
 
         }
-
+        /// <summary>
+        /// Hier wird eine Kopie des Füherscheins entweder in JPG oder in PDF hochgeladen 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Hochladen(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -296,7 +367,11 @@ namespace e_Cars.UI.Kunden
                 ui.Führerscheinkopie = true;
             }
         }
-
+        /// <summary>
+        /// Zeigt die in der DB gespeicherte Kopie des Führerscheins
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Anzeigen(object sender, RoutedEventArgs e)
         {
 
@@ -316,6 +391,11 @@ namespace e_Cars.UI.Kunden
 
             }
         }
+        /// <summary>
+        /// Löscht die in der DB gespeicherte Führerscheinkopie
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Loeschen(object sender, RoutedEventArgs e)
         {
             ui.FKopie = null;

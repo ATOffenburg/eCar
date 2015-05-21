@@ -22,12 +22,25 @@ namespace e_Cars.UI.Kartenverwaltung
     /// </summary>
     public partial class KartenNew : Window, INotifyPropertyChanged
     {
+        /// <summary>
+        /// Accessor Methode für mw
+        /// </summary>
         MainWindow mw { get; set; }
 
+        /// <summary>
+        /// Ein wichtiges globales Objekt das später zum aktualisieren 
+        /// der listKartenInfo in der KartenOverview dient
+        /// </summary>
         private KartenInfo ki { get; set; }
-
+        /// <summary>
+        /// hier wird eine DB Connection übergeben die dann lokal gespeichert wird
+        /// </summary>
         public Projekt2Entities connect = null;
-
+        /// <summary>
+        /// Konstruktor KartenNew
+        /// </summary>
+        /// <param name="mw"></param>
+        /// <param name="con"></param>
         public KartenNew(MainWindow mw, Projekt2Entities con)
         {
 
@@ -41,13 +54,21 @@ namespace e_Cars.UI.Kartenverwaltung
             InitializeComponent();
         }
 
-
+        /// <summary>
+        /// Schließt das Window und kehrt somit zur Overview zurück
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonZurueck_Click(object sender, RoutedEventArgs e)
         {
 
             this.Close();
         }
 
+        /// <summary>
+        /// Accessor Methode für Karten_ID 
+        /// U.a Benötigt für das Füllen des Objekt ki
+        /// </summary>
         public int Karten_ID
         {
             get
@@ -62,6 +83,10 @@ namespace e_Cars.UI.Kartenverwaltung
             }
         }
 
+        /// <summary>
+        /// Accessor Methode für Kunde_ID 
+        /// U.a Benötigt für das Füllen des Objekt ki
+        /// </summary>
         public int Kunde_ID
         {
             get
@@ -76,6 +101,10 @@ namespace e_Cars.UI.Kartenverwaltung
             }
         }
 
+        /// <summary>
+        /// Accessor Methode für das "Aktiv" Feld 
+        /// U.a Benötigt für das Füllen des Objekt ki
+        /// </summary>
         public bool Aktiv
         {
             get
@@ -88,7 +117,10 @@ namespace e_Cars.UI.Kartenverwaltung
                 NotifyPropertyChanged("Aktiv");
             }
         }
-
+        /// <summary>
+        /// Accessor Methode für Sperrdatum 
+        /// U.a Benötigt für das Füllen des Objekt ki
+        /// </summary>
         public Nullable<System.DateTime> Sperrdatum
         {
             get
@@ -102,7 +134,10 @@ namespace e_Cars.UI.Kartenverwaltung
             }
         }
 
-
+        /// <summary>
+        /// Accessor Methode für Sperrvermerk 
+        /// U.a Benötigt für das Füllen des Objekt ki
+        /// </summary>
         public String Sperrvermerk
         {
             get
@@ -118,6 +153,10 @@ namespace e_Cars.UI.Kartenverwaltung
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// sobald sich das eins der Accesor-Methoden ändert wird diese Methode getriggert
+        /// </summary>
+        /// <param name="info"></param>
         protected void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)
@@ -127,7 +166,10 @@ namespace e_Cars.UI.Kartenverwaltung
         }
 
 
-
+        /// <summary>
+        /// Checked die Eingabefelder auf Ihre Richtigkeit
+        /// </summary>
+        /// <returns></returns>
         public bool checkData()
         {
             bool bData = false;
@@ -140,7 +182,11 @@ namespace e_Cars.UI.Kartenverwaltung
         }
 
         public bool sthChanged = false;
-
+        /// <summary>
+        /// Speichert die neue Karte
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             if (checkData())
@@ -170,6 +216,9 @@ namespace e_Cars.UI.Kartenverwaltung
 
         public KartenInfo kAngelegt = null;
 
+        /// <summary>
+        /// Löscht die Inhalte der einzelnen Textboxes
+        /// </summary>
         private void clearFields()
         {
             kAngelegt = ki;
@@ -185,7 +234,12 @@ namespace e_Cars.UI.Kartenverwaltung
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Startet clearFields()
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Clear_Click(object sender, RoutedEventArgs e)
         {
             clearFields();
         }

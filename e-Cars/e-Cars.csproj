@@ -193,7 +193,6 @@
     <Compile Include="UI\Kartenverwaltung\KartenOverview.xaml.cs">
       <DependentUpon>KartenOverview.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Kunden\ByteToBoolConverter.cs" />
     <Compile Include="UI\Kunden\UserDetail.xaml.cs">
       <DependentUpon>UserDetail.xaml</DependentUpon>
     </Compile>

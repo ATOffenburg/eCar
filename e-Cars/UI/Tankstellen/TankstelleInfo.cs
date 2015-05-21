@@ -9,13 +9,25 @@ namespace e_Cars.UI.Tankstellen
 {
     public class TankstelleInfo
     {
-
+        /// <summary>
+        /// Entity Objekt Tankstelle
+        /// </summary>
+        /// 
         public Tankstelle tankstelle { get; set; }
+
+        /// <summary>
+        /// Konstruktor von Tankstelleninfo
+        /// </summary>
+        /// <param name="t"></param>
         public TankstelleInfo(Tankstelle t)
         {
             this.tankstelle = t;
         }
 
+        /// <summary>
+        /// Accessor-Methode für das Entity Objekt
+        /// zum Füllen oder holen des Wertes von Tankstellen_ID
+        /// </summary>
         public int ID
         {
             get
@@ -27,7 +39,10 @@ namespace e_Cars.UI.Tankstellen
                 tankstelle.Tankstelle_ID = value;
             }
         }
-
+        /// <summary>
+        /// Accessor-Methode für das Entity Objekt
+        /// zum Füllen oder holen des Wertes von Breitengrad
+        /// </summary>
         public double? Breitengrad
         {
             get
@@ -39,7 +54,10 @@ namespace e_Cars.UI.Tankstellen
                 tankstelle.breitengrad = value;
             }
         }
-
+        /// <summary>
+        /// Accessor-Methode für das Entity Objekt
+        /// zum Füllen oder holen des Wertes von Längengrad
+        /// </summary>
         public double? Längengrad
         {
             get
@@ -51,7 +69,10 @@ namespace e_Cars.UI.Tankstellen
                 tankstelle.laengengrad = value;
             }
         }
-
+        /// <summary>
+        /// Accessor-Methode für das Entity Objekt
+        /// zum Füllen oder holen des Wertes von PLZ
+        /// </summary>
         public string PLZ
         {
             get
@@ -64,7 +85,10 @@ namespace e_Cars.UI.Tankstellen
             }
         }
 
-
+        /// <summary>
+        /// Accessor-Methode für das Entity Objekt
+        /// zum Füllen oder holen des Wertes von Ort
+        /// </summary>
         public string Ort
         {
             get
@@ -76,7 +100,10 @@ namespace e_Cars.UI.Tankstellen
                 tankstelle.Ort = value;
             }
         }
-
+        /// <summary>
+        /// Accessor-Methode für das Entity Objekt
+        /// zum Füllen oder holen des Wertes von Straße
+        /// </summary>
         public string Strasse
         {
             get
@@ -88,7 +115,10 @@ namespace e_Cars.UI.Tankstellen
                 tankstelle.Stasse = value;
             }
         }
-
+        /// <summary>
+        /// Accessor-Methode für das Entity Objekt
+        /// zum Füllen oder holen des Wertes von Tankstellen-Name
+        /// </summary>
         public string Name
         {
             get

@@ -24,8 +24,15 @@ namespace e_Cars.UI.Kunden
     /// </summary>
     public partial class UserOverview : UserControl, INotifyPropertyChanged
     {
-
+        /// <summary>
+        /// Accessor Methode von der Variable MainWindow
+        /// </summary>
         private MainWindow mw { get; set; }
+
+        /// <summary>
+        /// Konstruktor für UserOverview
+        /// </summary>
+        /// <param name="mw"></param>
         public UserOverview(MainWindow mw)
         {
             this.mw = mw;
@@ -36,7 +43,9 @@ namespace e_Cars.UI.Kunden
         }
 
         private static List<UserInfo> listuserinfo = null;
-
+        /// <summary>
+        /// Accesor-Methode von listUserInfo
+        /// </summary>
         public List<UserInfo> listUserInfo
         {
             get { return listuserinfo; }
@@ -49,6 +58,10 @@ namespace e_Cars.UI.Kunden
 
 
         public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// Meldet wenn sich die Liste listUserInfo geändert hat
+        /// </summary>
+        /// <param name="info"></param>
         protected void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)
@@ -58,7 +71,11 @@ namespace e_Cars.UI.Kunden
         }
 
         public ProgressDialog pg = null;
-
+        /// <summary>
+        /// Aufgrund der großen Ladedauer vom einmaligen holen der Daten aus der DB
+        /// wird das Laden auf einen Thread ausgelagert und ein Progressdialog zur 
+        /// Informartion für den User gestartet. So wird das Programm nicht lahm gelegt.
+        /// </summary>
         private void loadData()
         {
             // Hier die User Daten laden...
@@ -73,18 +90,30 @@ namespace e_Cars.UI.Kunden
 
             }
         }
-
+        /// <summary>
+        /// Die Arbeit für den Backgroundworker
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void workerDoWork(object sender, DoWorkEventArgs e)
         {
             listUserInfo = getListOfUserInfo(null);
         }
-
+        /// <summary>
+        /// Wenn der Thread fertig ist wird der Progressdialog geschlossen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void workerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             pg.Close();
 
         }
-
+        /// <summary>
+        /// holt die Daten aus der Datenbank
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         private List<UserInfo> getListOfUserInfo(string filter)
         {
 
@@ -100,7 +129,11 @@ namespace e_Cars.UI.Kunden
 
             return listUserInfo;
         }
-
+        /// <summary>
+        /// Zurückkehren zum Menur Stammdatenverwaltung
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
             mw.setMenuStammdatenVerwaltung();
@@ -108,7 +141,7 @@ namespace e_Cars.UI.Kunden
 
         /// <summary>
         /// Öffnet das UserNew Fenster um neue Kunden anzulegen. Diese speichert diese dann in der Datenbank.
-        /// Daraufhin folgt eine DB Abfrage die die Liste aktualisert.
+        /// Die Liste wird lokal ohne DB Abfrage aktualisiert
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -127,12 +160,20 @@ namespace e_Cars.UI.Kunden
             }
 
         }
-
+        /// <summary>
+        /// Sobald die Ansicht geladen wird, startet der Thread zum holen der Daten aus der DB
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             loadData();
         }
-
+        /// <summary>
+        /// Beim "Doppelklick" auf eine Element der myListView wird die Detailansicht geöffnet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void myListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var item = ((FrameworkElement)e.OriginalSource).DataContext as UserInfo;
@@ -159,7 +200,7 @@ namespace e_Cars.UI.Kunden
         }
 
         /// <summary>
-        /// Sortieren der Tabelle durch klicken auf einer der Spalten
+        /// Legt die Sortierrichtung fest und startet das Sortieren
         /// </summary>
 
         GridViewColumnHeader _lastHeaderClicked = null;
@@ -231,7 +272,11 @@ namespace e_Cars.UI.Kunden
         }
 
 
-
+        /// <summary>
+        /// Sortieren der ListView
+        /// </summary>
+        /// <param name="sortBy"></param> Was sortiert werden soll
+        /// <param name="direction"></param> In welche Richtung..
         private void Sort(string sortBy, ListSortDirection direction)
         {
             ICollectionView dataView =
@@ -259,6 +304,11 @@ namespace e_Cars.UI.Kunden
             CollectionViewSource.GetDefaultView(myListView.ItemsSource).Refresh();
         }
 
+        /// <summary>
+        /// Filtert anhand der Eingabe die zur Filterung angegebenen Spalten
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         private bool UserFilter(object item)
         {
             if (String.IsNullOrEmpty(TextBoxFilter.Text))

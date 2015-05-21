@@ -9,12 +9,23 @@ namespace e_Cars.UI.Tankstellen
 {
     public class TanksaeuleInfo
     {
-         public Tanksaeule tanksaeule { get; set; }
-         public TanksaeuleInfo(Tanksaeule t)
+        /// <summary>
+        /// Entity Objekt Tanksäule
+        /// </summary>
+        public Tanksaeule tanksaeule { get; set; }
+        /// <summary>
+        /// Konstruktor TanksäulenInfo
+        /// </summary>
+        /// <param name="t"></param>
+        public TanksaeuleInfo(Tanksaeule t)
         {
             this.tanksaeule = t;
         }
 
+        /// <summary>
+        /// Accessor-Methode für das Entity Objekt
+        /// zum Füllen oder holen des Wertes von Tanksäule_ID
+        /// </summary>
         public int Tanksäule_ID
         {
             get
@@ -27,6 +38,10 @@ namespace e_Cars.UI.Tankstellen
             }
         }
 
+        /// <summary>
+        /// Accessor-Methode für das Entity Objekt
+        /// zum Füllen oder holen des Wertes von Tankstelle_ID
+        /// </summary>
         public int Tankstelle_ID
         {
             get
@@ -39,6 +54,10 @@ namespace e_Cars.UI.Tankstellen
             }
         }
 
+        /// <summary>
+        /// Accessor-Methode für das Entity Objekt
+        /// zum Füllen oder holen des Wertes von Tankstellen_Nr
+        /// </summary>
         public int Nr
         {
             get
@@ -51,6 +70,10 @@ namespace e_Cars.UI.Tankstellen
             }
         }
 
+        /// <summary>
+        /// Accessor-Methode für das Entity Objekt
+        /// zum Füllen oder holen des Wertes von Car_ID
+        /// </summary>
         public int? Car_ID
         {
             get

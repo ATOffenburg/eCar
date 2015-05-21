@@ -9,13 +9,24 @@ namespace e_Cars.UI.Kartenverwaltung
 {
     public class KartenInfo
     {
-
+        /// <summary>
+        /// Entity Objekt Karte
+        /// </summary>
         public Karte k { get; set; }
+
+        /// <summary>
+        /// Konstruktor von KartenInfo
+        /// </summary>
+        /// <param name="k"></param>
         public KartenInfo(Karte k)
         {
             this.k = k;
         }
 
+        /// <summary>
+        /// Accessor-Methode für das Entity Objekt
+        /// zum Füllen oder holen des Wertes von Karten_ID
+        /// </summary>
         public int Karten_ID
         {
             get
@@ -28,6 +39,10 @@ namespace e_Cars.UI.Kartenverwaltung
             }
         }
 
+        /// <summary>
+        /// Accessor-Methode für das Entity Objekt
+        /// zum Füllen oder holen des Wertes von Kunden_ID
+        /// </summary>
         public int Kunde_ID
         {
             get
@@ -39,7 +54,10 @@ namespace e_Cars.UI.Kartenverwaltung
                 k.Kunde_ID = value;
             }
         }
-
+        /// <summary>
+        /// Accessor-Methode für das Entity Objekt
+        /// zum Füllen oder holen des Wertes von Aktiv
+        /// </summary>
         public bool Aktiv
         {
             get
@@ -51,7 +69,10 @@ namespace e_Cars.UI.Kartenverwaltung
                 k.Aktiv = value;
             }
         }
-
+        /// <summary>
+        /// Accessor-Methode für das Entity Objekt
+        /// zum Füllen oder holen des Wertes von Sperrdatum
+        /// </summary>
         public Nullable<System.DateTime> Sperrdatum
         {
             get
@@ -64,7 +85,10 @@ namespace e_Cars.UI.Kartenverwaltung
             }
         }
 
-
+        /// <summary>
+        /// Accessor-Methode für das Entity Objekt
+        /// zum Füllen oder holen des Wertes von Sperrvermerk
+        /// </summary>
         public string Sperrvermerk
         {
             get

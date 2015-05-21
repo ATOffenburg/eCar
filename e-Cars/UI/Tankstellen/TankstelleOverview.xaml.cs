@@ -29,7 +29,9 @@ namespace e_Cars.UI.Tankstellen
 
         private List<TankstelleInfo> listtankstelleinfo = null;
 
-
+        /// <summary>
+        /// Accessor Methode für die TankstellenInfo Liste
+        /// </summary>
         public List<TankstelleInfo> listTankstelleInfo
         {
             get { return listtankstelleinfo; }
@@ -40,6 +42,10 @@ namespace e_Cars.UI.Tankstellen
             }
         }
 
+        /// <summary>
+        /// Konstruktor für die TankstelleOverview
+        /// </summary>
+        /// <param name="mw"></param>
 
         public TankstelleOverview(MainWindow mw)
         {
@@ -47,12 +53,20 @@ namespace e_Cars.UI.Tankstellen
             this.DataContext = this;
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Der Zurück Button: Wechselt wieder in das Menu Stammdatenverwaltung
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
         {
             mw.setMenuStammdatenVerwaltung();
         }
-
+        /// <summary>
+        /// Der Neu-Anlegen Button: Öffnet ein neues Fenster in dem eine Tankstelle angelegt werden kann (TankstelleNew)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonCreateNew_Click(object sender, RoutedEventArgs e)
         {
             using (Projekt2Entities con = new Projekt2Entities())
@@ -68,7 +82,11 @@ namespace e_Cars.UI.Tankstellen
                 }
             }
         }
-
+        /// <summary>
+        /// Befüllt die Liste listTankstellenInfo mit Tankstellen aus der DB
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         private List<TankstelleInfo> getListOfTankstelleInfo(string filter)
         {
             List<TankstelleInfo> listTankstelleInfo = new List<TankstelleInfo>();
@@ -82,8 +100,12 @@ namespace e_Cars.UI.Tankstellen
             }
             return listTankstelleInfo;
         }
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// Meldet wenn sich die Liste listTankstellenInfo geändert hat
+        /// </summary>
+        /// <param name="info"></param>
         protected void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)
@@ -91,12 +113,20 @@ namespace e_Cars.UI.Tankstellen
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
-
+        /// <summary>
+        /// Wenn die Ansicht geladen wurde wird die Liste  gefüllt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             listTankstelleInfo = getListOfTankstelleInfo(null);
         }
-
+        /// <summary>
+        /// Beim "Doppelklick" auf eine Element der myListView wird die Detailansicht geöffnet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void myListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var item = ((FrameworkElement)e.OriginalSource).DataContext as TankstelleInfo;
@@ -124,7 +154,7 @@ namespace e_Cars.UI.Tankstellen
 
 
         /// <summary>
-        /// Sortieren der Tabelle durch klicken auf einer der Spalten
+        /// Legt die Sortierrichtung fest und startet das Sortieren
         /// </summary>
 
         GridViewColumnHeader _lastHeaderClicked = null;
@@ -194,7 +224,11 @@ namespace e_Cars.UI.Tankstellen
                 }
             }
         }
-
+        /// <summary>
+        /// Sortieren der ListView
+        /// </summary>
+        /// <param name="sortBy"></param> Was sortiert werden soll
+        /// <param name="direction"></param> In welche Richtung..
         private void Sort(string sortBy, ListSortDirection direction)
         {
             ICollectionView dataView =
@@ -205,13 +239,21 @@ namespace e_Cars.UI.Tankstellen
             dataView.SortDescriptions.Add(sd);
             dataView.Refresh();
         }
-
+        /// <summary>
+        /// Sobald sich der Text im Filter ändert wird diese Methode getriggert die wieder um den UserFilter triggert
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TextBoxFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(myListView.ItemsSource).Filter = UserFilter;
             CollectionViewSource.GetDefaultView(myListView.ItemsSource).Refresh();
         }
-
+        /// <summary>
+        /// Filtert anhand der Eingabe die zur Filterung angegebenen Spalten
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         private bool UserFilter(object item)
         {
             if (String.IsNullOrEmpty(TextBoxFilter.Text))

@@ -7,9 +7,6 @@
              mc:Ignorable="d" 
              Loaded="UserControl_Loaded"
              d:DesignHeight="300" d:DesignWidth="750">
-    <UserControl.Resources>
-        <Kunden:ByteToBoolConverter  x:Key="ByteToBool"/>
-    </UserControl.Resources>
     <UserControl.Style>
         <StaticResource ResourceKey="UserControlStyle"/>
     </UserControl.Style>

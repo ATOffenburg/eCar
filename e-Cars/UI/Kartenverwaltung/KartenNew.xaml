@@ -44,7 +44,7 @@
                 <CheckBox HorizontalAlignment="Left" IsChecked="{Binding Path=Aktiv, UpdateSourceTrigger=PropertyChanged}" Margin="94,76,0,0" VerticalAlignment="Top"/>
 
                 <Button x:Name="ButtonSave" Click="ButtonSave_Click" Content="Anlegen" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="104" Height="23"/>
-                <Button Content="Refresh" HorizontalAlignment="Right" Margin="0,0,119,10" VerticalAlignment="Bottom" Width="75" Click="Button_Click" Height="23"/>
+                <Button Content="Clear" HorizontalAlignment="Right" Margin="0,0,119,10" VerticalAlignment="Bottom" Width="75" Click="Button_Clear_Click" Height="23"/>
             </Grid>
         </Grid>
     </UserControl>

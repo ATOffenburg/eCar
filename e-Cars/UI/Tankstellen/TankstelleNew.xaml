@@ -62,7 +62,7 @@
                     </ListView>
 
                 </Grid>
-                <Button x:Name="ButtonRefresh" Click="ButtonRefresh_Click" Content="Refresh" Margin="0,0,150,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="135"/>
+                <Button x:Name="ButtonClear" Click="ButtonClear_Click" Content="Clear" Margin="0,0,150,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="135"/>
 
                 <Button x:Name="ButtonSave" Click="ButtonSave_Click" Content="Anlegen" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="135"/>
             </Grid>
