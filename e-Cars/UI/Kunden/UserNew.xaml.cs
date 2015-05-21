@@ -265,7 +265,10 @@ namespace e_Cars.UI.Kunden
                 k.Adress_ID = a.Adress_ID;
 
                 k = con.Kunde.Add(k);
+                k.FKopie = ui.FKopie;
+                bool temp = ui.Führerscheinkopie;
                 ui = new UserInfo(k);
+                ui.Führerscheinkopie = temp;
                 con.SaveChanges();
                 sthChanged = true;
                 
@@ -280,8 +283,8 @@ namespace e_Cars.UI.Kunden
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.FileName = "Document";
-            dlg.DefaultExt = ".pdf";
-            dlg.Filter = "Pdf documents (.pdf)|*.pdf";
+            dlg.DefaultExt = ".pdf|.jpg";
+            dlg.Filter = "Pdf documents (.pdf)|*.pdf|Pictures (.jpg)|*.jpg";
 
             Nullable<bool> result = dlg.ShowDialog();
 
@@ -290,25 +293,33 @@ namespace e_Cars.UI.Kunden
                 string filename = dlg.FileName;
 
                 ui.FKopie = System.IO.File.ReadAllBytes(filename);
-
+                ui.Führerscheinkopie = true;
             }
         }
 
         private void Button_Anzeigen(object sender, RoutedEventArgs e)
         {
-            
+
             if (ui.FKopie != null)
             {
-                string filepath = @"c:\temp\fkopietemp.pdf";
+                string tempPath = System.IO.Path.GetTempPath();
+
+                string filepath = tempPath + "fkopietemp.pdf";
+                if (ui.FKopie.ElementAt<byte>(0) == 37 && ui.FKopie.ElementAt<byte>(1) == 80 && ui.FKopie.ElementAt<byte>(2) == 68 && ui.FKopie.ElementAt<byte>(3) == 70)
+                    filepath = tempPath + "fkopietemp.pdf";
+                else
+                    filepath = tempPath + "fkopietemp.jpg";
+
                 File.WriteAllBytes(filepath, ui.FKopie);
+
                 Process.Start(filepath);
 
             }
         }
-
         private void Button_Loeschen(object sender, RoutedEventArgs e)
         {
             ui.FKopie = null;
+            ui.Führerscheinkopie = false;
         }
     }
 }

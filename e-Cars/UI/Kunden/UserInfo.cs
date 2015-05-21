@@ -14,12 +14,18 @@ namespace e_Cars.UI.Kunden
         public Adresse adress { get; set; }
         public Bank bank { get; set; }
 
-        public UserInfo(Kunde k){
+        public UserInfo(Kunde k)
+        {
             if (k != null)
             {
                 kunde = k;
                 adress = kunde.Adresse;
                 bank = kunde.Bank;
+                if (kunde.FKopie == null)
+                    Führerscheinkopie = false;
+                else
+                    Führerscheinkopie = true;
+                
             }
         }
 
@@ -31,6 +37,16 @@ namespace e_Cars.UI.Kunden
         public String Vorname
         {
             get { return kunde.Vorname; }
+        }
+
+        public String Email
+        {
+            get { return kunde.Email; }
+        }
+
+        public String Passwort
+        {
+            get { return kunde.Passwort; }
         }
 
         public String Ort
@@ -70,12 +86,27 @@ namespace e_Cars.UI.Kunden
             set { kunde.FKopie = value; }
         }
 
+
+        private bool führescheinkopie;
+
+        public bool Führerscheinkopie
+        {
+            get
+            {
+                return führescheinkopie;
+            }
+            set
+            {
+                führescheinkopie = value;
+            }
+        }
+
         public bool Gesperrt
         {
             get { return kunde.Gesperrt; }
 
             set { kunde.Gesperrt = value; }
         }
-    
+
     }
 }

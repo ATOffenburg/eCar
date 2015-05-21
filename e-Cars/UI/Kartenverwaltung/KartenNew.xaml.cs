@@ -136,8 +136,7 @@ namespace e_Cars.UI.Kartenverwaltung
             {
                 bData = true;
             }
-
-            return bData;
+                 return bData;
         }
 
         public bool sthChanged = false;

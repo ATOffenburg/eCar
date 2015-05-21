@@ -8,9 +8,9 @@
     MinHeight="645"
     MinWidth="330"
     ResizeMode="CanResizeWithGrip"
-    ShowInTaskbar="False"
-    WindowStartupLocation="CenterScreen" 
-    FocusManager.FocusedElement="{Binding ElementName=leftMarginTextBox}">
+    ShowInTaskbar="True"
+    WindowStartupLocation="CenterScreen" >
+    <!--.FocusedElement="{Binding ElementName=leftMarginTextBox}">-->
     <UserControl 
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

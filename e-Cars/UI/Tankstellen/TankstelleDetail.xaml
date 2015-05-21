@@ -8,7 +8,7 @@
     MinHeight="565"
     MinWidth="585"
     ResizeMode="CanResizeWithGrip"
-    ShowInTaskbar="False"
+    ShowInTaskbar="True"
     WindowStartupLocation="CenterScreen" >
     <!-- FocusManager.FocusedElement="{Binding ElementName=leftMarginTextBox}"> -->
     <UserControl 

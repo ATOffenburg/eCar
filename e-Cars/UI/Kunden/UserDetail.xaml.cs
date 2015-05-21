@@ -333,8 +333,11 @@ namespace e_Cars.UI.Kunden
                 knew.Email = Email;
                 knew.Passwort = Passwort;
                 knew.Gesperrt = Gesperrt;
+                knew.FKopie = ui.FKopie;
 
+                bool temp = ui.Führerscheinkopie;
                 ui = new UserInfo(knew);
+                ui.Führerscheinkopie = temp;
 
                 con.Entry(knew).State = System.Data.Entity.EntityState.Modified;
                 con.SaveChanges();
@@ -353,13 +356,17 @@ namespace e_Cars.UI.Kunden
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (ui.FKopie != null)
-            {
-
-                // TB: Nimt den Temp ordner des aktuellen Benutzers 
-                // benötig keine Admin rechte (ansonsten wirft es eine Exception falls Admin rechte erfordert werden)
+            {              
                 string tempPath = System.IO.Path.GetTempPath();
+
                 string filepath = tempPath + "fkopietemp.pdf";
+                if (ui.FKopie.ElementAt<byte>(0) == 37 && ui.FKopie.ElementAt<byte>(1) == 80 && ui.FKopie.ElementAt<byte>(2) == 68 && ui.FKopie.ElementAt<byte>(3) == 70)
+                    filepath = tempPath + "fkopietemp.pdf";
+                else
+                    filepath = tempPath + "fkopietemp.jpg";
+
                 File.WriteAllBytes(filepath, ui.FKopie);
+                
                 Process.Start(filepath);
                 
             }
@@ -369,8 +376,8 @@ namespace e_Cars.UI.Kunden
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
             dlg.FileName = "Document";
-            dlg.DefaultExt = ".pdf";
-            dlg.Filter = "Pdf documents (.pdf)|*.pdf";
+            dlg.DefaultExt = ".pdf|.jpg";
+            dlg.Filter = "Pdf documents (.pdf)|*.pdf|Pictures (.jpg)|*.jpg";
 
             Nullable<bool> result = dlg.ShowDialog();
 
@@ -379,7 +386,7 @@ namespace e_Cars.UI.Kunden
                 string filename = dlg.FileName;
 
                 ui.FKopie = System.IO.File.ReadAllBytes(filename);
-
+                ui.Führerscheinkopie = true;
             }
 
         }
@@ -387,6 +394,7 @@ namespace e_Cars.UI.Kunden
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             ui.FKopie = null;
+            ui.Führerscheinkopie = false;
         }      
 
     }

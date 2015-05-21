@@ -33,13 +33,12 @@
                         <GridView>
                             <GridViewColumn Header="Karten_ID" Width="100" DisplayMemberBinding="{Binding Karten_ID}"></GridViewColumn>
                             <GridViewColumn Header="Kunde_ID" Width="100" DisplayMemberBinding="{Binding Kunde_ID}"></GridViewColumn>
-                            <GridViewColumn Width="75">
+                            <GridViewColumn Header="Aktiv" Width="75">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <CheckBox IsChecked="{Binding Path=Aktiv}" IsHitTestVisible="False" Focusable="False"></CheckBox>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
-                                <GridViewColumnHeader Tag="Aktiv" Content="Aktiv" />
                             </GridViewColumn>
                             <GridViewColumn Header="Sperrdatum" Width="100" DisplayMemberBinding="{Binding Sperrdatum}"></GridViewColumn>
                             <GridViewColumn Header="Sperrvermerk" Width="200" DisplayMemberBinding="{Binding Sperrvermerk}"></GridViewColumn>

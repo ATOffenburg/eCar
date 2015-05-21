@@ -51,21 +51,20 @@
 
                             <GridViewColumn Header="BIC" Width="Auto" DisplayMemberBinding="{Binding BIC}"/>
                             <GridViewColumn Header="IBAN" Width="Auto" DisplayMemberBinding="{Binding IBAN}"/>
-                            <GridViewColumn Width="75">
+                            <GridViewColumn Header="Email" Width="Auto" DisplayMemberBinding="{Binding Email}"/>
+                            <GridViewColumn Header="Führerscheinkopie" Width="75">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <CheckBox IsChecked="{Binding FKopie, Converter={StaticResource ByteToBool}}" IsHitTestVisible="False" Focusable="False"/>
+                                        <CheckBox IsChecked="{Binding Führerscheinkopie}" IsHitTestVisible="False" Focusable="False"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
-                                <GridViewColumnHeader Tag="CBFKopie" Content="FKopie" />
                             </GridViewColumn>
-                            <GridViewColumn Width="75">
+                            <GridViewColumn Header="Gesperrt" Width="75">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <CheckBox IsChecked="{Binding Gesperrt}" IsHitTestVisible="False" Focusable="False"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
-                                <GridViewColumnHeader Tag="Gesperrt" Content="Gesperrt" />
                             </GridViewColumn>
                         </GridView>
                     </ListView.View>
