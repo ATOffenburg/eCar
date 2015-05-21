@@ -36,8 +36,8 @@
                             <GridViewColumn Header="Strasse" Width="150" DisplayMemberBinding="{Binding Strasse}"></GridViewColumn>
                             <GridViewColumn Header="PLZ" Width="50" DisplayMemberBinding="{Binding PLZ}"></GridViewColumn>
                             <GridViewColumn Header="Ort" Width="50" DisplayMemberBinding="{Binding Ort}"></GridViewColumn>
-                            <GridViewColumn Header="Breitengrad" Width="100" DisplayMemberBinding="{Binding Breitengrad}"></GridViewColumn>
-                            <GridViewColumn Header="Längengrad" Width="100" DisplayMemberBinding="{Binding Längengrad}"></GridViewColumn>
+                            <GridViewColumn Header="Breitengrad" Width="100" DisplayMemberBinding="{Binding Breitengrad, ConverterCulture=de-DE}"></GridViewColumn>
+                            <GridViewColumn Header="Längengrad" Width="100" DisplayMemberBinding="{Binding Längengrad, ConverterCulture=de-DE}"></GridViewColumn>
                         </GridView>
 
                     </ListView.View>

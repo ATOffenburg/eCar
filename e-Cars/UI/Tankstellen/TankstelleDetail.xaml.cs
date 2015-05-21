@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace e_Cars.UI.Tankstellen
 {
@@ -265,16 +266,17 @@ namespace e_Cars.UI.Tankstellen
         public bool checkData()
         {
             bool bData = false;
+            double test;
 
             if (String.IsNullOrWhiteSpace(ID.ToString()))
             {
                 bData = true;
             }
-            if (String.IsNullOrWhiteSpace(breitengrad.ToString()))
+            if (!Double.TryParse(TBBreitengrad.Text, out test))
             {
                 bData = true;
             }
-            if (String.IsNullOrWhiteSpace(laengengrad.ToString()))
+            if (!Double.TryParse(TBLängengrad.Text, out test))
             {
                 bData = true;
             }
@@ -294,10 +296,11 @@ namespace e_Cars.UI.Tankstellen
             {
                 bData = true;
             }
-            
 
             return bData;
         }
+
+        
 
         public bool sthChanged = false;
 

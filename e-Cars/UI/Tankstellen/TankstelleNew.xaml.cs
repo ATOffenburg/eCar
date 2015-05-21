@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace e_Cars.UI.Tankstellen
 {
@@ -40,6 +41,8 @@ namespace e_Cars.UI.Tankstellen
             connect = con;
 
             InitializeComponent();
+
+            //TBBreitengrad.Language();
         }
 
         private List<TanksaeuleInfo> listtanksaeuleinfo = null;
@@ -83,18 +86,7 @@ namespace e_Cars.UI.Tankstellen
             }
             set
             {
-                String s = TBBreitengrad.Text;
-
-                for (int i = 0; i < s.Length; i++)
-                {
-                    Char c = s[i];
-                    if (!Char.IsNumber(c))
-                    {
-                        MessageBox.Show("Bitte nur Zahlen eingeben", "Achtung!", MessageBoxButton.OK, MessageBoxImage.Hand);
-                        continue;
-                    }
-
-                }
+                
                 ti.Breitengrad = value;
                 NotifyPropertyChanged("breitengrad");
             }
@@ -264,15 +256,17 @@ namespace e_Cars.UI.Tankstellen
         {
             bool bData = false;
 
+            double test;
+
             if (String.IsNullOrWhiteSpace(ID.ToString()))
             {
                 bData = true;
             }
-            if (String.IsNullOrWhiteSpace(breitengrad.ToString()))
+            if (!Double.TryParse(TBBreitengrad.Text, out test))
             {
                 bData = true;
             }
-            if (String.IsNullOrWhiteSpace(laengengrad.ToString()))
+            if (!Double.TryParse(TBLängengrad.Text, out test))
             {
                 bData = true;
             }
@@ -298,7 +292,9 @@ namespace e_Cars.UI.Tankstellen
         }
 
         public bool sthChanged = false;
+        
 
+        
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             if (checkData())
@@ -336,7 +332,7 @@ namespace e_Cars.UI.Tankstellen
             myListView.Items.Refresh();
 
             sthChanged = true;
-
+            tAngelegt = ti;
 
         }
 
@@ -344,7 +340,7 @@ namespace e_Cars.UI.Tankstellen
 
         private void clearFields()
         {
-            tAngelegt = ti;
+            
             ti = new TankstelleInfo(new Tankstelle());
 
             ID = 0;

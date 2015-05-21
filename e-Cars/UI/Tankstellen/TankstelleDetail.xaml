@@ -44,8 +44,8 @@
                 <TextBox x:Name="TBStraße" Height="23" Margin="91,71,0,0" TextWrapping="Wrap" Text="{Binding Path=Strasse, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
                 <TextBox x:Name="TBPLZ" Height="23" Margin="91,102,0,0" TextWrapping="Wrap" Text="{Binding Path=PLZ, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
                 <TextBox x:Name="TBOrt" Height="23" Margin="91,133,0,0" TextWrapping="Wrap" Text="{Binding Path=Ort, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
-                <TextBox x:Name="TBLängengrad" Height="23" Margin="91,198,0,0" TextWrapping="Wrap" Text="{Binding Path=laengengrad, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
-                <TextBox x:Name="TBBreitengrad" Height="23" Margin="91,167,0,0" TextWrapping="Wrap" Text="{Binding Path=breitengrad, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
+                <TextBox x:Name="TBLängengrad" Height="23" Margin="91,198,0,0" Language="de-DE"  Text="{Binding Path=laengengrad, UpdateSourceTrigger=PropertyChanged, StringFormat=N2, ConverterCulture=de-DE}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
+                <TextBox x:Name="TBBreitengrad" Height="23" Margin="91,167,0,0" Language="de-DE" Text="{Binding Path=breitengrad, UpdateSourceTrigger=PropertyChanged, StringFormat=N2, ConverterCulture=de-DE}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
                 <Grid>
 
                     <ListView x:Name="myListView" ItemsSource="{Binding listTanksaeuleInfo}" Margin="8,253,10,43" GridViewColumnHeader.Click="GridViewColumnHeaderClickedHandler">
