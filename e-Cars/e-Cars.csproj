@@ -173,6 +173,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="nunithelper\UnitTestDetector.cs" />
     <Compile Include="Resources\ResourceECars.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

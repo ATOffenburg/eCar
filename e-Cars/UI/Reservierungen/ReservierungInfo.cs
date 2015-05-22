@@ -7,18 +7,39 @@ using System.Threading.Tasks;
 
 namespace e_Cars.UI.Reservierungen
 {
+    /// <summary>
+    /// Helfer Klasse für die daten einer Reservierung
+    /// </summary>
     public class ReservierungInfo
     {
 
+        /// <summary>
+        /// Reservierung
+        /// </summary>
         public Reservierung res { get; set; }
+        /// <summary>
+        /// Tankstelle
+        /// </summary>
         public Tankstelle Abholort { get; set; }
+        /// <summary>
+        /// Tankstelle
+        /// </summary>
         public Tankstelle Abgabeort { get; set; }
 
+        /// <summary>
+        /// Kunde
+        /// </summary>
         public Kunde k { get; set; }
 
-
+        /// <summary>
+        /// Fahrzeug
+        /// </summary>
         public Car c { get; set; }
 
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="res"></param>
         public ReservierungInfo(Reservierung res)
         {
             this.res = res;
@@ -29,6 +50,9 @@ namespace e_Cars.UI.Reservierungen
 
         }
 
+        /// <summary>
+        /// Gibt die Seriennummer des Fahrzeugs zurück. 
+        /// </summary>
         public String Car
         {
             get { return c.Seriennummer; }
@@ -36,16 +60,25 @@ namespace e_Cars.UI.Reservierungen
 
         }
 
+        /// <summary>
+        /// Gibt die startzeit
+        /// </summary>
         public DateTime Startzeit
         {
             get { return res.Startzeit; }
         }
 
+        /// <summary>
+        /// Gibt die Endzeit
+        /// </summary>
         public DateTime? Endzeit
         {
             get { return res.Endzeit;  }
         }
 
+        /// <summary>
+        /// Gibt den Tankstellennamen
+        /// </summary>
         public string AbholortName
         {
             get
@@ -59,6 +92,9 @@ namespace e_Cars.UI.Reservierungen
             }
         }
 
+        /// <summary>
+        /// Gibt den Tankstellennamen
+        /// </summary>
         public string AbgabeortName
         {
             get
@@ -71,11 +107,17 @@ namespace e_Cars.UI.Reservierungen
             }
         }
 
+        /// <summary>
+        /// Zeitpunkt der Reservierung
+        /// </summary>
         public DateTime Zeitstempel
         {
             get { return res.Zeitstempel; }
         }
 
+        /// <summary>
+        /// Gibt den Namen des Kunden
+        /// </summary>
         public string KundeName
         {
             get
@@ -88,6 +130,9 @@ namespace e_Cars.UI.Reservierungen
             }
         }
 
+        /// <summary>
+        /// Gibt die Seriennummer der Fahrzeugs
+        /// </summary>
         public string CarSeriennummer
         {
             get

@@ -29,7 +29,9 @@ namespace e_Cars.UI.Cars
 
 
         private List<Fahrt> listefahrten;
-
+        /// <summary>
+        /// Accessor Methode für die Fahrten
+        /// </summary>
         public List<Fahrt> listeFahrten
         {
             get { return listefahrten; }
@@ -62,8 +64,14 @@ namespace e_Cars.UI.Cars
                 }
             }
         }
-
+        /// <summary>
+        /// Delegate für die Oberflächenaktualisierung
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// sobald sich das eins der Accesor-Methoden ändert wird diese Methode getriggert
+        /// </summary>
+        /// <param name="info"></param>
         protected void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)

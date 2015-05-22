@@ -28,6 +28,10 @@ namespace e_Cars.UI.Cars
         private SortAdorner _CurAdorner = null;
 
         private MainWindow mw { get; set; }
+        /// <summary>
+        /// Konstruktor für die Caroverview Klasse
+        /// </summary>
+        /// <param name="mw"></param>
         public CarOverview(MainWindow mw)
         {
             this.mw = mw;
@@ -36,6 +40,10 @@ namespace e_Cars.UI.Cars
         }
 
         private List<CarInfo> listcarsinfo = null;
+
+        /// <summary>
+        /// Accessor Methode für eine Liste mit den Fahrzeugen
+        /// </summary>
         public List<CarInfo> listCarsInfo
         {
             get
@@ -95,8 +103,14 @@ namespace e_Cars.UI.Cars
         {
             mw.setCarNew();
         }
-
+        /// <summary>
+        /// Delegate für die Oberflächenaktualisierung
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// sobald sich das eins der Accesor-Methoden ändert wird diese Methode getriggert
+        /// </summary>
+        /// <param name="info"></param>
         protected void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)

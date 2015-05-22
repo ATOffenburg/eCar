@@ -7,23 +7,40 @@ using System.Threading.Tasks;
 
 namespace e_Cars.UI.Cars
 {
+
+    /// <summary>
+    /// Helfer Klasse für die Daten zu einem Fahrzeug
+    /// </summary>
     public class CarInfo
     {
 
+        /// <summary>
+        /// Konstruktor für CarInfo
+        /// </summary>
+        /// <param name="c"></param>
         public CarInfo(Car c)
         {
             // Todo hier noch die daten prüfen
             this.c = c;
         }
 
+        /// <summary>
+        /// Hält das Car 
+        /// </summary>
         public Car c { get; set; } 
 
+        /// <summary>
+        /// die Seriennummer
+        /// </summary>
         public string Seriennummer
         {
             get { return c.Seriennummer; }
             set { c.Seriennummer = value; }
         }
 
+        /// <summary>
+        /// Der Wartungstermin
+        /// </summary>
         public string Wartungstermin
         {
             get
@@ -36,6 +53,9 @@ namespace e_Cars.UI.Cars
             }
         }
 
+        /// <summary>
+        ///  Der Kilometer
+        /// </summary>
         public string Kilometer
         {
             get
@@ -47,6 +67,10 @@ namespace e_Cars.UI.Cars
                 return null;
             }
         }
+
+        /// <summary>
+        /// Die Batterieladung
+        /// </summary>
         public string Batterieladung
         {
             get
@@ -59,6 +83,9 @@ namespace e_Cars.UI.Cars
             }
         }
 
+        /// <summary>
+        /// Die Tankvorgänge
+        /// </summary>
         public string Tankvorgaenge
         {
             get
@@ -67,6 +94,9 @@ namespace e_Cars.UI.Cars
             }
         }
 
+        /// <summary>
+        /// Das Gesperrtkennzeichen
+        /// </summary>
         public bool Gesperrt
         {
             get
@@ -77,6 +107,9 @@ namespace e_Cars.UI.Cars
             set { }
         }
 
+        /// <summary>
+        /// Das Reservierunggesperrtkennzeichen
+        /// </summary>
         public bool ReservierungGesperrt
         {
             get
@@ -87,6 +120,9 @@ namespace e_Cars.UI.Cars
             set { }
         }
 
+        /// <summary>
+        /// Das Spontanenutzunggesperrtkennzeichen
+        /// </summary>
         public bool SpontaneNutzungGesperrt
         {
             get

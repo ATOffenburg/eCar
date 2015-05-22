@@ -18,6 +18,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              Style="{StaticResource UserControlStyle}" Margin="1">
+        
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

@@ -216,7 +216,9 @@ namespace e_Cars.UI.Kunden
                 NotifyPropertyChanged("IBAN");
             }
         }
-
+        /// <summary>
+        /// Delegate für die Oberflächenaktualisierung
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         /// <summary>
         /// sobald sich das eins der Accesor-Methoden ändert wird diese Methode getriggert

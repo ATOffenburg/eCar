@@ -26,6 +26,9 @@ namespace e_Cars.UI.Reservierungen
         private MainWindow mw;
 
         private List<Kunde> listekunden;
+        /// <summary>
+        /// Accessor Methode für eine Liste mit allen Kunden
+        /// </summary>
         public List<Kunde> listeKunden
         {
             get { return listekunden; }
@@ -37,6 +40,9 @@ namespace e_Cars.UI.Reservierungen
         }
 
         private Kunde selecteduser;
+        /// <summary>
+        /// Accessor Methode für den ausgewählten Kunden
+        /// </summary>
         public Kunde selectedUser
         {
             get { return selecteduser; }
@@ -48,6 +54,9 @@ namespace e_Cars.UI.Reservierungen
         }
 
         private List<Tankstelle> listetankstellen;
+        /// <summary>
+        /// Accessor Methode für eine Liste mit allen Tankstellen
+        /// </summary>
         public List<Tankstelle> listeTankstellen
         {
             get { return listetankstellen; }
@@ -59,6 +68,9 @@ namespace e_Cars.UI.Reservierungen
         }
 
         private Tankstelle selectedtankstelle;
+        /// <summary>
+        /// Accessor Methode für die ausgewählte Tankstelle
+        /// </summary>
         public Tankstelle selectedTankstelle
         {
             get { return selectedtankstelle; }
@@ -71,6 +83,9 @@ namespace e_Cars.UI.Reservierungen
 
         private DateTime reservierungstart;
 
+        /// <summary>
+        /// Accessor Methode für das Start Datum der Reservierung
+        /// </summary>
         public DateTime ReservierungStart
         {
 
@@ -82,6 +97,11 @@ namespace e_Cars.UI.Reservierungen
             }
         }
 
+
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="mw"></param>
         public ReservierungNew(MainWindow mw)
         {
             this.mw = mw;
@@ -158,8 +178,14 @@ namespace e_Cars.UI.Reservierungen
         {
             mw.setReservierungOverview();
         }
-
+        /// <summary>
+        /// Delegate für die Oberflächenaktualisierung
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// sobald sich das eins der Accesor-Methoden ändert wird diese Methode getriggert
+        /// </summary>
+        /// <param name="info"></param>
         protected void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)

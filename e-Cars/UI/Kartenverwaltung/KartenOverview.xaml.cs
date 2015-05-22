@@ -104,7 +104,9 @@ namespace e_Cars.UI.Kartenverwaltung
             }
             return listKartenInfo;
         }
-
+        /// <summary>
+        /// Delegate für die Oberflächenaktualisierung
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         /// <summary>
         /// Meldet wenn sich die Liste listKartenInfo geändert hat

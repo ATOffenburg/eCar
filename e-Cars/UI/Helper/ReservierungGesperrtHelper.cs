@@ -7,11 +7,17 @@ using System.Threading.Tasks;
 
 namespace e_Cars.UI.Helper
 {
+    /// <summary>
+    /// Verwaltet das globale Kennzeichen Reservierunggesperrt
+    /// </summary>
     public class ReservierungGesperrtHelper
     {
 
         static string Schluessel = "GlobalReservierungGesperrt";
-
+        /// <summary>
+        /// Gibt zurück ob Reservierungen gesperrt sind
+        /// </summary>
+        /// <returns></returns>
         public static bool IsReservierungGesperrt(){
 
             Projekt2Entities con = new Projekt2Entities();
@@ -23,6 +29,10 @@ namespace e_Cars.UI.Helper
             return ge.Wert.Equals("true");
         }
 
+        /// <summary>
+        /// Ändert das Reservierunggesperrtkennzeichen
+        /// </summary>
+        /// <param name="isReservierungGesperrt"></param>
         public static void setReservierungGesperrt(bool isReservierungGesperrt)
         {
 
@@ -30,7 +40,6 @@ namespace e_Cars.UI.Helper
             GlobaleEinstellungen ge = con.GlobaleEinstellungen.SingleOrDefault(s => s.Schluessel == "GlobalReservierungGesperrt");
             if (ge == null)
             {
-
                 ge = new GlobaleEinstellungen();
                 ge.Schluessel = Schluessel;
 
@@ -39,12 +48,9 @@ namespace e_Cars.UI.Helper
                 } else {
                     ge.Wert = "false";
                 }
-
                 ge.Standard = "false";
-
                 con.GlobaleEinstellungen.Add(ge);
                 con.SaveChanges();
-
                 return;
             }
 

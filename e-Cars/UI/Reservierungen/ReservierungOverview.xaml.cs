@@ -56,6 +56,9 @@ namespace e_Cars.UI.Reservierungen
         }
 
         private List<ReservierungInfo> listreservierunginfo = null;
+        /// <summary>
+        /// eine Liste mit den Reservierungen
+        /// </summary>
         public List<ReservierungInfo> listReservierungInfo
         {
             get { return listreservierunginfo; }
@@ -66,6 +69,9 @@ namespace e_Cars.UI.Reservierungen
             }
         }
 
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
         public MainWindow mw { get; set; }
         public ReservierungOverview(MainWindow mw)
         {
@@ -124,8 +130,14 @@ namespace e_Cars.UI.Reservierungen
                 mw.setReservierungDetail(item);
             }
         }
-
+        /// <summary>
+        /// Delegate für die Oberflächenaktualisierung
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// sobald sich das eins der Accesor-Methoden ändert wird diese Methode getriggert
+        /// </summary>
+        /// <param name="info"></param>
         protected void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)

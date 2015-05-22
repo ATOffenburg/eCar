@@ -1,4 +1,5 @@
 ﻿using e_Cars.Datenbank;
+using e_Cars.nunithelper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -55,7 +56,12 @@ namespace e_Cars.UI.Kartenverwaltung
             this.DataContext = this;
 
             connect = con;
-            InitializeComponent();
+
+            if (!UnitTestDetector.IsRunningFromNunit)
+            {
+                InitializeComponent();
+            }
+            
         }
 
         /// <summary>
@@ -78,8 +84,9 @@ namespace e_Cars.UI.Kartenverwaltung
             get
             {
                 return ki.Karten_ID;
-
             }
+
+            set { }
         }
 
         /// <summary>
@@ -149,7 +156,9 @@ namespace e_Cars.UI.Kartenverwaltung
                 NotifyPropertyChanged("Sperrvermerk");
             }
         }
-
+        /// <summary>
+        /// Delegate für die Oberflächenaktualisierung
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
@@ -173,11 +182,16 @@ namespace e_Cars.UI.Kartenverwaltung
         {
             bool bData = false;
 
-            if (String.IsNullOrWhiteSpace(Kunde_ID.ToString()))
+            if (Kunde_ID != 0)
             {
                 bData = true;
             }
-                 return bData;
+
+
+
+
+
+           return bData;
         }
 
         public bool sthChanged = false;
@@ -223,10 +237,12 @@ namespace e_Cars.UI.Kartenverwaltung
             kAngelegt = ki;
             ki = new KartenInfo(new Karte());
 
-            ki.Karten_ID = 0;
-            TBKart_ID = null;
+
+
+         //   Karten_ID = 0;
+           // TBKart_ID = null;
             Kunde_ID = 0;
-            TBKund_ID.Text = null;
+          //  TBKund_ID.Text = null;
             Aktiv = true;
             Sperrdatum = null;
             Sperrvermerk = "";

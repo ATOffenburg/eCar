@@ -189,7 +189,9 @@ namespace e_Cars.UI.Kunden
             InitializeComponent();
             this.ui = new UserInfo(new Kunde());
         }
-
+        /// <summary>
+        /// Delegate für die Oberflächenaktualisierung
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>

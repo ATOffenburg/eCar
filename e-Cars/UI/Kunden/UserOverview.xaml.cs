@@ -56,7 +56,9 @@ namespace e_Cars.UI.Kunden
             }
         }
 
-
+        /// <summary>
+        /// Delegate für die Oberflächenaktualisierung
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         /// <summary>
         /// Meldet wenn sich die Liste listUserInfo geändert hat

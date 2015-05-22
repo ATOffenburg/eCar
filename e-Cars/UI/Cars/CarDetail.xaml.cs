@@ -26,7 +26,11 @@ namespace e_Cars.UI.Cars
 
         private CarInfo ci { get; set; }
         private MainWindow mw { get; set; }
+
         private string seriennummer;
+        /// <summary>
+        /// Accessor Methode für die Seriennummer
+        /// </summary>
         public String Seriennummer
         {
             get { return seriennummer; }
@@ -42,6 +46,9 @@ namespace e_Cars.UI.Cars
         }
 
         private bool gesperrt;
+        /// <summary>
+        /// Accessor Methode für das Gesperrt Kennzeichen
+        /// </summary>
         public bool Gesperrt
         {
             get { return gesperrt; }
@@ -53,6 +60,9 @@ namespace e_Cars.UI.Cars
         }
 
         private bool reservierunggesperrt;
+        /// <summary>
+        /// Accessor Methode für das ResevierungGesperrt Kennzeichen
+        /// </summary>
         public bool ReservierungGesperrt
         {
             get { return reservierunggesperrt; }
@@ -64,6 +74,9 @@ namespace e_Cars.UI.Cars
         }
 
         private bool spontanenutzunggesperrt;
+        /// <summary>
+        /// Accessor Methode für das SpontaneNutzungGesperrt Kennzeichen
+        /// </summary>
         public bool SpontaneNutzungGesperrt
         {
             get { return spontanenutzunggesperrt; }
@@ -75,6 +88,9 @@ namespace e_Cars.UI.Cars
         }
 
         private DateTime? wartungstermin;
+        /// <summary>
+        /// Accessor Methode für den Wartungstermin
+        /// </summary>
         public DateTime? WartungsTermin
         {
             get { return wartungstermin; }
@@ -86,6 +102,9 @@ namespace e_Cars.UI.Cars
         }
 
         private double? kilometerstand;
+        /// <summary>
+        /// Accessor Methode für den Kilometerstand
+        /// </summary>
         public double? Kilometerstand
         {
             get { return kilometerstand; }
@@ -97,6 +116,9 @@ namespace e_Cars.UI.Cars
         }
 
         private int tankvorgaenge;
+        /// <summary>
+        /// Accessor Methode für die Anzahl der Tankvorgänge
+        /// </summary>
         public int Tankvorgaenge
         {
             get { return tankvorgaenge; }
@@ -108,6 +130,9 @@ namespace e_Cars.UI.Cars
         }
 
         private int batterieladung = 0;
+        /// <summary>
+        /// Accessor Methode für die prozentuale Ladung der Batterie
+        /// </summary>
         public int Batterieladung
         {
             get { return batterieladung; }
@@ -119,6 +144,9 @@ namespace e_Cars.UI.Cars
         }
 
         private List<Status> liststatus;
+        /// <summary>
+        /// Accessor Methode für eine Liste der Status
+        /// </summary>
         public List<Status> listStatus
         {
             get { return liststatus; }
@@ -130,6 +158,9 @@ namespace e_Cars.UI.Cars
         }
 
         private Status selectedstatus;
+        /// <summary>
+        /// Accessor Methode für den gewählten Status
+        /// </summary>
         public Status selectedStatus
         {
             get { return selectedstatus; }
@@ -143,6 +174,11 @@ namespace e_Cars.UI.Cars
             }
         }
 
+        /// <summary>
+        /// Konstruktor für die CarDetail Klasse
+        /// </summary>
+        /// <param name="mw"></param>
+        /// <param name="ci"></param>
         public CarDetail(MainWindow mw, CarInfo ci)
         {
             this.mw = mw;
@@ -179,9 +215,14 @@ namespace e_Cars.UI.Cars
             mw.setCarOverview();
         }
 
-
+        /// <summary>
+        /// Delegate für die Oberflächenaktualisierung
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-
+        /// <summary>
+        /// sobald sich das eins der Accesor-Methoden ändert wird diese Methode getriggert
+        /// </summary>
+        /// <param name="info"></param>
         protected void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)

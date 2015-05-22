@@ -100,7 +100,9 @@ namespace e_Cars.UI.Tankstellen
             }
             return listTankstelleInfo;
         }
-        
+        /// <summary>
+        /// Delegate für die Oberflächenaktualisierung
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         /// <summary>
         /// Meldet wenn sich die Liste listTankstellenInfo geändert hat

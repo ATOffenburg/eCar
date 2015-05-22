@@ -221,8 +221,10 @@ namespace e_Cars.UI.Tankstellen
                 NotifyPropertyChanged("TName");
             }
         }
-       
 
+        /// <summary>
+        /// Delegate für die Oberflächenaktualisierung
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>

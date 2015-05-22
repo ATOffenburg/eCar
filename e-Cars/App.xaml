@@ -16,7 +16,6 @@
 
         <Style x:Key="UserControlStyle" TargetType="{x:Type UserControl}">
             <Setter Property="Background" Value="{StaticResource ResourceKey=BackgroundColorBrush}" />
-            
             <Style.Resources>
                 <Style TargetType="Button">
                     <Setter Property="Background" Value="{StaticResource ResourceKey=ButtonColorBrush}" />
@@ -26,8 +25,6 @@
                     <Setter Property="BorderBrush" Value="{StaticResource ResourceKey=BorderColorBrush}" />
                 </Style>
             </Style.Resources>
-
-
         </Style>
 
     </Application.Resources>

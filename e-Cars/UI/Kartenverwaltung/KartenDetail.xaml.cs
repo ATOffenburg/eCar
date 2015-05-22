@@ -148,7 +148,9 @@ namespace e_Cars.UI.Kartenverwaltung
                 NotifyPropertyChanged("Sperrvermerk");
             }
         }
-          
+        /// <summary>
+        /// Delegate für die Oberflächenaktualisierung
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>

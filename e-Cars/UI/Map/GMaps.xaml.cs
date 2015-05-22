@@ -28,6 +28,10 @@ namespace e_Cars.UI.Map
         String sURL = AppDomain.CurrentDomain.BaseDirectory + "html/GMaps.html";
         private MainWindow mw { get; set; }
 
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="mw"></param>
         public GMaps(MainWindow mw)
         {
             this.mw = mw;
@@ -135,7 +139,9 @@ namespace e_Cars.UI.Map
         }
     }
 
-    // Object used for communication from JS -> WPF
+    /// <summary>
+    /// Object used for communication from JS -> WPF
+    /// </summary>
     [System.Runtime.InteropServices.ComVisibleAttribute(true)]
     public class HtmlInteropInternalTestClass
     {

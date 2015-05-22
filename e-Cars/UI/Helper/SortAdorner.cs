@@ -10,6 +10,9 @@ using System.Windows.Media;
 
 namespace e_Cars.UI.Helper
 {
+    /// <summary>
+    /// Helfer Klasse für die Sortierung in einer Listview
+    /// </summary>
     public class SortAdorner : Adorner
     {
         private readonly static Geometry _AscGeometry =
@@ -20,6 +23,11 @@ namespace e_Cars.UI.Helper
 
         public ListSortDirection Direction { get; private set; }
 
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="dir"></param>
         public SortAdorner(UIElement element, ListSortDirection dir)
             : base(element)
         { Direction = dir; }

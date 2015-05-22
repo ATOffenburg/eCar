@@ -25,9 +25,8 @@ namespace e_Cars.UI.Cars
     {
 
         private string seriennummer;
-
         /// <summary>
-        /// Die Seriennummer des Fahrzeugs
+        /// Accessor Methode für die Seriennummer
         /// </summary>
         public String Seriennummer
         {
@@ -43,9 +42,51 @@ namespace e_Cars.UI.Cars
             }
         }
 
+        private bool gesperrt;
+        /// <summary>
+        /// Accessor Methode für das Gesperrt Kennzeichen
+        /// </summary>
+        public bool Gesperrt
+        {
+            get { return gesperrt; }
+            set
+            {
+                gesperrt = value;
+                NotifyPropertyChanged("Gesperrt");
+            }
+        }
+
+        private bool reservierunggesperrt;
+        /// <summary>
+        /// Accessor Methode für das ResevierungGesperrt Kennzeichen
+        /// </summary>
+        public bool ReservierungGesperrt
+        {
+            get { return reservierunggesperrt; }
+            set
+            {
+                reservierunggesperrt = value;
+                NotifyPropertyChanged("ReservierungGesperrt");
+            }
+        }
+
+        private bool spontanenutzunggesperrt;
+        /// <summary>
+        /// Accessor Methode für das SpontaneNutzungGesperrt Kennzeichen
+        /// </summary>
+        public bool SpontaneNutzungGesperrt
+        {
+            get { return spontanenutzunggesperrt; }
+            set
+            {
+                spontanenutzunggesperrt = value;
+                NotifyPropertyChanged("SpontaneNutzungGesperrt");
+            }
+        }
+
         private DateTime? wartungstermin;
         /// <summary>
-        /// Der Wartungstermin des Fahrzeugs
+        /// Accessor Methode für den Wartungstermin
         /// </summary>
         public DateTime? WartungsTermin
         {
@@ -59,7 +100,7 @@ namespace e_Cars.UI.Cars
 
         private double? kilometerstand;
         /// <summary>
-        /// Der Kilometerstand
+        /// Accessor Methode für den Kilometerstand
         /// </summary>
         public double? Kilometerstand
         {
@@ -73,7 +114,7 @@ namespace e_Cars.UI.Cars
 
         private int tankvorgaenge;
         /// <summary>
-        /// Die Anzahl der Tankvorgänge 
+        /// Accessor Methode für die Anzahl der Tankvorgänge
         /// </summary>
         public int Tankvorgaenge
         {
@@ -87,7 +128,7 @@ namespace e_Cars.UI.Cars
 
         private int batterieladung = 0;
         /// <summary>
-        /// Der prozentuale Ladestand des Akkus
+        /// Accessor Methode für die prozentuale Ladung der Batterie
         /// </summary>
         public int Batterieladung
         {
@@ -99,9 +140,9 @@ namespace e_Cars.UI.Cars
             }
         }
 
-        private List<Status> liststatus = new List<Status>();
+        private List<Status> liststatus;
         /// <summary>
-        /// Eine Liste mit allen Status eines Fahrzeugs
+        /// Accessor Methode für eine Liste der Status
         /// </summary>
         public List<Status> listStatus
         {
@@ -115,12 +156,11 @@ namespace e_Cars.UI.Cars
 
         private Status selectedstatus;
         /// <summary>
-        /// Der momentan selektierte Status
+        /// Accessor Methode für den gewählten Status
         /// </summary>
         public Status selectedStatus
         {
             get { return selectedstatus; }
-
             set
             {
                 if (selectedstatus != value)
@@ -133,7 +173,7 @@ namespace e_Cars.UI.Cars
 
         private Tankstelle selectedtankstelle;
         /// <summary>
-        /// Die ausgewählte Tankstelle
+        /// Accessor Methode für die ausgewählte Tankstelle
         /// </summary>
         public Tankstelle selectedTankstelle
         {
@@ -150,7 +190,7 @@ namespace e_Cars.UI.Cars
 
         private List<Tankstelle> listtankstelle = new List<Tankstelle>();
         /// <summary>
-        /// Eine Liste mit allen Tankstellen
+        /// Accessor Methode für eine Liste mit allen Tankstellen
         /// </summary>
         public List<Tankstelle> listTankstelle
         {

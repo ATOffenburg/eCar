@@ -14,7 +14,6 @@ namespace UnitTestProject1
     public class TestKarteNew
     {
 
-        
 
        /* [ClassInitialize]
         public void TestKarteNewSetUp()
@@ -28,11 +27,6 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestClearFields()
         {
-
-            if (Application.Current == null)
-            {
-                App app = new App();
-            }
 
                 Projekt2Entities con = new Projekt2Entities();
                 
