@@ -80,11 +80,6 @@ namespace e_Cars.UI.Kartenverwaltung
                 return ki.Karten_ID;
 
             }
-            set
-            {
-                ki.Karten_ID = value;
-                NotifyPropertyChanged("Karten_ID");
-            }
         }
 
         /// <summary>
@@ -211,7 +206,7 @@ namespace e_Cars.UI.Kartenverwaltung
 
             connect.SaveChanges();
             ka = connect.Karte.SingleOrDefault(s => s.Kunde_ID == ka.Kunde_ID && s.Aktiv == true);
-            Karten_ID = ka.Karten_ID;
+            ki.Karten_ID = ka.Karten_ID;
             MessageBox.Show("Die Karte wurde erfolgreich angelegt");
 
             sthChanged = true;
@@ -223,12 +218,12 @@ namespace e_Cars.UI.Kartenverwaltung
         /// <summary>
         /// Löscht die Inhalte der einzelnen Textboxes
         /// </summary>
-        private void clearFields()
+        public void clearFields()
         {
             kAngelegt = ki;
             ki = new KartenInfo(new Karte());
 
-            Karten_ID = 0;
+            ki.Karten_ID = 0;
             TBKart_ID = null;
             Kunde_ID = 0;
             TBKund_ID.Text = null;

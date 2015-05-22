@@ -81,11 +81,7 @@ namespace e_Cars.UI.Kartenverwaltung
                 return ki.Karten_ID;
 
             }
-            set
-            {
-                ki.Karten_ID = value;
-                NotifyPropertyChanged("Karten_ID");
-            }
+            
         }
 
         /// <summary>
@@ -99,11 +95,7 @@ namespace e_Cars.UI.Kartenverwaltung
                 return ki.Kunde_ID;
 
             }
-            set
-            {
-                ki.Kunde_ID = value;
-                NotifyPropertyChanged("Kunde_ID");
-            }
+            
         }
 
         /// <summary>
