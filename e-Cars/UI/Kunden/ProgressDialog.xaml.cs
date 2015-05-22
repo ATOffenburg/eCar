@@ -18,30 +18,24 @@ using System.Windows.Shapes;
 namespace e_Cars.UI.Kunden
 {
     /// <summary>
-    /// Interaktionslogik für UserNew.xaml
+    /// Interaktionslogik für ProgressDialog.xaml
     /// </summary>
-    public partial class ProgressDialog : Window, INotifyPropertyChanged
+    public partial class ProgressDialog : Window
     {
 
         private MainWindow mw { get; set; }
 
        
-        
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
         public ProgressDialog()
         {
             
             InitializeComponent();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void NotifyPropertyChanged(String info)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(info));
-            }
-        }
+        
 
         
     }

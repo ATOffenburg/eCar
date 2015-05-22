@@ -24,13 +24,32 @@ namespace e_Cars.UI.Tankstellen
     /// </summary>
     public partial class TankstelleDetail : Window
     {
-
+        /// <summary>
+        /// Accessor Methode für mw
+        /// </summary>
         MainWindow mw { get; set; }
 
+        /// <summary>
+        /// Accessor Methode für TankstellenInfo ti
+        /// Ein wichtiges globales Objekt das später zum aktualisieren 
+        /// der listTankstellenInfo in der TankstellenOverView dient
+        /// </summary>
         public TankstelleInfo ti { get; set; }
 
+        /// <summary>
+        /// Es wird eine Connection zur DB übergeben die hier lokal gespeichert wird
+        /// </summary>
         public Projekt2Entities connect = null;
 
+        /// <summary>
+        /// Konstruktor von TankstelleDetail.
+        /// </summary>
+        /// <param name="mw"></param>
+        /// MainWindow
+        /// <param name="ti"></param>
+        /// Die zu ändernde Tankstelle
+        /// <param name="con"></param>
+        /// Die Datenbank Connection
         public TankstelleDetail(MainWindow mw, TankstelleInfo ti, Projekt2Entities con)
         {
 
@@ -59,7 +78,9 @@ namespace e_Cars.UI.Tankstellen
 
         private List<TanksaeuleInfo> listtanksaeuleinfo = null;
 
-
+        /// <summary>
+        /// Accessor Methode für die Liste TanksäulenInfo
+        /// </summary>
         public List<TanksaeuleInfo> listTanksaeuleInfo
         {
             get { return listtanksaeuleinfo; }
@@ -70,12 +91,21 @@ namespace e_Cars.UI.Tankstellen
             }
         }
 
+        /// <summary>
+        /// Schließt das Window und kehrt somit zur Overview zurück
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonZurueck_Click(object sender, RoutedEventArgs e)
         {
             //mw.setTankstelleOverview();
             this.Close();
         }
 
+        /// <summary>
+        /// Accessor Methode für ID 
+        /// U.a. benötigt für das Füllen des Objekt ti oder TB Felder
+        /// </summary>
         public int ID
         {
             get
@@ -90,6 +120,10 @@ namespace e_Cars.UI.Tankstellen
             }
         }
 
+        /// <summary>
+        /// Accessor Methode für Breitengrad 
+        /// U.a. benötigt für das Füllen des Objekt ti oder TB Felder
+        /// </summary>
         public Double? breitengrad
         {
             get
@@ -103,6 +137,10 @@ namespace e_Cars.UI.Tankstellen
             }
         }
 
+        /// <summary>
+        /// Accessor Methode für Längengrad 
+        /// U.a. benötigt für das Füllen des Objekt ti oder TB Felder
+        /// </summary>
         public Double? laengengrad
         {
             get
@@ -116,7 +154,10 @@ namespace e_Cars.UI.Tankstellen
             }
         }
 
-
+        /// <summary>
+        /// Accessor Methode für PLZ 
+        /// U.a. benötigt für das Füllen des Objekt ti oder TB Felder
+        /// </summary>
         public String PLZ
         {
             get
@@ -130,6 +171,10 @@ namespace e_Cars.UI.Tankstellen
             }
         }
 
+        /// <summary>
+        /// Accessor Methode für Ort 
+        /// U.a. benötigt für das Füllen des Objekt ti oder TB Felder
+        /// </summary>
         public String Ort
         {
             get
@@ -143,6 +188,10 @@ namespace e_Cars.UI.Tankstellen
             }
         }
 
+        /// <summary>
+        /// Accessor Methode für Straße 
+        /// U.a. benötigt für das Füllen des Objekt ti oder TB Felder
+        /// </summary>
         public String Strasse
         {
             get
@@ -156,6 +205,10 @@ namespace e_Cars.UI.Tankstellen
             }
         }
 
+        /// <summary>
+        /// Accessor Methode für Tankstellen Name 
+        /// U.a. benötigt für das Füllen des Objekt ti oder TB Felder
+        /// </summary>
         public String TName
         {
             get
@@ -172,6 +225,10 @@ namespace e_Cars.UI.Tankstellen
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// sobald sich das eins der Accesor-Methoden ändert wird diese Methode getriggert
+        /// </summary>
+        /// <param name="info"></param>
         protected void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)
@@ -190,6 +247,11 @@ namespace e_Cars.UI.Tankstellen
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
 
+        /// <summary>
+        /// Legt die Sortierrichtung fest durch anklicken der Spalte in der Listview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void GridViewColumnHeaderClickedHandler(object sender,
                                                 RoutedEventArgs e)
         {
@@ -252,6 +314,11 @@ namespace e_Cars.UI.Tankstellen
             }
         }
 
+        /// <summary>
+        /// Startet das Sortieren anhand der Parameter
+        /// </summary>
+        /// <param name="sortBy"></param> Nach was Sortiert wird
+        /// <param name="direction"></param> Die Richtung Ascending/Descending
         private void Sort(string sortBy, ListSortDirection direction)
         {
             ICollectionView dataView =
@@ -263,6 +330,10 @@ namespace e_Cars.UI.Tankstellen
             dataView.Refresh();
         }
 
+        /// <summary>
+        /// Checked die Eingabefelder auf Ihre Richtigkeit
+        /// </summary>
+        /// <returns></returns>
         public bool checkData()
         {
             bool bData = false;
@@ -304,6 +375,11 @@ namespace e_Cars.UI.Tankstellen
 
         public bool sthChanged = false;
 
+        /// <summary>
+        /// Speichert die Änderungen an der Tankstelle
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             

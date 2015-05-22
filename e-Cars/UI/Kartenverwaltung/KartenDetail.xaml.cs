@@ -22,12 +22,31 @@ namespace e_Cars.UI.Kartenverwaltung
     /// </summary>
     public partial class KartenDetail : Window, INotifyPropertyChanged
     {
+        /// <summary>
+        /// Accessor Methode für mw
+        /// </summary>
         MainWindow mw { get; set; }
 
+        /// <summary>
+        /// Ein wichtiges globales Objekt das später zum aktualisieren 
+        /// der listKartenInfo in der KartenOverview dient
+        /// </summary>
         public KartenInfo ki { get; set; }
 
+        /// <summary>
+        /// hier wird eine DB Connection übergeben die dann lokal gespeichert wird
+        /// </summary>
         public Projekt2Entities connect = null;
 
+        /// <summary>
+        /// Konstruktor KartenDetail
+        /// </summary>
+        /// <param name="mw"></param>
+        /// Mainwindow
+        /// <param name="ki"></param>
+        /// Die zu ändernde Karte
+        /// <param name="con"></param>
+        /// Die DB Connection
         public KartenDetail(MainWindow mw, KartenInfo ki , Projekt2Entities con)
         {
 
@@ -40,13 +59,21 @@ namespace e_Cars.UI.Kartenverwaltung
             InitializeComponent();
         }
 
-        
 
+        /// <summary>
+        /// Schließt das Window und kehrt somit zur Overview zurück
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonZurueck_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Accessor Methode für Karten_ID 
+        /// U.a Benötigt für das Füllen des Objekt ki
+        /// </summary>
         public int Karten_ID
         {
             get
@@ -61,6 +88,10 @@ namespace e_Cars.UI.Kartenverwaltung
             }
         }
 
+        /// <summary>
+        /// Accessor Methode für Kunde_ID 
+        /// U.a Benötigt für das Füllen des Objekt ki
+        /// </summary>
         public int Kunden_ID
         {
             get
@@ -75,6 +106,10 @@ namespace e_Cars.UI.Kartenverwaltung
             }
         }
 
+        /// <summary>
+        /// Accessor Methode für das "Aktiv" Feld 
+        /// U.a Benötigt für das Füllen des Objekt ki
+        /// </summary>
         public bool Aktiv
         {
             get
@@ -88,6 +123,10 @@ namespace e_Cars.UI.Kartenverwaltung
             }
         }
 
+        /// <summary>
+        /// Accessor Methode für Sperrdatum 
+        /// U.a Benötigt für das Füllen des Objekt ki
+        /// </summary>
         public Nullable<System.DateTime> Sperrdatum
         {
             get
@@ -101,7 +140,10 @@ namespace e_Cars.UI.Kartenverwaltung
             }
         }
 
-
+        /// <summary>
+        /// Accessor Methode für Sperrvermerk 
+        /// U.a Benötigt für das Füllen des Objekt ki
+        /// </summary>
         public String Sperrvermerk
         {
             get
@@ -117,6 +159,10 @@ namespace e_Cars.UI.Kartenverwaltung
           
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// sobald sich das eins der Accesor-Methoden ändert wird diese Methode getriggert
+        /// </summary>
+        /// <param name="info"></param>
         protected void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)
@@ -126,27 +172,16 @@ namespace e_Cars.UI.Kartenverwaltung
         }
 
         
-
-        public bool checkData()
-        {
-            bool bData = false;
-
-                       
-            
-            
-            return bData;
-        }
-
         public bool sthChanged = false;
 
+        /// <summary>
+        /// Speichert die Änderungen an der Karte
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            if (checkData())
-            {
-                MessageBox.Show("Die Daten müssen vollständig sein bevor sie gespeichert werden können.", "Achtung", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                return;
-            }
-                        
+                                   
             var query = from kart in connect.Karte
                         where kart.Karten_ID == ki.Karten_ID
                         && kart.Kunde_ID == ki.Kunde_ID
@@ -165,7 +200,11 @@ namespace e_Cars.UI.Kartenverwaltung
             sthChanged = true;
 
         }
-
+        /// <summary>
+        /// Setzt die Felder Sperrfelder wieder zurück "Entsperren"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Sperrdatum = null;

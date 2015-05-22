@@ -88,7 +88,7 @@ namespace e_Cars.UI.Tankstellen
 
         /// <summary>
         /// Accessor Methode für ID 
-        /// Benötigt für das Füllen des Objekt ti
+        /// U.a. benötigt für das Füllen des Objekt ti oder der TB Felder
         /// </summary>
         public int ID
         {
@@ -105,7 +105,7 @@ namespace e_Cars.UI.Tankstellen
         }
         /// <summary>
         /// Accessor Methode für breitengrad 
-        /// Benötigt für das Füllen des Objekt ti
+        /// U.a. benötigt für das Füllen des Objekt ti oder der TB Felder
         /// </summary>
         public Double? breitengrad
         {
@@ -122,7 +122,7 @@ namespace e_Cars.UI.Tankstellen
         }
         /// <summary>
         /// Accessor Methode für längengrad 
-        /// Benötigt für das Füllen des Objekt ti
+        /// U.a. benötigt für das Füllen des Objekt ti oder der TB Felder
         /// </summary>
         public Double? laengengrad
         {
@@ -139,7 +139,7 @@ namespace e_Cars.UI.Tankstellen
 
         /// <summary>
         /// Accessor Methode für PLZ 
-        /// Benötigt für das Füllen des Objekt ti
+        /// U.a. benötigt für das Füllen des Objekt ti oder der TB Felder
         /// </summary>
         public String PLZ
         {
@@ -156,7 +156,7 @@ namespace e_Cars.UI.Tankstellen
 
         /// <summary>
         /// Accessor Methode für Ort 
-        /// Benötigt für das Füllen des Objekt ti
+        /// U.a. benötigt für das Füllen des Objekt ti oder der TB Felder
         /// </summary>
         public String Ort
         {
@@ -173,7 +173,7 @@ namespace e_Cars.UI.Tankstellen
 
         /// <summary>
         /// Accessor Methode für Straße 
-        /// Benötigt für das Füllen des Objekt ti
+        /// U.a. benötigt für das Füllen des Objekt ti oder der TB Felder
         /// </summary>
         public String Strasse
         {
@@ -190,7 +190,7 @@ namespace e_Cars.UI.Tankstellen
 
         /// <summary>
         /// Accessor Methode für Name der Tankstelle 
-        /// Benötigt für das Füllen des Objekt ti
+        /// U.a. benötigt für das Füllen des Objekt ti oder der TB Felder
         /// </summary>
         public String TName
         {

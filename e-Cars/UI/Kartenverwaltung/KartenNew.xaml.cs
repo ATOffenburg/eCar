@@ -32,15 +32,19 @@ namespace e_Cars.UI.Kartenverwaltung
         /// der listKartenInfo in der KartenOverview dient
         /// </summary>
         private KartenInfo ki { get; set; }
+
         /// <summary>
         /// hier wird eine DB Connection übergeben die dann lokal gespeichert wird
         /// </summary>
         public Projekt2Entities connect = null;
+
         /// <summary>
         /// Konstruktor KartenNew
         /// </summary>
         /// <param name="mw"></param>
+        /// Mainwindow
         /// <param name="con"></param>
+        /// Die DB Connection
         public KartenNew(MainWindow mw, Projekt2Entities con)
         {
 
