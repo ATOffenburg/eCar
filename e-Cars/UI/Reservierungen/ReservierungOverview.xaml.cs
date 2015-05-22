@@ -28,6 +28,9 @@ namespace e_Cars.UI.Reservierungen
         private SortAdorner _CurAdorner = null;
 
         private bool reservierunggesperrt;
+        /// <summary>
+        /// Gibt an ob neue Reservierungen angelegt werden dürfen
+        /// </summary>
         public bool ReservierungGesperrt
         {
             get { return reservierunggesperrt; }
@@ -39,6 +42,9 @@ namespace e_Cars.UI.Reservierungen
         }
 
         private DateTime? anzeigedatum;
+        /// <summary>
+        /// Das Datum für die Angezeigten Reservierungen
+        /// </summary>
         public DateTime? AnzeigeDatum
         {
             get { return anzeigedatum; }

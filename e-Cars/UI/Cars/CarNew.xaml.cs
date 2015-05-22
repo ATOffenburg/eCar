@@ -25,6 +25,10 @@ namespace e_Cars.UI.Cars
     {
 
         private string seriennummer;
+
+        /// <summary>
+        /// Die Seriennummer des Fahrzeugs
+        /// </summary>
         public String Seriennummer
         {
             get { return seriennummer; }
@@ -40,6 +44,9 @@ namespace e_Cars.UI.Cars
         }
 
         private DateTime? wartungstermin;
+        /// <summary>
+        /// Der Wartungstermin des Fahrzeugs
+        /// </summary>
         public DateTime? WartungsTermin
         {
             get { return wartungstermin; }
@@ -51,6 +58,9 @@ namespace e_Cars.UI.Cars
         }
 
         private double? kilometerstand;
+        /// <summary>
+        /// Der Kilometerstand
+        /// </summary>
         public double? Kilometerstand
         {
             get { return kilometerstand; }
@@ -62,6 +72,9 @@ namespace e_Cars.UI.Cars
         }
 
         private int tankvorgaenge;
+        /// <summary>
+        /// Die Anzahl der Tankvorgänge 
+        /// </summary>
         public int Tankvorgaenge
         {
             get { return tankvorgaenge; }
@@ -73,6 +86,9 @@ namespace e_Cars.UI.Cars
         }
 
         private int batterieladung = 0;
+        /// <summary>
+        /// Der prozentuale Ladestand des Akkus
+        /// </summary>
         public int Batterieladung
         {
             get { return batterieladung; }
@@ -84,6 +100,9 @@ namespace e_Cars.UI.Cars
         }
 
         private List<Status> liststatus = new List<Status>();
+        /// <summary>
+        /// Eine Liste mit allen Status eines Fahrzeugs
+        /// </summary>
         public List<Status> listStatus
         {
             get { return liststatus; }
@@ -95,6 +114,9 @@ namespace e_Cars.UI.Cars
         }
 
         private Status selectedstatus;
+        /// <summary>
+        /// Der momentan selektierte Status
+        /// </summary>
         public Status selectedStatus
         {
             get { return selectedstatus; }
@@ -110,6 +132,9 @@ namespace e_Cars.UI.Cars
         }
 
         private Tankstelle selectedtankstelle;
+        /// <summary>
+        /// Die ausgewählte Tankstelle
+        /// </summary>
         public Tankstelle selectedTankstelle
         {
             get { return selectedtankstelle; }
@@ -124,6 +149,9 @@ namespace e_Cars.UI.Cars
         }
 
         private List<Tankstelle> listtankstelle = new List<Tankstelle>();
+        /// <summary>
+        /// Eine Liste mit allen Tankstellen
+        /// </summary>
         public List<Tankstelle> listTankstelle
         {
             get { return listtankstelle; }
@@ -136,6 +164,10 @@ namespace e_Cars.UI.Cars
 
         private MainWindow mw { get; set; }
 
+        /// <summary>
+        /// Konstruktor erstellt das Usercontrol CarNew
+        /// </summary>
+        /// <param name="mw">Das zu übergebende MainWindow</param>
         public CarNew(MainWindow mw)
         {
             this.mw = mw;
@@ -154,7 +186,6 @@ namespace e_Cars.UI.Cars
         {
             mw.setCarOverview();
         }
-
 
         private void ButtonAnlegen_Click(object sender, RoutedEventArgs e)
         {
@@ -246,8 +277,14 @@ namespace e_Cars.UI.Cars
 
         }
 
+        /// <summary>
+        /// Delegiert den Event an die Oberfläche
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-
+        /// <summary>
+        /// Macht Änderungen der Eigenschaften der Oberfläche bekannt
+        /// </summary>
+        /// <param name="info"></param>
         protected void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)

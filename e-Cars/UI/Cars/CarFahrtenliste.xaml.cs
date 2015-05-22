@@ -41,6 +41,12 @@ namespace e_Cars.UI.Cars
 
          private MainWindow mw { get; set; }
             
+
+        /// <summary>
+        /// Konstruktor erstellt das Usercontrol CarFahrtenliste
+        /// </summary>
+        /// <param name="mw">MainWindow</param>
+        /// <param name="ci">CarInfo</param>
         public CarFahrtenliste(MainWindow mw, CarInfo ci)
         {
             this.mw = mw;

@@ -5,6 +5,7 @@ using e_Cars.Datenbank;
 using System.Linq;
 using System.Collections.Generic;
 using System.Windows;
+using e_Cars;
 
 
 namespace UnitTestProject1
@@ -27,7 +28,12 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestClearFields()
         {
-            
+
+            if (Application.Current == null)
+            {
+                App app = new App();
+            }
+
                 Projekt2Entities con = new Projekt2Entities();
                 
                 KartenNew knew = new KartenNew(null, null);
