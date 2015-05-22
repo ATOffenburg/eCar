@@ -29,8 +29,7 @@ namespace e_Cars.UI.Kartenverwaltung
         MainWindow mw { get; set; }
 
         /// <summary>
-        /// Ein wichtiges globales Objekt das später zum aktualisieren 
-        /// der listKartenInfo in der KartenOverview dient
+        /// Ein wichtiges globales Objekt das später nach der Anlage der Karte zu kAngelegt kopiert wird
         /// </summary>
         private KartenInfo ki { get; set; }
 
@@ -61,7 +60,7 @@ namespace e_Cars.UI.Kartenverwaltung
             {
                 InitializeComponent();
             }
-            
+
         }
 
         /// <summary>
@@ -86,7 +85,11 @@ namespace e_Cars.UI.Kartenverwaltung
                 return ki.Karten_ID;
             }
 
-            set { }
+            set
+            {
+                ki.Karten_ID = value;
+                NotifyPropertyChanged("Karten_ID");
+            }
         }
 
         /// <summary>
@@ -182,19 +185,41 @@ namespace e_Cars.UI.Kartenverwaltung
         {
             bool bData = false;
 
-            if (Kunde_ID != 0)
+            if (Kunde_ID == 0)
             {
                 bData = true;
             }
 
-
-
-
-
-           return bData;
+            return bData;
         }
 
+        /// <summary>
+        /// Gibt an ob ein Kunde angelegt wurde. Dann kann die Liste in KartenOverview
+        /// aktualisiert werden
+        /// </summary>
         public bool sthChanged = false;
+
+        /// <summary>
+        /// Hier werden die Daten gespeichert. Wird aufgerufen sobald der Speichern Button betätigt wird.
+        /// </summary>
+        public void saveOperation()
+        {
+            Karte ka = new Karte();
+
+            ka.Karten_ID = ki.Karten_ID;
+            ka.Kunde_ID = ki.Kunde_ID;
+            ka.Aktiv = ki.Aktiv;
+            ka.Sperrdatum = ki.Sperrdatum;
+            ka.Sperrvermerk = ki.Sperrvermerk;
+
+            connect.Karte.Add(ka);
+
+            connect.SaveChanges();
+            Karten_ID = ka.Karten_ID;
+            kAngelegt = ki;
+            sthChanged = true;
+        }
+
         /// <summary>
         /// Speichert die neue Karte
         /// </summary>
@@ -208,41 +233,27 @@ namespace e_Cars.UI.Kartenverwaltung
                 return;
             }
 
-            Karte ka = new Karte();
-
-            ka.Karten_ID = ki.Karten_ID;
-            ka.Kunde_ID = ki.Kunde_ID;
-            ka.Aktiv = ki.Aktiv;
-            ka.Sperrdatum = ki.Sperrdatum;
-            ka.Sperrvermerk = ki.Sperrvermerk;
-
-            connect.Karte.Add(ka);
-
-            connect.SaveChanges();
-            ka = connect.Karte.SingleOrDefault(s => s.Kunde_ID == ka.Kunde_ID && s.Aktiv == true);
-            ki.Karten_ID = ka.Karten_ID;
+            saveOperation();
             MessageBox.Show("Die Karte wurde erfolgreich angelegt");
-
-            sthChanged = true;
-
+ 
         }
 
+        /// <summary>
+        /// Globale Variable zum Aktualiseren der Liste in KartenOverview
+        /// </summary>
         public KartenInfo kAngelegt = null;
 
         /// <summary>
         /// Löscht die Inhalte der einzelnen Textboxes
         /// </summary>
         public void clearFields()
-        {
-            kAngelegt = ki;
+        {            
             ki = new KartenInfo(new Karte());
 
-
-
-         //   Karten_ID = 0;
-           // TBKart_ID = null;
+            //   Karten_ID = 0;
+            // TBKart_ID = null;
             Kunde_ID = 0;
-          //  TBKund_ID.Text = null;
+            //  TBKund_ID.Text = null;
             Aktiv = true;
             Sperrdatum = null;
             Sperrvermerk = "";

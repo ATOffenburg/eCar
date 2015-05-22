@@ -39,7 +39,7 @@
                 <Label Content="Sperrvermerk:" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top"/>
 
                 <TextBox x:Name="TBKart_ID" IsEnabled="False" Height="23" Margin="94,15,0,0" TextWrapping="Wrap" Text="{Binding Path=Karten_ID, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
-                <TextBox x:Name="TBKund_ID" Height="23" Margin="94,43,0,0" TextWrapping="Wrap" Text="{Binding Path=Kunde_ID, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
+                <TextBox x:Name="TBKund_ID" Height="23" Margin="94,43,0,0" TextWrapping="Wrap" Text="{Binding Path=Kunde_ID, UpdateSourceTrigger=PropertyChanged, StringFormat=D}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
                 <TextBox x:Name="TBSperrV" Height="83" Margin="94,133,0,0" TextWrapping="Wrap" Text="{Binding Path=Sperrvermerk, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="346"/>
                 <DatePicker x:Name="DatePickerSperrdatum" SelectedDate="{Binding Sperrdatum, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="94,102,0,0" VerticalAlignment="Top"/>
                 <CheckBox HorizontalAlignment="Left" IsChecked="{Binding Path=Aktiv, UpdateSourceTrigger=PropertyChanged}" Margin="94,76,0,0" VerticalAlignment="Top"/>
