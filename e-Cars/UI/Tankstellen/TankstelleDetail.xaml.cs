@@ -59,25 +59,29 @@ namespace e_Cars.UI.Tankstellen
 
             this.DataContext = this;
 
-            List<TanksaeuleInfo> listTanksaeule = new List<TanksaeuleInfo>();
 
-            var tanks = from t in con.Tanksaeule
-                        where t.Tankstelle_ID == ti.ID
-                        select t;
+            if (!UnitTestDetector.IsRunningFromNunit)
+            {
+                List<TanksaeuleInfo> listTanksaeule = new List<TanksaeuleInfo>();
+
+                var tanks = from t in con.Tanksaeule
+                            where t.Tankstelle_ID == ti.ID
+                            select t;
 
                 foreach (var vt in tanks)
                 {
                     TanksaeuleInfo tsi = new TanksaeuleInfo(vt);
                     listTanksaeule.Add(tsi);
                 }
-                listTanksaeuleInfo = listTanksaeule;
+            
+            listTanksaeuleInfo = listTanksaeule;
+            }
+            connect = con;
 
-                connect = con;
-
-                if (!UnitTestDetector.IsRunningFromNunit)
-                {
-                    InitializeComponent();
-                }
+            if (!UnitTestDetector.IsRunningFromNunit)
+            {
+                InitializeComponent();
+            }
         }
 
         private List<TanksaeuleInfo> listtanksaeuleinfo = null;
@@ -115,7 +119,7 @@ namespace e_Cars.UI.Tankstellen
             get
             {
                 return ti.ID;
-                
+
             }
             set
             {
@@ -136,8 +140,16 @@ namespace e_Cars.UI.Tankstellen
             }
             set
             {
-                ti.Breitengrad = value;
-                NotifyPropertyChanged("breitengrad");
+                double test;
+                if (!Double.TryParse(value.ToString(), out test))
+                {
+                    bData = true;
+                }
+                else
+                {
+                    ti.Breitengrad = test;
+                    NotifyPropertyChanged("breitengrad");
+                }
             }
         }
 
@@ -153,8 +165,17 @@ namespace e_Cars.UI.Tankstellen
             }
             set
             {
-                ti.Längengrad = value;
-                NotifyPropertyChanged("laengengrad");            
+                double test;
+
+                if (!Double.TryParse(value.ToString(), out test))
+                {
+                    bData = true;
+                }
+                else
+                {
+                    ti.Längengrad = test;
+                    NotifyPropertyChanged("laengengrad");
+                }
             }
         }
 
@@ -336,24 +357,16 @@ namespace e_Cars.UI.Tankstellen
             dataView.Refresh();
         }
 
+        private bool bData = false;
+
         /// <summary>
         /// Checked die Eingabefelder auf Ihre Richtigkeit
         /// </summary>
         /// <returns></returns>
         public bool checkData()
         {
-            bool bData = false;
-            double test;
-
-            if (String.IsNullOrWhiteSpace(ID.ToString()))
-            {
-                bData = true;
-            }
-            if (!Double.TryParse(TBBreitengrad.Text, out test))
-            {
-                bData = true;
-            }
-            if (!Double.TryParse(TBLängengrad.Text, out test))
+                       
+            if (ID == 0)
             {
                 bData = true;
             }
@@ -412,7 +425,7 @@ namespace e_Cars.UI.Tankstellen
         /// <param name="e"></param>
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            
+
 
             if (checkData())
             {
@@ -421,7 +434,7 @@ namespace e_Cars.UI.Tankstellen
             }
 
             saveOperation();
-            
+
             MessageBox.Show("Änderungen gespeichert!");
         }
 
