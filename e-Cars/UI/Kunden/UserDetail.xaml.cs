@@ -1,4 +1,5 @@
 ﻿using e_Cars.Datenbank;
+using e_Cars.nunithelper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,11 +52,12 @@ namespace e_Cars.UI.Kunden
         /// </summary>
         private Bank b { get; set; }
 
+
+        private string name;
         /// <summary>
         /// Accessor Methode für KundenName 
         /// U.a Benötigt für das Füllen des Objekt ui
         /// </summary>
-        private string name;
         public String KundeName
         {
             get { return name; }
@@ -66,11 +68,12 @@ namespace e_Cars.UI.Kunden
             }
         }
 
+
+        private string vorname;
         /// <summary>
         /// Accessor Methode für Vorname 
         /// U.a Benötigt für das Füllen des Objekt ui
         /// </summary>
-        private string vorname;
         public String Vorname
         {
             get { return vorname; }
@@ -81,11 +84,13 @@ namespace e_Cars.UI.Kunden
             }
         }
 
+
+        private string email;
+
         /// <summary>
         /// Accessor Methode für Email 
         /// U.a Benötigt für das Füllen des Objekt ui
         /// </summary>
-        private string email;
         public String Email
         {
             get { return email; }
@@ -96,11 +101,12 @@ namespace e_Cars.UI.Kunden
             }
         }
 
+
+        private string passwort;
         /// <summary>
         /// Accessor Methode für Passwort 
         /// U.a Benötigt für das Füllen des Objekt ui
         /// </summary>
-        private string passwort;
         public String Passwort
         {
             get { return passwort; }
@@ -111,11 +117,12 @@ namespace e_Cars.UI.Kunden
             }
         }
 
+
+        private string ort;
         /// <summary>
         /// Accessor Methode für Ort 
         /// U.a Benötigt für das Füllen des Objekt ui
         /// </summary>
-        private string ort;
         public String Ort
         {
             get { return ort; }
@@ -126,11 +133,12 @@ namespace e_Cars.UI.Kunden
             }
         }
 
+
+        private string plz;
         /// <summary>
         /// Accessor Methode für PLZ 
         /// U.a Benötigt für das Füllen des Objekt ui
         /// </summary>
-        private string plz;
         public String PLZ
         {
             get { return plz; }
@@ -141,11 +149,12 @@ namespace e_Cars.UI.Kunden
             }
         }
 
+
+        private string hausnummer;
         /// <summary>
         /// Accessor Methode für Hausnummer 
         /// U.a Benötigt für das Füllen des Objekt ui
         /// </summary>
-        private string hausnummer;
         public String HausNummer
         {
             get { return hausnummer; }
@@ -156,11 +165,12 @@ namespace e_Cars.UI.Kunden
             }
         }
 
+
+        private string strasse;
         /// <summary>
         /// Accessor Methode für Straße 
         /// U.a Benötigt für das Füllen des Objekt ui
         /// </summary>
-        private string strasse;
         public String Strasse
         {
             get { return strasse; }
@@ -171,12 +181,12 @@ namespace e_Cars.UI.Kunden
             }
         }
 
+
+        private bool gesperrt;
         /// <summary>
         /// Accessor Methode für Gesperrt 
         /// U.a Benötigt für das Füllen des Objekt ui
         /// </summary>
-        private bool gesperrt;
-
         public bool Gesperrt
         {
             get { return gesperrt; }
@@ -187,11 +197,12 @@ namespace e_Cars.UI.Kunden
             }
         }
 
+
+        private string bic;
         /// <summary>
         /// Accessor Methode für BIC 
         /// U.a Benötigt für das Füllen des Objekt ui
         /// </summary>
-        private string bic;
         public String BIC
         {
             get { return bic; }
@@ -202,11 +213,12 @@ namespace e_Cars.UI.Kunden
             }
         }
 
+
+        private string iban;
         /// <summary>
         /// Accessor Methode für IBAN 
         /// U.a Benötigt für das Füllen des Objekt ui
         /// </summary>
-        private string iban;
         public String IBAN
         {
             get { return iban; }
@@ -287,7 +299,10 @@ namespace e_Cars.UI.Kunden
             }
 
             this.DataContext = this;
-            InitializeComponent();
+            if (!UnitTestDetector.IsRunningFromNunit)
+            {
+                InitializeComponent();
+            }
 
         }
         /// <summary>
@@ -297,7 +312,6 @@ namespace e_Cars.UI.Kunden
         /// <param name="e"></param>
         private void ButtonZurueck_Click(object sender, RoutedEventArgs e)
         {
-            //mw.setUserOverview();
             this.Close();
         }
 
@@ -305,7 +319,7 @@ namespace e_Cars.UI.Kunden
         /// Checked die Eingabefelder auf Ihre Richtigkeit
         /// </summary>
         /// <returns></returns>
-        private bool checkData()
+        public bool checkData()
         {
 
             bool bData = false;
@@ -355,22 +369,18 @@ namespace e_Cars.UI.Kunden
 
         }
 
+
+        /// <summary>
+        /// Gibt an ob was an einem Kunden geändert wurde. Dann kann die Liste in KundenOverview
+        /// aktualisiert werden
+        /// </summary>
         public bool sthChanged = false;
 
         /// <summary>
         /// Speichert die an einem Kunden vorgenommenen Änderungen
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ButtonSave_Click(object sender, RoutedEventArgs e)
+        public void saveOperation()
         {
-
-            if (checkData())
-            {
-                MessageBox.Show("Die Daten müssen vollständig sein bevor die Änderungen gespeichert werden können.");
-                return;
-            }
-
             using (Projekt2Entities con = new Projekt2Entities())
             {
 
@@ -426,13 +436,31 @@ namespace e_Cars.UI.Kunden
 
                 con.Entry(knew).State = System.Data.Entity.EntityState.Modified;
                 con.SaveChanges();
-
-                sthChanged = true;
-
-                MessageBox.Show("Änderungen gespeichert!");
-
-
             }
+        }
+
+        /// <summary>
+        /// Triggert saveOperation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonSave_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (checkData())
+            {
+                MessageBox.Show("Die Daten müssen vollständig sein bevor die Änderungen gespeichert werden können.");
+                return;
+            }
+
+            saveOperation();
+
+            sthChanged = true;
+
+            MessageBox.Show("Änderungen gespeichert!");
+
+
+
         }
 
         /// <summary>
@@ -443,7 +471,7 @@ namespace e_Cars.UI.Kunden
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (ui.FKopie != null)
-            {              
+            {
                 string tempPath = System.IO.Path.GetTempPath();
 
                 string filepath = tempPath + "fkopietemp.pdf";
@@ -453,9 +481,9 @@ namespace e_Cars.UI.Kunden
                     filepath = tempPath + "fkopietemp.jpg";
 
                 File.WriteAllBytes(filepath, ui.FKopie);
-                
+
                 Process.Start(filepath);
-                
+
             }
         }
 
@@ -491,7 +519,7 @@ namespace e_Cars.UI.Kunden
         {
             ui.FKopie = null;
             ui.Führerscheinkopie = false;
-        }      
+        }
 
     }
 }

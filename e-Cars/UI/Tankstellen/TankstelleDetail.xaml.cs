@@ -1,5 +1,6 @@
 ﻿using e_Cars.UI.Helper;
 using e_Cars.Datenbank;
+using e_Cars.nunithelper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -73,7 +74,10 @@ namespace e_Cars.UI.Tankstellen
 
                 connect = con;
 
-            InitializeComponent();
+                if (!UnitTestDetector.IsRunningFromNunit)
+                {
+                    InitializeComponent();
+                }
         }
 
         private List<TanksaeuleInfo> listtanksaeuleinfo = null;
@@ -373,25 +377,18 @@ namespace e_Cars.UI.Tankstellen
             return bData;
         }
 
-        
+        /// <summary>
+        /// Gibt an ob eine Tankstelle geändert wurde. Dann kann die Liste in TankstellenOverview
+        /// aktualisiert werden
+        /// </summary>
 
         public bool sthChanged = false;
 
         /// <summary>
         /// Speichert die Änderungen an der Tankstelle
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ButtonSave_Click(object sender, RoutedEventArgs e)
+        public void saveOperation()
         {
-            
-
-            if (checkData())
-            {
-                MessageBox.Show("Die Daten müssen vollständig sein bevor die Änderungen gespeichert werden können.");
-                return;
-            }
-
             Tankstelle ta = connect.Tankstelle.SingleOrDefault(s => s.Tankstelle_ID == ID);
 
             ta.Tankstelle_ID = ID;
@@ -406,6 +403,25 @@ namespace e_Cars.UI.Tankstellen
             connect.SaveChanges();
 
             sthChanged = true;
+        }
+
+        /// <summary>
+        /// Triggert saveOperation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonSave_Click(object sender, RoutedEventArgs e)
+        {
+            
+
+            if (checkData())
+            {
+                MessageBox.Show("Die Daten müssen vollständig sein bevor die Änderungen gespeichert werden können.");
+                return;
+            }
+
+            saveOperation();
+            
             MessageBox.Show("Änderungen gespeichert!");
         }
 

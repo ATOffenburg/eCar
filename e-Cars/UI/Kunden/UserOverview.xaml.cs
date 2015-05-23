@@ -72,7 +72,8 @@ namespace e_Cars.UI.Kunden
             }
         }
 
-        public ProgressDialog pg = null;
+        private ProgressDialog pg = null;
+
         /// <summary>
         /// Aufgrund der großen Ladedauer vom einmaligen holen der Daten aus der DB
         /// wird das Laden auf einen Thread ausgelagert und ein Progressdialog zur 

@@ -1,5 +1,6 @@
 ﻿using e_Cars.UI.Helper;
 using e_Cars.Datenbank;
+using e_Cars.nunithelper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -56,7 +57,10 @@ namespace e_Cars.UI.Tankstellen
 
             connect = con;
 
-            InitializeComponent();
+            if (!UnitTestDetector.IsRunningFromNunit)
+            {
+                InitializeComponent();
+            }
 
         }
         
@@ -115,9 +119,16 @@ namespace e_Cars.UI.Tankstellen
             }
             set
             {
-                
-                ti.Breitengrad = value;
-                NotifyPropertyChanged("breitengrad");
+                double test;
+                if (!Double.TryParse(value.ToString(), out test))
+                {
+                    bData = true;
+                }
+                else
+                {
+                    ti.Breitengrad = test;
+                    NotifyPropertyChanged("breitengrad");
+                }
             }
         }
         /// <summary>
@@ -132,8 +143,17 @@ namespace e_Cars.UI.Tankstellen
             }
             set
             {
-                ti.Längengrad = value;
-                NotifyPropertyChanged("laengengrad");
+                double test;
+
+                if (!Double.TryParse(value.ToString(), out test))
+                {
+                    bData = true;
+                }
+                else
+                {
+                    ti.Längengrad = test;
+                    NotifyPropertyChanged("laengengrad");
+                }
             }
         }
 
@@ -313,28 +333,20 @@ namespace e_Cars.UI.Tankstellen
             dataView.Refresh();
         }
 
+        private bool bData = false;
+
         /// <summary>
         /// Checked die Eingabefelder auf Ihre Richtigkeit
         /// </summary>
         /// <returns></returns>
         public bool checkData()
         {
-            bool bData = false;
-
-            double test;
-
-            if (String.IsNullOrWhiteSpace(ID.ToString()))
+            
+            if (ID == 0)
             {
                 bData = true;
             }
-            if (!Double.TryParse(TBBreitengrad.Text, out test))
-            {
-                bData = true;
-            }
-            if (!Double.TryParse(TBLängengrad.Text, out test))
-            {
-                bData = true;
-            }
+                       
             if (String.IsNullOrWhiteSpace(TName))
             {
                 bData = true;
@@ -356,23 +368,19 @@ namespace e_Cars.UI.Tankstellen
             return bData;
         }
 
+        /// <summary>
+        /// Gibt an ob eine Tankstelle angelegt wurde. Dann kann die Liste in TankstellenOverview
+        /// aktualisiert werden
+        /// </summary>
         public bool sthChanged = false;
-        
+
         /// <summary>
         /// Speichert die neue Tankstelle und aktualisiert die Tanksäulen Listview mit der Tankstelle
         /// zugewiesenen Tanksäulen
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        
-        private void ButtonSave_Click(object sender, RoutedEventArgs e)
+                       
+        public void saveOperation()
         {
-            if (checkData())
-            {
-                MessageBox.Show("Die Daten müssen vollständig sein bevor sie gespeichert werden können.");
-                return;
-            }
-
             Tankstelle ta = new Tankstelle();
             ta.Name = ti.Name;
             ta.breitengrad = ti.Breitengrad;
@@ -384,7 +392,7 @@ namespace e_Cars.UI.Tankstellen
 
             ta = connect.Tankstelle.Add(ta);
             connect.SaveChanges();
-            MessageBox.Show("Die Tankstelle wurde erfolgreich angelegt");
+           
             List<TanksaeuleInfo> listTanksaeule = new List<TanksaeuleInfo>();
 
             ti.ID = ta.Tankstelle_ID;
@@ -399,19 +407,42 @@ namespace e_Cars.UI.Tankstellen
                 listTanksaeule.Add(tsi);
             }
             listTanksaeuleInfo = listTanksaeule;
-            myListView.Items.Refresh();
+            
 
             sthChanged = true;
             tAngelegt = ti;
+        }
+        
+        /// <summary>
+        /// Triggert die saveOperation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        
+        private void ButtonSave_Click(object sender, RoutedEventArgs e)
+        {
+            if (checkData())
+            {
+                MessageBox.Show("Die Daten müssen vollständig sein bevor sie gespeichert werden können.");
+                return;
+            }
+
+            saveOperation();
+            myListView.Items.Refresh();
+            MessageBox.Show("Die Tankstelle wurde erfolgreich angelegt");
 
         }
 
+        /// <summary>
+        /// Globales Objekt dass geändert wird wenn eine Tankstelle angelegt wird.
+        /// Wird verwendet um die ListeTankstelle in der Tankstellenoverview zu aktualisieren
+        /// </summary>
         public TankstelleInfo tAngelegt = null;
 
         /// <summary>
         /// setzt die Eingabefelder wieder zurück, sodass gleich eine weitere Tankstelle angelegt werden kann
         /// </summary>
-        private void clearFields()
+        public void clearFields()
         {
             
             ti = new TankstelleInfo(new Tankstelle());

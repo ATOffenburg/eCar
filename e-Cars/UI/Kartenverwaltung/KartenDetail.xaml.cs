@@ -1,4 +1,5 @@
 ﻿using e_Cars.Datenbank;
+using e_Cars.nunithelper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -56,7 +57,10 @@ namespace e_Cars.UI.Kartenverwaltung
             this.DataContext = this;
 
             connect = con;
-            InitializeComponent();
+            if (!UnitTestDetector.IsRunningFromNunit)
+            {
+                InitializeComponent();
+            }
         }
 
 
@@ -164,18 +168,19 @@ namespace e_Cars.UI.Kartenverwaltung
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
         }
-
         
+        /// <summary>
+        /// Gibt an ob eine Karte geändert wurde. Dann kann die Liste in KartenOverview
+        /// aktualisiert werden
+        /// </summary>
         public bool sthChanged = false;
+
 
         /// <summary>
         /// Speichert die Änderungen an der Karte
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ButtonSave_Click(object sender, RoutedEventArgs e)
+        public void saveOperation()
         {
-                                   
             var query = from kart in connect.Karte
                         where kart.Karten_ID == ki.Karten_ID
                         && kart.Kunde_ID == ki.Kunde_ID
@@ -187,23 +192,37 @@ namespace e_Cars.UI.Kartenverwaltung
                 kart.Sperrdatum = ki.Sperrdatum;
                 kart.Sperrvermerk = ki.Sperrvermerk;
             }
-            
+
             connect.SaveChanges();
-            MessageBox.Show("Erfolgreich gespeichert!", "Speichern", MessageBoxButton.OK, MessageBoxImage.Information);
             
             sthChanged = true;
-
         }
+
         /// <summary>
-        /// Setzt die Felder Sperrfelder wieder zurück "Entsperren"
+        /// Triggert saveOperation
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonSave_Click(object sender, RoutedEventArgs e)
+        {
+            saveOperation();
+            MessageBox.Show("Erfolgreich gespeichert!", "Speichern", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        /// <summary>
+        /// Setzt die Felder Sperrfelder wieder zurück "Entsperren"
+        /// </summary>
+        public void clearFields()
         {
             Sperrdatum = null;
             Aktiv = true;
             Sperrvermerk = null;
+        }
+
+        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            clearFields();
         }
 
 

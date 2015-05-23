@@ -1,4 +1,5 @@
 ﻿using e_Cars.Datenbank;
+using e_Cars.nunithelper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using System.Diagnostics;
+
 namespace e_Cars.UI.Kunden
 {
     /// <summary>
@@ -163,11 +165,12 @@ namespace e_Cars.UI.Kunden
                 NotifyPropertyChanged("BIC");
             }
         }
+        
+        private string iban;
         /// <summary>
         /// Accessor Methode für IBAN 
         /// U.a Benötigt für das Füllen des Objekt ui
         /// </summary>
-        private string iban;
         public String IBAN
         {
             get { return iban; }
@@ -186,7 +189,12 @@ namespace e_Cars.UI.Kunden
         {
             this.mw = mw;
             this.DataContext = this;
-            InitializeComponent();
+
+            if (!UnitTestDetector.IsRunningFromNunit)
+            {
+                InitializeComponent();
+            }
+
             this.ui = new UserInfo(new Kunde());
         }
         /// <summary>
@@ -217,7 +225,7 @@ namespace e_Cars.UI.Kunden
         /// <summary>
         /// Löscht die Inhalte der einzelnen Textboxes
         /// </summary>
-        private void clearFields()
+        public void clearFields()
         {
 
             Nname = "";
@@ -237,7 +245,7 @@ namespace e_Cars.UI.Kunden
         /// Checked die Eingabefelder auf Ihre Richtigkeit
         /// </summary>
         /// <returns></returns>
-        private bool checkData()
+        public bool checkData()
         {
 
             bool bData = false;
@@ -291,22 +299,18 @@ namespace e_Cars.UI.Kunden
         /// </summary>
         public UserInfo ui = null;
 
+
+        /// <summary>
+        /// Gibt an ob ein Kunde angelegt wurde. Dann kann die Liste in KundenOverview
+        /// aktualisiert werden
+        /// </summary>
         public bool sthChanged = false;
 
         /// <summary>
         /// Speichert den neuen Kunden
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ButtonAnlegen_Click(object sender, RoutedEventArgs e)
+        public void saveOperation()
         {
-
-            if (checkData())
-            {
-                MessageBox.Show("Die Daten müssen vollständig sein bevor sie gespeichert werden können.");
-                return;
-            }
-
             Kunde k = new Kunde();
             k.Name = Nname;
             k.Vorname = Vorname;
@@ -340,12 +344,31 @@ namespace e_Cars.UI.Kunden
                 ui.Führerscheinkopie = temp;
                 con.SaveChanges();
                 sthChanged = true;
-                
-            }
-            MessageBox.Show("Änderungen gespeichert!");
-            File.Delete(@"c:\temp\fkopietemp.pdf");
-            clearFields();
 
+            }
+
+            File.Delete(@"c:\temp\fkopietemp.pdf");
+
+        }
+
+        /// <summary>
+        /// Speichert den neuen Kunden
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonAnlegen_Click(object sender, RoutedEventArgs e)
+        {
+            if (checkData())
+            {
+                MessageBox.Show("Die Daten müssen vollständig sein bevor sie gespeichert werden können.");
+                return;
+            }
+
+            saveOperation();
+
+            MessageBox.Show("Änderungen gespeichert!");
+
+            clearFields();
         }
         /// <summary>
         /// Hier wird eine Kopie des Füherscheins entweder in JPG oder in PDF hochgeladen 
@@ -369,6 +392,7 @@ namespace e_Cars.UI.Kunden
                 ui.Führerscheinkopie = true;
             }
         }
+
         /// <summary>
         /// Zeigt die in der DB gespeicherte Kopie des Führerscheins
         /// </summary>
@@ -393,6 +417,7 @@ namespace e_Cars.UI.Kunden
 
             }
         }
+
         /// <summary>
         /// Löscht die in der DB gespeicherte Führerscheinkopie
         /// </summary>

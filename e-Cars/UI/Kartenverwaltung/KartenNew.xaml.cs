@@ -194,7 +194,7 @@ namespace e_Cars.UI.Kartenverwaltung
         }
 
         /// <summary>
-        /// Gibt an ob ein Kunde angelegt wurde. Dann kann die Liste in KartenOverview
+        /// Gibt an ob eine Karte angelegt wurde. Dann kann die Liste in KartenOverview
         /// aktualisiert werden
         /// </summary>
         public bool sthChanged = false;
