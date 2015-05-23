@@ -80,7 +80,7 @@ namespace UnitTestProject1.TestTankstellen
 
             tnew.saveOperation();
 
-            t = con.Tankstelle.SingleOrDefault(s => s.Name == tnew.tAngelegt.Name);
+            t = con.Tankstelle.SingleOrDefault(s => s.Tankstelle_ID == tnew.tAngelegt.ID);
 
             Assert.AreEqual(tnew.tAngelegt.Name, t.Name);
             Assert.AreEqual(tnew.tAngelegt.Breitengrad, t.breitengrad);

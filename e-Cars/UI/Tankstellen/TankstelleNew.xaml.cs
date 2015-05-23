@@ -341,12 +341,6 @@ namespace e_Cars.UI.Tankstellen
         /// <returns></returns>
         public bool checkData()
         {
-            
-            if (ID == 0)
-            {
-                bData = true;
-            }
-                       
             if (String.IsNullOrWhiteSpace(TName))
             {
                 bData = true;

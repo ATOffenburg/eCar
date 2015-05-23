@@ -85,6 +85,10 @@ namespace e_Cars.UI.Kartenverwaltung
                 return ki.Karten_ID;
 
             }
+            set
+            {
+                ki.Karten_ID = value;
+            }
             
         }
 
@@ -98,6 +102,10 @@ namespace e_Cars.UI.Kartenverwaltung
             {
                 return ki.Kunde_ID;
 
+            }
+            set
+            {
+                ki.Kunde_ID = value;
             }
             
         }

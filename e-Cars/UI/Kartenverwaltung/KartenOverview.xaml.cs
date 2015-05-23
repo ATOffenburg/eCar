@@ -271,6 +271,9 @@ namespace e_Cars.UI.Kartenverwaltung
             else
             {
                 var kartI = (KartenInfo)item;
+                string temp;
+                if (kartI.Sperrvermerk == null)
+                    kartI.Sperrvermerk = "";
                 return (
                     kartI.Karten_ID.ToString().StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
                     kartI.Kunde_ID.ToString().StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
