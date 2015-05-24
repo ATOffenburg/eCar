@@ -470,10 +470,9 @@ namespace e_Cars.UI.Kunden
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (ui.FKopie != null)
+            if (ui.FKopie != null && ui.FKopie.Length >= 4)
             {
                 string tempPath = System.IO.Path.GetTempPath();
-
                 string filepath = tempPath + "fkopietemp.pdf";
                 if (ui.FKopie.ElementAt<byte>(0) == 37 && ui.FKopie.ElementAt<byte>(1) == 80 && ui.FKopie.ElementAt<byte>(2) == 68 && ui.FKopie.ElementAt<byte>(3) == 70)
                     filepath = tempPath + "fkopietemp.pdf";
@@ -481,9 +480,11 @@ namespace e_Cars.UI.Kunden
                     filepath = tempPath + "fkopietemp.jpg";
 
                 File.WriteAllBytes(filepath, ui.FKopie);
-
                 Process.Start(filepath);
-
+            }
+            else
+            {
+                MessageBox.Show("Kein Führerschein vorhanden oder Datei defekt");
             }
         }
 
