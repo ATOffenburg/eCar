@@ -346,8 +346,14 @@ namespace e_Cars.UI.Kunden
                 sthChanged = true;
 
             }
-
+            try { 
             File.Delete(@"c:\temp\fkopietemp.pdf");
+                }
+            catch (Exception)
+            {
+
+            }
+
 
         }
 

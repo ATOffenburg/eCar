@@ -1,4 +1,5 @@
 ﻿using e_Cars.Datenbank;
+using e_Cars.nunithelper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -211,7 +212,12 @@ namespace e_Cars.UI.Cars
         public CarNew(MainWindow mw)
         {
             this.mw = mw;
-            InitializeComponent();
+
+            if (!UnitTestDetector.IsRunningFromNunit)
+            {
+                InitializeComponent();
+            }
+            
             this.DataContext = this;
 
             using (Projekt2Entities con = new Projekt2Entities())
@@ -233,7 +239,6 @@ namespace e_Cars.UI.Cars
             if (String.IsNullOrWhiteSpace(Seriennummer))
             {
                 MessageBox.Show("Keine Seriennummer erfasst!");
-                TextBoxSeriennummer.Focus();
                 return;
             }
 
@@ -243,9 +248,19 @@ namespace e_Cars.UI.Cars
                 return;
             }
 
-            Car c = new Car();
-            c.Seriennummer = TextBoxSeriennummer.Text.Trim();
 
+            saveOperation();
+            
+        }
+
+        /// <summary>
+        /// speichert das Fahrzeug
+        /// </summary>
+        public void saveOperation()
+        {
+
+            Car c = new Car();
+            c.Seriennummer = Seriennummer.Trim();
             using (Projekt2Entities con = new Projekt2Entities())
             {
                 if (con.Car.Any(s => s.Seriennummer == c.Seriennummer))
@@ -266,9 +281,15 @@ namespace e_Cars.UI.Cars
                 MessageBox.Show("Das Fehrzeug wurde angelegt!");
                 clearFields();
             }
+
+
         }
 
-        private bool checkData()
+        /// <summary>
+        /// Prüft die Daten auf vollständigkeit
+        /// </summary>
+        /// <returns></returns>
+        public bool checkData()
         {
 
             bool bData = false;
@@ -306,7 +327,11 @@ namespace e_Cars.UI.Cars
             return bData;
         }
 
-        private void clearFields()
+
+        /// <summary>
+        /// Setzt die Eigenschaften der Klasse zurück
+        /// </summary>
+        public void clearFields()
         {
             Seriennummer = null;
             WartungsTermin = null;
@@ -314,6 +339,9 @@ namespace e_Cars.UI.Cars
             Tankvorgaenge = 0;
             selectedStatus = null;
             Kilometerstand = null;
+            Gesperrt = false;
+            ReservierungGesperrt = false;
+            SpontaneNutzungGesperrt = false;
 
         }
 

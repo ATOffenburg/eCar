@@ -83,15 +83,12 @@ namespace e_Cars.UI.Map
                 {
                     foreach (Car c in con.Car)
                     {
-                        if (c.Status_ID == 4)
+                        if (c.Status_ID == 4 && c.laengengrad != null && c.breitengrad != null)
                         {
-                            Fahrt f = c.Fahrt.OrderByDescending(s => s.Endzeit).FirstOrDefault();
-                            if (f != null)
-                            {
-                                string[] sarr = new String[] { f.Tanksaeule.Tankstelle.breitengrad.GetValueOrDefault(0).ToString(CultureInfo.InvariantCulture), f.Tanksaeule.Tankstelle.laengengrad.GetValueOrDefault(0).ToString(CultureInfo.InvariantCulture), f.Tanksaeule.Tankstelle.Name };
+                           
+                                string[] sarr = new String[] {  c.breitengrad.GetValueOrDefault(0).ToString(CultureInfo.InvariantCulture), c.laengengrad.GetValueOrDefault(0).ToString(CultureInfo.InvariantCulture), c.Seriennummer };
                                 webBrowser1.InvokeScript("setMarker", sarr);
-                            }
-
+                           
                         }
                     }
                 }
@@ -102,9 +99,21 @@ namespace e_Cars.UI.Map
             else if (selection == 2)
             {
                 // Gestohlene Fahrzeuge
+                // Verfügbare Fahrzeuge
                 webBrowser1.InvokeScript("deleteMarkers");
-                string[] sarr = new String[] { "53.548058", "9.961822", "Test Gestohlene Fahrzeuge 1" };
-                webBrowser1.InvokeScript("setMarker", sarr);
+                using (Projekt2Entities con = new Projekt2Entities())
+                {
+                    foreach (Car c in con.Car)
+                    {
+                        if (c.Gestohlen == true && c.laengengrad != null && c.breitengrad != null)
+                        {
+                            string[] sarr = new String[] { c.breitengrad.GetValueOrDefault(0).ToString(CultureInfo.InvariantCulture), c.laengengrad.GetValueOrDefault(0).ToString(CultureInfo.InvariantCulture), c.Seriennummer };
+                            webBrowser1.InvokeScript("setMarker", sarr);
+                        }
+                    }
+                }
+                //string[] sarr = new String[] { "48.359708", "7.819914", "Test Verfügbare Fahrzeuge" };
+                //webBrowser1.InvokeScript("setMarker", sarr);                
                 webBrowser1.InvokeScript("zoomOnMarkers");
             }
 

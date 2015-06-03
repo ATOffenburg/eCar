@@ -48,7 +48,7 @@ namespace UnitTestProject1.TestTankstellen
         {
             TankstelleInfo ti = new TankstelleInfo(new Tankstelle());
 
-            ti.ID = 22;
+            ti.ID = 26;
             ti.Breitengrad = 42.22;
             ti.Längengrad = 23.65;
             ti.Ort = "Offenburg";
@@ -64,25 +64,23 @@ namespace UnitTestProject1.TestTankstellen
 
             tdet.saveOperation();
 
-            Tankstelle t = new Tankstelle();
-
-            t = con.Tankstelle.SingleOrDefault(s => s.Tankstelle_ID == ti.ID);
+           Tankstelle t = con.Tankstelle.SingleOrDefault(s => s.Tankstelle_ID == ti.ID);
 
             Assert.AreEqual(tdet.ti.Breitengrad, t.breitengrad);
             Assert.AreEqual(tdet.ti.Längengrad, t.laengengrad);
             Assert.AreEqual(tdet.ti.Ort, t.Ort);
 
-            tdet.breitengrad = 42.22;
-            tdet.laengengrad = 23.65;
-            tdet.Ort = "Offenburg";
+            //tdet.breitengrad = 42.22;
+            //tdet.laengengrad = 23.65;
+            //tdet.Ort = "Offenburg";
 
-            tdet.saveOperation();
+            //tdet.saveOperation();
 
-            t = con.Tankstelle.SingleOrDefault(s => s.Tankstelle_ID == ti.ID);
+            //t = con.Tankstelle.SingleOrDefault(s => s.Tankstelle_ID == ti.ID);
 
-            Assert.AreEqual(tdet.ti.Breitengrad, t.breitengrad);
-            Assert.AreEqual(tdet.ti.Längengrad, t.laengengrad);
-            Assert.AreEqual(tdet.ti.Ort, t.Ort);
+            //Assert.AreEqual(tdet.ti.Breitengrad, t.breitengrad);
+            //Assert.AreEqual(tdet.ti.Längengrad, t.laengengrad);
+            //Assert.AreEqual(tdet.ti.Ort, t.Ort);
         }
     }
 }

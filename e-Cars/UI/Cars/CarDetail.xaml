@@ -31,7 +31,7 @@
                         <Grid>
                             <Button x:Name="ButtonFahrzeugOrten" Content="Fahrzeug orten..." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="130" Grid.ColumnSpan="2" Click="ButtonFahrzeugOrten_Click"/>
                             <Button x:Name="ButtonFahrtenliste" Content="Fahrtenliste..." HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="130" Grid.ColumnSpan="2" Click="ButtonFahrtenliste_Click"/>
-                            <Button x:Name="ButtonReservierung" Content="Reservierungen..." HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="130" Grid.ColumnSpan="2" Click="ButtonReservierung_Click"/>
+                            <Button x:Name="ButtonReservierung" Visibility="Collapsed" Content="Reservierungen..." HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="130" Grid.ColumnSpan="2" Click="ButtonReservierung_Click"/>
                         </Grid>
 
                         <Grid>
@@ -52,7 +52,8 @@
                                     <TextBox x:Name="TextBoxTankvorgaenge" MaxLength="7" LostFocus="TextBoxTankvorgaenge_LostFocus" DataObject.Pasting="TextBoxPasting" PreviewTextInput="Event_PreviewTextInput" Text="{Binding Path=Tankvorgaenge, UpdateSourceTrigger=PropertyChanged}" Margin="120,138,10,0" VerticalAlignment="Top"/>
 
                                     <Label x:Name="LabelStatus" Margin="10,165,0,0" Content="Status: " VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
-                                    <ComboBox x:Name="ComboBoxStatus" Margin="120,168,10,0" ItemsSource="{Binding Path=listStatus}" SelectedItem="{Binding selectedStatus}" IsSynchronizedWithCurrentItem="True">
+                                 
+                                    <ComboBox x:Name="ComboBoxStatus" Margin="120,168,10,0" VerticalAlignment="Top" ItemsSource="{Binding Path=listStatus}" SelectedItem="{Binding selectedStatus}" IsSynchronizedWithCurrentItem="True">
 
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -64,7 +65,10 @@
                                         </ComboBox.ItemTemplate>
 
                                     </ComboBox>
-                                    
+
+                                    <CheckBox x:Name="CheckBoxGestohlen" Margin="15,200,5,0" Content="Gestohlen" IsChecked="{Binding Path=Gestohlen, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Grid.ColumnSpan="2"></CheckBox>
+
+
                                 </Grid>
                             </GroupBox>
                         </Grid>

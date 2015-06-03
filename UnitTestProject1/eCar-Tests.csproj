@@ -63,6 +63,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="TestCar\TestCarDetail.cs" />
+    <Compile Include="TestCar\TestCarNew.cs" />
     <Compile Include="TestKarten\TestKarteNew.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestKarten\TestKarteDetail.cs" />

@@ -27,6 +27,7 @@ namespace e_Cars.Datenbank
         public Nullable<int> Car_ID { get; set; }
         public Nullable<int> Kunde_ID { get; set; }
         public System.DateTime Zeitstempel { get; set; }
+        public int ResStatus_ID { get; set; }
     
         public virtual Car Car { get; set; }
         public virtual ICollection<Fahrt> Fahrt { get; set; }

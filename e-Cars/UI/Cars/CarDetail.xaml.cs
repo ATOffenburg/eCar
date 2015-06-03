@@ -1,4 +1,5 @@
 ﻿using e_Cars.Datenbank;
+using e_Cars.nunithelper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -174,6 +175,21 @@ namespace e_Cars.UI.Cars
             }
         }
 
+        private bool gestohlen;
+        /// <summary>
+        /// Accessor Methode für das Gestohlen Kennzeichen
+        /// </summary>
+        public bool Gestohlen
+        {
+            get { return gestohlen; }
+            set
+            {
+                gestohlen = value;
+                NotifyPropertyChanged("Gestohlen");
+            }
+        }
+
+
         /// <summary>
         /// Konstruktor für die CarDetail Klasse
         /// </summary>
@@ -183,7 +199,11 @@ namespace e_Cars.UI.Cars
         {
             this.mw = mw;
             this.ci = ci;
-            InitializeComponent();
+
+            if (!UnitTestDetector.IsRunningFromNunit)
+            {
+                InitializeComponent();
+            }
 
             using (Projekt2Entities con = new Projekt2Entities())
             {
@@ -204,6 +224,8 @@ namespace e_Cars.UI.Cars
                 Kilometerstand = ci.c.Kilometerstand;
 
                 Tankvorgaenge = ci.c.Tankvorgaenge;
+
+                Gestohlen = ci.c.Gestohlen.GetValueOrDefault(false);
 
                 selectedStatus = listStatus.SingleOrDefault(s => s.Status_ID == ci.c.Status_ID);
 
@@ -261,54 +283,8 @@ namespace e_Cars.UI.Cars
         private void ButtonAenderungenSpeichern_Click(object sender, RoutedEventArgs e)
         {
 
-            bool bChanged = false;
-
-            using (Projekt2Entities con = new Projekt2Entities())
-            {
-
-                Car c = con.Car.Single(s => s.Car_ID == ci.c.Car_ID);
-
-                // Prüfe ob Seriennummer geändert
-                if (bChanged == true
-                    || !Equals(ci.c.Seriennummer, Seriennummer)
-                    || !Equals(ci.c.Kilometerstand, Kilometerstand)
-                    || !Equals(ci.c.Batterieladung, Batterieladung)
-                    || !Equals(ci.c.Wartungstermin, WartungsTermin)
-
-                    || !Equals(ci.c.Gesperrt, Gesperrt)
-                    || !Equals(ci.c.SpontaneNutzungGesperrt, SpontaneNutzungGesperrt)
-                    || !Equals(ci.c.ReservierungGesperrt, ReservierungGesperrt)
-
-                    || !Equals(ci.c.Tankvorgaenge, Tankvorgaenge)
-
-                    || !Equals(ci.c.Status_ID, selectedStatus.Status_ID)
-                    )
-                {
-                    // Wenn ja die Änderungen speichern...
-                    c.Seriennummer = Seriennummer;
-                    c.Kilometerstand = Kilometerstand;
-                    c.Batterieladung = Batterieladung;
-                    c.Wartungstermin = WartungsTermin;
-
-                    c.Gesperrt = Gesperrt;
-                    c.ReservierungGesperrt = ReservierungGesperrt;
-                    c.SpontaneNutzungGesperrt = SpontaneNutzungGesperrt;
-
-                    c.Tankvorgaenge = Tankvorgaenge;
-
-                    c.Status_ID = selectedStatus.Status_ID;
-
-                    con.Entry(c).State = System.Data.Entity.EntityState.Modified;
-                    con.SaveChanges();
-
-                    //c.Status_ID = status.Status_ID;
-
-                    ci.c = c;
-
-                    bChanged = true;
-                }
-
-            }
+            bool bChanged = saveOperation();
+            
 
             if (bChanged)
             {
@@ -347,5 +323,62 @@ namespace e_Cars.UI.Cars
         }
 
 
+
+        public bool saveOperation()
+        {
+            using (Projekt2Entities con = new Projekt2Entities())
+            {
+
+                Car c = con.Car.Single(s => s.Car_ID == ci.c.Car_ID);
+
+                // Prüfe ob Seriennummer geändert
+                if (
+                    !Equals(ci.c.Seriennummer, Seriennummer)
+                    || !Equals(ci.c.Kilometerstand, Kilometerstand)
+                    || !Equals(ci.c.Batterieladung, Batterieladung)
+                    || !Equals(ci.c.Wartungstermin, WartungsTermin)
+
+                    || !Equals(ci.c.Gesperrt, Gesperrt)
+                    || !Equals(ci.c.SpontaneNutzungGesperrt, SpontaneNutzungGesperrt)
+                    || !Equals(ci.c.ReservierungGesperrt, ReservierungGesperrt)
+
+                    || !Equals(ci.c.Tankvorgaenge, Tankvorgaenge)
+
+                    || !Equals(ci.c.Status_ID, selectedStatus.Status_ID)
+
+                    || !Equals(ci.c.Gestohlen, Gestohlen)
+
+
+                    )
+                {
+                    // Wenn ja die Änderungen speichern...
+                    c.Seriennummer = Seriennummer;
+                    c.Kilometerstand = Kilometerstand;
+                    c.Batterieladung = Batterieladung;
+                    c.Wartungstermin = WartungsTermin;
+
+                    c.Gesperrt = Gesperrt;
+                    c.ReservierungGesperrt = ReservierungGesperrt;
+                    c.SpontaneNutzungGesperrt = SpontaneNutzungGesperrt;
+
+                    c.Tankvorgaenge = Tankvorgaenge;
+
+                    c.Status_ID = selectedStatus.Status_ID;
+
+                    c.Gestohlen = Gestohlen;
+
+                    con.Entry(c).State = System.Data.Entity.EntityState.Modified;
+                    con.SaveChanges();
+
+                    //c.Status_ID = status.Status_ID;
+
+                    ci.c = c;
+
+                    return true;
+                }
+
+            }
+            return false;
+        }
     }
 }

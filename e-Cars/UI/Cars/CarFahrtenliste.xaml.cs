@@ -42,7 +42,6 @@ namespace e_Cars.UI.Cars
         }
 
          private MainWindow mw { get; set; }
-            
 
         /// <summary>
         /// Konstruktor erstellt das Usercontrol CarFahrtenliste

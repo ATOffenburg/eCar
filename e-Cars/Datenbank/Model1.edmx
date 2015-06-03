@@ -37,6 +37,10 @@
           <Property Name="Kilometerstand" Type="float" />
           <Property Name="Batterieladung" Type="int" />
           <Property Name="Wartungstermin" Type="datetime" />
+          <Property Name="StatusGeaendert" Type="bit" />
+          <Property Name="Gestohlen" Type="bit" />
+          <Property Name="breitengrad" Type="float" />
+          <Property Name="laengengrad" Type="float" />
         </EntityType>
         <EntityType Name="Fahrt">
           <Key>
@@ -70,6 +74,7 @@
           <Property Name="Aktiv" Type="bit" Nullable="false" />
           <Property Name="Sperrdatum" Type="date" />
           <Property Name="Sperrvermerk" Type="nvarchar" MaxLength="50" />
+          <Property Name="Seriennummer" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Kunde">
           <Key>
@@ -107,6 +112,7 @@
           <Property Name="Car_ID" Type="int" />
           <Property Name="Kunde_ID" Type="int" />
           <Property Name="Zeitstempel" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ResStatus_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -546,6 +552,10 @@
           <NavigationProperty Name="Fahrt" Relationship="Projekt2Model.FK_Fahrt_Car" FromRole="Car" ToRole="Fahrt" />
           <NavigationProperty Name="Reservierung" Relationship="Projekt2Model.FK_Reservierung_Car" FromRole="Car" ToRole="Reservierung" />
           <NavigationProperty Name="Tanksaeule" Relationship="Projekt2Model.FK_Tanksaeule_Car" FromRole="Car" ToRole="Tanksaeule" />
+          <Property Name="StatusGeaendert" Type="Boolean" />
+          <Property Name="Gestohlen" Type="Boolean" />
+          <Property Name="breitengrad" Type="Double" />
+          <Property Name="laengengrad" Type="Double" />
         </EntityType>
         <EntityType Name="Fahrt">
           <Key>
@@ -585,6 +595,7 @@
           <Property Name="Sperrdatum" Type="DateTime" Precision="0" />
           <Property Name="Sperrvermerk" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Kunde" Relationship="Projekt2Model.FK_Karte_Kunde" FromRole="Karte" ToRole="Kunde" />
+          <Property Name="Seriennummer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Kunde">
           <Key>
@@ -636,6 +647,7 @@
           <NavigationProperty Name="Kunde" Relationship="Projekt2Model.FK_Reservierung_Kunde" FromRole="Reservierung" ToRole="Kunde" />
           <NavigationProperty Name="Tankstelle" Relationship="Projekt2Model.FK_Abholort_Tankstelle" FromRole="Reservierung" ToRole="Tankstelle" />
           <NavigationProperty Name="Tankstelle1" Relationship="Projekt2Model.FK_Abgabeort_Tankstelle" FromRole="Reservierung" ToRole="Tankstelle" />
+          <Property Name="ResStatus_ID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -906,6 +918,10 @@
           <EntitySetMapping Name="Car">
             <EntityTypeMapping TypeName="Projekt2Model.Car">
               <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="laengengrad" ColumnName="laengengrad" />
+                <ScalarProperty Name="breitengrad" ColumnName="breitengrad" />
+                <ScalarProperty Name="Gestohlen" ColumnName="Gestohlen" />
+                <ScalarProperty Name="StatusGeaendert" ColumnName="StatusGeaendert" />
                 <ScalarProperty Name="Wartungstermin" ColumnName="Wartungstermin" />
                 <ScalarProperty Name="Batterieladung" ColumnName="Batterieladung" />
                 <ScalarProperty Name="Kilometerstand" ColumnName="Kilometerstand" />
@@ -947,6 +963,7 @@
           <EntitySetMapping Name="Karte">
             <EntityTypeMapping TypeName="Projekt2Model.Karte">
               <MappingFragment StoreEntitySet="Karte">
+                <ScalarProperty Name="Seriennummer" ColumnName="Seriennummer" />
                 <ScalarProperty Name="Sperrvermerk" ColumnName="Sperrvermerk" />
                 <ScalarProperty Name="Sperrdatum" ColumnName="Sperrdatum" />
                 <ScalarProperty Name="Aktiv" ColumnName="Aktiv" />
@@ -984,6 +1001,7 @@
           <EntitySetMapping Name="Reservierung">
             <EntityTypeMapping TypeName="Projekt2Model.Reservierung">
               <MappingFragment StoreEntitySet="Reservierung">
+                <ScalarProperty Name="ResStatus_ID" ColumnName="ResStatus_ID" />
                 <ScalarProperty Name="Zeitstempel" ColumnName="Zeitstempel" />
                 <ScalarProperty Name="Kunde_ID" ColumnName="Kunde_ID" />
                 <ScalarProperty Name="Car_ID" ColumnName="Car_ID" />

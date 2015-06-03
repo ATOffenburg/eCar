@@ -19,6 +19,7 @@ namespace e_Cars.Datenbank
         public bool Aktiv { get; set; }
         public Nullable<System.DateTime> Sperrdatum { get; set; }
         public string Sperrvermerk { get; set; }
+        public string Seriennummer { get; set; }
     
         public virtual Kunde Kunde { get; set; }
     }
