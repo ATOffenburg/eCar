@@ -163,7 +163,7 @@ namespace e_Cars.UI.Kartenverwaltung
                     }
                 }
 
-                
+
             }
         }
 
@@ -283,10 +283,13 @@ namespace e_Cars.UI.Kartenverwaltung
                 string temp;
                 if (kartI.Sperrvermerk == null)
                     kartI.Sperrvermerk = "";
+                if (kartI.Seriennummer == null)
+                    kartI.Seriennummer = "";
                 return (
                     kartI.Karten_ID.ToString().StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
                     kartI.Kunde_ID.ToString().StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
                     kartI.Sperrdatum.ToString().StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
+                    kartI.Seriennummer.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
                     kartI.Sperrvermerk.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase));
             }
         }

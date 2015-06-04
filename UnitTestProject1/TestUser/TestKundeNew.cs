@@ -49,8 +49,8 @@ namespace UnitTestProject1.TestUser
         {
             UserNew unew = new UserNew(null);
 
-            unew.Nname = "Mayer";
-            unew.Vorname = "Hans";
+            unew.Nname = "TEST";
+            unew.Vorname = "KUNDE";
             unew.Email = "Mayer.Hans@gmail.com";
             unew.Passwort = "Passwort";
             unew.PLZ = "77656";

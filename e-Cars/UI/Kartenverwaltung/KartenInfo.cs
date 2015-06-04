@@ -40,6 +40,22 @@ namespace e_Cars.UI.Kartenverwaltung
         }
 
         /// <summary>
+        /// Access-Methode für das Entity Objekt
+        /// zum Füllen oder holen des Wertes Seriennummer
+        /// </summary>
+        public string Seriennummer
+        {
+            get
+            {
+                return k.Seriennummer;
+            }
+            set
+            {
+                k.Seriennummer = value;
+            }
+        }
+
+        /// <summary>
         /// Accessor-Methode für das Entity Objekt
         /// zum Füllen oder holen des Wertes von Kunden_ID
         /// </summary>

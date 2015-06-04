@@ -110,6 +110,19 @@ namespace e_Cars.UI.Kartenverwaltung
             
         }
 
+        public String Seriennummer
+        {
+            get
+            {
+                return ki.Seriennummer;
+            }
+            set
+            {
+                ki.Seriennummer = value;
+                NotifyPropertyChanged("Seriennummer");
+            }
+        }
+
         /// <summary>
         /// Accessor Methode für das "Aktiv" Feld 
         /// U.a Benötigt für das Füllen des Objekt ki
@@ -199,6 +212,7 @@ namespace e_Cars.UI.Kartenverwaltung
                 kart.Aktiv = ki.Aktiv;
                 kart.Sperrdatum = ki.Sperrdatum;
                 kart.Sperrvermerk = ki.Sperrvermerk;
+                kart.Seriennummer = ki.Seriennummer;
             }
 
             connect.SaveChanges();
@@ -225,6 +239,7 @@ namespace e_Cars.UI.Kartenverwaltung
             Sperrdatum = null;
             Aktiv = true;
             Sperrvermerk = null;
+            Seriennummer = null;
         }
 
         

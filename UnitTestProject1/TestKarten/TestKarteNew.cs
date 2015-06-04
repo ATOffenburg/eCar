@@ -35,6 +35,7 @@ namespace UnitTestProject1
                 knew.Kunde_ID = 470;
                 knew.Sperrdatum = new DateTime(2015,05,23);
                 knew.Sperrvermerk = "Wir sperren gerne und alles";
+                knew.Seriennummer = "Seriennummer XYZ";
                 knew.Aktiv = false;
 
                 knew.clearFields();
@@ -77,6 +78,7 @@ namespace UnitTestProject1
             knew.Kunde_ID = 433;
             knew.Sperrdatum = new DateTime(2015, 05, 23);
             knew.Sperrvermerk = "Wir sperren gerne und alles";
+            knew.Seriennummer = "Seriennummer XYZ";
             knew.Aktiv = false;
 
             knew.saveOperation();

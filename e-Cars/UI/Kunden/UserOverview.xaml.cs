@@ -334,6 +334,7 @@ namespace e_Cars.UI.Kunden
                     userI.PLZ.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
                     userI.Hausnummer.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
                     userI.BIC.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
+                    userI.Email.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase) ||
                     userI.IBAN.StartsWith(TextBoxFilter.Text, StringComparison.OrdinalIgnoreCase));
             }
         }

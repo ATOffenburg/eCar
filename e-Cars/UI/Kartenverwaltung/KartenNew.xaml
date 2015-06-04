@@ -3,10 +3,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
      x:Class="e_Cars.UI.Kartenverwaltung.KartenNew"
     Title="Karten anlegen"
-    Height="315.847"
-    Width="465.582"
-    MinHeight="315"
-    MinWidth="465"
+    Height="340"
+    Width="471"
+    MinHeight="340"
+    MinWidth="471"
     ResizeMode="CanResizeWithGrip"
     ShowInTaskbar="True"
     WindowStartupLocation="CenterScreen" >
@@ -18,7 +18,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              Style="{StaticResource UserControlStyle}" Margin="1">
-        
+
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -33,19 +33,21 @@
             <Grid Grid.Row="1">
 
                 <Label Content="Karten_ID:" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.708,0.308"/>
-                <Label Content="Kunde_ID:" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
-                <Label Content="Aktiv:" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top"/>
-                <Label Content="Sperrdatum:" HorizontalAlignment="Left" Margin="10,102,0,0" VerticalAlignment="Top"/>
-                <Label Content="Sperrvermerk:" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top"/>
+                <Label Content="Kunde_ID:" HorizontalAlignment="Left" Margin="10,74,0,0" VerticalAlignment="Top"/>
+                <Label Content="Aktiv:" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top"/>
+                <Label Content="Sperrdatum:" HorizontalAlignment="Left" Margin="10,122,0,0" VerticalAlignment="Top"/>
+                <Label Content="Sperrvermerk:" HorizontalAlignment="Left" Margin="10,151,0,0" VerticalAlignment="Top"/>
 
-                <TextBox x:Name="TBKart_ID" IsEnabled="False" Height="23" Margin="94,15,0,0" TextWrapping="Wrap" Text="{Binding Path=Karten_ID, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
-                <TextBox x:Name="TBKund_ID" Height="23" Margin="94,43,0,0" TextWrapping="Wrap" Text="{Binding Path=Kunde_ID, UpdateSourceTrigger=PropertyChanged, StringFormat=D}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
-                <TextBox x:Name="TBSperrV" Height="83" Margin="94,133,0,0" TextWrapping="Wrap" Text="{Binding Path=Sperrvermerk, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="346"/>
-                <DatePicker x:Name="DatePickerSperrdatum" SelectedDate="{Binding Sperrdatum, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="94,102,0,0" VerticalAlignment="Top"/>
-                <CheckBox HorizontalAlignment="Left" IsChecked="{Binding Path=Aktiv, UpdateSourceTrigger=PropertyChanged}" Margin="94,76,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="TBKart_ID" IsEnabled="False" Height="23" Margin="108,14,0,0" TextWrapping="Wrap" Text="{Binding Path=Karten_ID, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="100"/>
+                <TextBox x:Name="TBKund_ID" Height="23" Margin="108,76,0,0" TextWrapping="Wrap" Text="{Binding Path=Kunde_ID, UpdateSourceTrigger=PropertyChanged, StringFormat=D}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
+                <TextBox x:Name="TBSperrV" Height="83" Margin="108,151,0,0" TextWrapping="Wrap" Text="{Binding Path=Sperrvermerk, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="346"/>
+                <DatePicker x:Name="DatePickerSperrdatum" SelectedDate="{Binding Sperrdatum, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="108,122,0,0" VerticalAlignment="Top"/>
+                <CheckBox HorizontalAlignment="Left" IsChecked="{Binding Path=Aktiv, UpdateSourceTrigger=PropertyChanged}" Margin="108,104,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.462,1.538"/>
 
                 <Button x:Name="ButtonSave" Click="ButtonSave_Click" Content="Anlegen" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="104" Height="23"/>
                 <Button Content="Clear" HorizontalAlignment="Right" Margin="0,0,119,10" VerticalAlignment="Bottom" Width="75" Click="Button_Clear_Click" Height="23"/>
+                <Label Content="Seriennummer:" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="TBSeriennummer" Height="23" Margin="108,48,0,0" TextWrapping="Wrap" Text="{Binding Seriennummer, StringFormat=D, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
             </Grid>
         </Grid>
     </UserControl>

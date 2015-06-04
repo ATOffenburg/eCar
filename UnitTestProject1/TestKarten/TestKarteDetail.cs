@@ -31,6 +31,7 @@ namespace UnitTestProject1.TestKarten
 
             Assert.AreEqual(null, kdetail.Sperrdatum);
             Assert.AreEqual(null, kdetail.Sperrvermerk);
+            Assert.AreEqual(null, kdetail.Seriennummer);
             Assert.AreEqual(true, kdetail.Aktiv);
         }
 
@@ -49,12 +50,14 @@ namespace UnitTestProject1.TestKarten
 
             Assert.AreEqual(null, kdetail.Sperrdatum);
             Assert.AreEqual(null, kdetail.Sperrvermerk);
+            Assert.AreEqual(null, kdetail.Seriennummer);
             Assert.AreEqual(true, kdetail.Aktiv);
 
             // Karte für erneuten Test wieder sperren
 
             kdetail.Sperrvermerk = "Wieder gesperrt";
             kdetail.Sperrdatum = new DateTime(2015, 05, 30);
+            kdetail.Seriennummer = "Seriennummer ABC";
             kdetail.Aktiv = false;
 
             kdetail.saveOperation();
@@ -63,6 +66,7 @@ namespace UnitTestProject1.TestKarten
             kdetail = new KartenDetail(null, new KartenInfo(ka), con);
             
             Assert.AreEqual("Wieder gesperrt", kdetail.Sperrvermerk);
+            Assert.AreEqual("Seriennummer ABC", kdetail.Seriennummer);
             Assert.AreEqual(new DateTime(2015, 05, 30), kdetail.Sperrdatum);
             Assert.AreEqual(false, kdetail.Aktiv);
 
