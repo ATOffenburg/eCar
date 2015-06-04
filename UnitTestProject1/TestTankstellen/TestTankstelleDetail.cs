@@ -22,7 +22,7 @@ namespace UnitTestProject1.TestTankstellen
         }
 
         [TestMethod]
-        public void TestCheckData()
+        public void TestTankstelleDetailCheckData()
         {
             TankstelleInfo ti = new TankstelleInfo(new Tankstelle());
 
@@ -44,7 +44,7 @@ namespace UnitTestProject1.TestTankstellen
         }
         
         [TestMethod]
-        public void TestSaveOperation()
+        public void TestTankstelleDetailSaveOperation()
         {
             TankstelleInfo ti = new TankstelleInfo(new Tankstelle());
 

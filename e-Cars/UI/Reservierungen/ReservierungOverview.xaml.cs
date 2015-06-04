@@ -85,6 +85,14 @@ namespace e_Cars.UI.Reservierungen
             listReservierungInfo = loadReservierungsListe(null);
         }
 
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F5)
+            {
+                listReservierungInfo = loadReservierungsListe(null);
+            }
+        }
+
         private List<ReservierungInfo> loadReservierungsListe(String filter)
         {
 

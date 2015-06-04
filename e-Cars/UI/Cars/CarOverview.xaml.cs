@@ -63,6 +63,15 @@ namespace e_Cars.UI.Cars
             listCarsInfo = getListOfCarsInfo(TextBoxFilter.Text);
         }
 
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F5)
+            {
+                listCarsInfo = getListOfCarsInfo(TextBoxFilter.Text);
+                //myListView.Items.Refresh();
+            }
+        }
+
         private List<CarInfo> getListOfCarsInfo(string filter)
         {
             List<CarInfo> listCarsInfo = new List<CarInfo>();

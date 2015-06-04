@@ -6,6 +6,7 @@
              xmlns:Kunden="clr-namespace:e_Cars.UI.Kunden" x:Class="e_Cars.UI.Kunden.UserOverview" 
              mc:Ignorable="d" 
              Loaded="UserControl_Loaded"
+             KeyDown="OnKeyDownHandler"
              d:DesignHeight="300" d:DesignWidth="750">
     <UserControl.Style>
         <StaticResource ResourceKey="UserControlStyle"/>

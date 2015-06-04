@@ -21,7 +21,7 @@ namespace UnitTestProject1.TestUser
         }
 
         [TestMethod]
-        public void TestCheckData()
+        public void TestKundeNewCheckData()
         {
             UserNew unew = new UserNew(null);
 
@@ -45,7 +45,7 @@ namespace UnitTestProject1.TestUser
         }
 
         [TestMethod]
-        public void TestSaveOperation()
+        public void TestKundeNewSaveOperation()
         {
             UserNew unew = new UserNew(null);
 
@@ -76,7 +76,7 @@ namespace UnitTestProject1.TestUser
         }
 
         [TestMethod]
-        public void TestClearFields()
+        public void TestKundeNewClearFields()
         {
             UserNew unew = new UserNew(null);
 

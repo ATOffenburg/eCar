@@ -22,7 +22,7 @@ namespace UnitTestProject1.TestKarten
         }
 
         [TestMethod]
-        public void TestClearFields()
+        public void TestKarteDetailClearFields()
         {
             Karte ka = con.Karte.SingleOrDefault(s => s.Karten_ID == 311);
             KartenDetail kdetail = new KartenDetail(null, new KartenInfo(ka), con);
@@ -35,7 +35,7 @@ namespace UnitTestProject1.TestKarten
         }
 
         [TestMethod]
-        public void TestSaveOperation()
+        public void TestKarteDetailSaveOperation()
         {
             Karte ka = con.Karte.SingleOrDefault(s => s.Karten_ID == 311);
             KartenDetail kdetail = new KartenDetail(null, new KartenInfo(ka), con);

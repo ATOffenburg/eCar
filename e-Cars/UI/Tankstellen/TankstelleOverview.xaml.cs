@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace e_Cars.UI.Tankstellen
 {
     /// <summary>
@@ -124,6 +125,16 @@ namespace e_Cars.UI.Tankstellen
         {
             listTankstelleInfo = getListOfTankstelleInfo(null);
         }
+
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F5)
+            {
+                listTankstelleInfo = getListOfTankstelleInfo(null);
+            }
+        }
+
+
         /// <summary>
         /// Beim "Doppelklick" auf eine Element der myListView wird die Detailansicht geöffnet
         /// </summary>

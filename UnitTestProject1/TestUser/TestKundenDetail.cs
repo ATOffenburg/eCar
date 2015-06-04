@@ -21,7 +21,7 @@ namespace UnitTestProject1.TestUser
         }
 
         [TestMethod]
-        public void TestCheckData()
+        public void TestKundeDetailCheckData()
         {
             Kunde k = new Kunde();
             Adresse a = new Adresse();
@@ -62,7 +62,7 @@ namespace UnitTestProject1.TestUser
         }
 
         [TestMethod]
-        public void TestSaveOperation()
+        public void TestKundeDetailSaveOperation()
         {
             Kunde k = new Kunde();
 

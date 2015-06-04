@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Torsten\Documents\GitHub\eCar\e-Cars\obj\Debug\
+E:\eCar\e-Cars\obj\Debug\
 e_Cars
 none
 false
 DEBUG;TRACE
-C:\Users\Torsten\Documents\GitHub\eCar\e-Cars\App.xaml
+E:\eCar\e-Cars\App.xaml
 211672381124
 2-494253336
-5629866600
-29-737875210
+5626723464
+292147079742
 MainWindow.xaml;Menu.xaml;MenuStammdatenVerwalten.xaml;UI\Cars\CarFahrtenliste.xaml;UI\Kartenverwaltung\KartenDetail.xaml;UI\Kartenverwaltung\KartenNew.xaml;UI\Kartenverwaltung\KartenOverview.xaml;UI\Kunden\UserDetail.xaml;UI\Kunden\ProgressDialog.xaml;UI\Kunden\UserNew.xaml;UI\Kunden\UserOverview.xaml;UI\Cars\CarNew.xaml;UI\Cars\CarOverview.xaml;UI\Cars\CarDetail.xaml;UI\Map\GMaps.xaml;UI\Reservierungen\ReservierungDetail.xaml;UI\Reservierungen\ReservierungNew.xaml;UI\Reservierungen\ReservierungOverview.xaml;UI\Tankstellen\TankstelleDetail.xaml;UI\Tankstellen\TankstelleNew.xaml;UI\Tankstellen\TankstelleOverview.xaml;
 e-car.png
-True
+False
 

@@ -38,8 +38,6 @@ namespace e_Cars.UI.Kunden
             this.mw = mw;
             this.DataContext = this;
             InitializeComponent();
-
-
         }
 
         private static List<UserInfo> listuserinfo = null;
@@ -74,6 +72,17 @@ namespace e_Cars.UI.Kunden
 
         private ProgressDialog pg = null;
 
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F5)
+            {
+                //MessageBox.Show("test");
+                listuserinfo = null;
+                loadData();
+                myListView.Items.Refresh();
+            }
+        }
+
         /// <summary>
         /// Aufgrund der großen Ladedauer vom einmaligen holen der Daten aus der DB
         /// wird das Laden auf einen Thread ausgelagert und ein Progressdialog zur 
@@ -90,7 +99,6 @@ namespace e_Cars.UI.Kunden
                 worker.RunWorkerAsync();
                 pg = new ProgressDialog();
                 pg.ShowDialog();
-
             }
         }
         /// <summary>

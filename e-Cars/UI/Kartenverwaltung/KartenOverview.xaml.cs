@@ -128,6 +128,15 @@ namespace e_Cars.UI.Kartenverwaltung
         {
             listKartenInfo = getListOfKartenInfo(null);
         }
+
+        private void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F5)
+            {
+                listKartenInfo = getListOfKartenInfo(null);
+            }
+        }
+
         /// <summary>
         /// Beim "Doppelklick" auf eine Element der myListView wird die Detailansicht geöffnet
         /// </summary>

@@ -21,7 +21,7 @@ namespace UnitTestProject1.TestTankstellen
         }
 
         [TestMethod]
-        public void TestCheckData()
+        public void TestTankstelleNewCheckData()
         {
             TankstelleNew tnew = new TankstelleNew(null, null);
 
@@ -41,7 +41,7 @@ namespace UnitTestProject1.TestTankstellen
         }
 
         [TestMethod]
-        public void TestClearFields()
+        public void TestTankstelleNewClearFields()
         {
             TankstelleNew tnew = new TankstelleNew(null, null);
 
@@ -65,7 +65,7 @@ namespace UnitTestProject1.TestTankstellen
         }
 
         [TestMethod]
-        public void TestSaveOperation()
+        public void TestTankstelleNewSaveOperation()
         {
             Tankstelle t = new Tankstelle();
             TankstelleInfo ti = new TankstelleInfo(new Tankstelle());
