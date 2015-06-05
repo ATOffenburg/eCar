@@ -184,5 +184,12 @@ namespace e_Cars
             ReservierungDetail rd = new ReservierungDetail(this, item);
             MainGrid.Children.Add(rd);
         }
+
+        internal void setCarReservierungen(CarInfo ci)
+        {
+            MainGrid.Children.Clear();
+            CarReservierungen cr = new CarReservierungen(this, ci);
+            MainGrid.Children.Add(cr);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using e_Cars.Datenbank;
+using e_Cars.nunithelper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -106,7 +107,11 @@ namespace e_Cars.UI.Reservierungen
         {
             this.mw = mw;
 
-            InitializeComponent();
+            if (!UnitTestDetector.IsRunningFromNunit)
+            {
+                InitializeComponent();
+            }
+            
             this.DataContext = this;
 
             ReservierungStart = DateTime.Now;
@@ -149,10 +154,19 @@ namespace e_Cars.UI.Reservierungen
                 return;
             }
 
+
+            if (checkData())
+            {
+                MessageBox.Show("Eingabe unvollständig bitte Daten prüfen.");
+                return;
+
+            }
+
             Reservierung res = new Reservierung();
             res.Abholort = selectedTankstelle.Tankstelle_ID;
             res.Startzeit = ReservierungStart;
             res.Kunde_ID = selectedUser.Kunde_ID;
+            res.ResStatus_ID = 1;
             res.Zeitstempel = DateTime.Now;
 
             using (Projekt2Entities con = new Projekt2Entities())
@@ -166,11 +180,27 @@ namespace e_Cars.UI.Reservierungen
             clearFields();
         }
 
-        private void clearFields()
+        public void clearFields()
         {
             selectedUser = null;
             selectedTankstelle = null;
             ReservierungStart = DateTime.Now;
+        }
+
+        public bool checkData(){
+
+
+            bool data = false;
+
+            if (selectedTankstelle == null)
+            {
+                data = true;
+            }
+
+
+
+            return data;
+
         }
 
 

@@ -31,7 +31,7 @@
                         <Grid>
                             <Button x:Name="ButtonFahrzeugOrten" Content="Fahrzeug orten..." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="130" Grid.ColumnSpan="2" Click="ButtonFahrzeugOrten_Click"/>
                             <Button x:Name="ButtonFahrtenliste" Content="Fahrtenliste..." HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="130" Grid.ColumnSpan="2" Click="ButtonFahrtenliste_Click"/>
-                            <Button x:Name="ButtonReservierung" Visibility="Collapsed" Content="Reservierungen..." HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="130" Grid.ColumnSpan="2" Click="ButtonReservierung_Click"/>
+                            <Button x:Name="ButtonReservierung" Content="Reservierungen..." HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="130" Grid.ColumnSpan="2" Click="ButtonReservierung_Click"/>
                         </Grid>
 
                         <Grid>

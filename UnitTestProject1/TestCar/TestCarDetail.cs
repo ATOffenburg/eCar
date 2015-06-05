@@ -42,5 +42,17 @@ namespace UnitTestProject1.TestCar
 
         }
 
+
+        [TestMethod]
+        public void TestIsTextAllowed()
+        {
+
+            Assert.AreEqual(CarDetail.IsTextAllowed("0A2sc"), false);
+            Assert.AreEqual(CarDetail.IsTextAllowed("Absnc"), false);
+            Assert.AreEqual(CarDetail.IsTextAllowed("123456"), true); 
+
+        }
+
+
     }
 }

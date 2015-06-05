@@ -33,6 +33,10 @@
                 <ListView x:Name="myListView" ItemsSource="{Binding listCarsInfo}" MouseDoubleClick="myListView_MouseDoubleClick">
                     <ListView.View>
                         <GridView>
+                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding c.Car_ID}">
+                                <GridViewColumnHeader Click="SortClick" Tag="c.Car_ID" Content="ID" />
+                            </GridViewColumn>
+                            
                             <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Seriennummer}">
                                 <GridViewColumnHeader Click="SortClick" Tag="Seriennummer" Content="Seriennummer" />
                             </GridViewColumn>

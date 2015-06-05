@@ -19,67 +19,49 @@ using System.Windows.Shapes;
 namespace e_Cars.UI.Cars
 {
     /// <summary>
-    /// Interaktionslogik für CarFahrtenliste.xaml
+    /// Interaktionslogik für CarReservierungen.xaml
     /// </summary>
-    public partial class CarFahrtenliste : UserControl, INotifyPropertyChanged
+    public partial class CarReservierungen : UserControl, INotifyPropertyChanged
     {
 
         private GridViewColumnHeader _CurSortCol = null;
         private SortAdorner _CurAdorner = null;
 
+        private MainWindow mw { get; set; }
 
-        private List<Fahrt> listefahrten;
+        private CarInfo ci { get; set; }
+
+        private List<Reservierung> listereservierungen;
         /// <summary>
         /// Accessor Methode für die Fahrten
         /// </summary>
-        public List<Fahrt> listeFahrten
+        public List<Reservierung> listeReservierungen
         {
-            get { return listefahrten; }
+            get { return listereservierungen; }
             set
             {
-                listefahrten = value;
+                listereservierungen = value;
 
-                NotifyPropertyChanged("listeFahrten");
+                NotifyPropertyChanged("listeReservierungen");
             }
         }
 
-        private MainWindow mw { get; set; }
 
-        /// <summary>
-        /// Konstruktor erstellt das Usercontrol CarFahrtenliste
-        /// </summary>
-        /// <param name="mw">MainWindow</param>
-        /// <param name="ci">CarInfo</param>
-        public CarFahrtenliste(MainWindow mw, CarInfo ci)
+        private Projekt2Entities con;
+
+        public CarReservierungen(MainWindow mw, CarInfo ci)
         {
+
             this.mw = mw;
+            
+            InitializeComponent();
             this.DataContext = this;
 
-            InitializeComponent();
 
-            if (ci != null)
-            {
-                using (Projekt2Entities con = new Projekt2Entities())
-                {
-
-                    listeFahrten = con.Fahrt.Where(s => s.Car_ID == ci.c.Car_ID).ToList();
-                }
-            }
-        }
-        /// <summary>
-        /// Delegate für die Oberflächenaktualisierung
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-        /// <summary>
-        /// sobald sich das eins der Accesor-Methoden ändert wird diese Methode getriggert
-        /// </summary>
-        /// <param name="info"></param>
-        protected void NotifyPropertyChanged(String info)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(info));
-            }
+            con = new Projekt2Entities();
+                var carid = (int?) ci.c.Car_ID;
+                listeReservierungen = con.Reservierung.Where(s => s.Car_ID == carid).ToList();
+                
         }
 
         private void ButtonBack_Click(object sender, RoutedEventArgs e)
@@ -108,5 +90,20 @@ namespace e_Cars.UI.Cars
             myListView.Items.SortDescriptions.Add(new SortDescription(field, newDir));
         }
 
+        /// <summary>
+        /// Delegate für die Oberflächenaktualisierung
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// sobald sich das eins der Accesor-Methoden ändert wird diese Methode getriggert
+        /// </summary>
+        /// <param name="info"></param>
+        protected void NotifyPropertyChanged(String info)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(info));
+            }
+        }
     }
 }

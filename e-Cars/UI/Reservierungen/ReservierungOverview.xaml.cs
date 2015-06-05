@@ -69,10 +69,11 @@ namespace e_Cars.UI.Reservierungen
             }
         }
 
+
+        public MainWindow mw { get; set; }
         /// <summary>
         /// Konstruktor
         /// </summary>
-        public MainWindow mw { get; set; }
         public ReservierungOverview(MainWindow mw)
         {
             this.mw = mw;
@@ -82,8 +83,13 @@ namespace e_Cars.UI.Reservierungen
 
             AnzeigeDatum = DateTime.Now;
 
-            listReservierungInfo = loadReservierungsListe(null);
+            
         }
+
+
+
+
+
 
         private void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
@@ -161,6 +167,9 @@ namespace e_Cars.UI.Reservierungen
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+
+            listReservierungInfo = loadReservierungsListe(null);
+
             checkReservierungGesperrt();
         }
 

@@ -253,7 +253,7 @@ namespace e_Cars.UI.Cars
             }
         }
 
-        private static bool IsTextAllowed(string text)
+        public static bool IsTextAllowed(string text)
         {
             Regex regex = new Regex("[^0-9.-]+");
             return !regex.IsMatch(text);
@@ -309,7 +309,7 @@ namespace e_Cars.UI.Cars
 
         private void ButtonReservierung_Click(object sender, RoutedEventArgs e)
         {
-
+            mw.setCarReservierungen(ci);
         }
 
         private void TextBoxKilometerstand_LostFocus(object sender, RoutedEventArgs e)

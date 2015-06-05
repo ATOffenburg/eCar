@@ -183,6 +183,9 @@
       <DependentUpon>CarFahrtenliste.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Cars\CarInfo.cs" />
+    <Compile Include="UI\Cars\CarReservierungen.xaml.cs">
+      <DependentUpon>CarReservierungen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Helper\ReservierungGesperrtHelper.cs" />
     <Compile Include="UI\Helper\SortAdorner.cs" />
     <Compile Include="UI\Kartenverwaltung\KartenInfo.cs" />
@@ -263,6 +266,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Cars\CarFahrtenliste.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Cars\CarReservierungen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
