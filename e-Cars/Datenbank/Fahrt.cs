@@ -26,8 +26,8 @@ namespace e_Cars.Datenbank
         public Nullable<int> Reservierung_ID { get; set; }
     
         public virtual Car Car { get; set; }
-        public virtual Tanksaeule Tanksaeule { get; set; }
-        public virtual Tanksaeule Tanksaeule1 { get; set; }
+        public virtual Tankstelle Tankstelle { get; set; }
+        public virtual Tankstelle Tankstelle1 { get; set; }
         public virtual Kunde Kunde { get; set; }
         public virtual Reservierung Reservierung { get; set; }
     }

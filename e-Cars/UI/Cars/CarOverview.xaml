@@ -54,7 +54,7 @@
                             </GridViewColumn>
                             
                             <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Tankvorgaenge}">
-                                <GridViewColumnHeader Click="SortClick" Tag="Tankvorgänge" Content="Tankvorgänge" />
+                                <GridViewColumnHeader Click="SortClick" Tag="Tankvorgaenge" Content="Tankvorgänge" />
                             </GridViewColumn>
                             
                             <GridViewColumn Width="Auto">
@@ -85,6 +85,15 @@
                                 <GridViewColumnHeader Click="SortClick" Tag="ReservierungGesperrt" Content="Reservierung gesperrt" />
                             </GridViewColumn>
 
+                            <GridViewColumn Width="Auto">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding Path=Gestohlen}" IsHitTestVisible="False" Focusable="False"></CheckBox>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumnHeader Click="SortClick" Tag="Gestohlen" Content="Gestohlen" />
+                            </GridViewColumn>
+                            
                         </GridView>
                     </ListView.View>                    
                 </ListView>

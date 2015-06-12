@@ -133,5 +133,19 @@ namespace e_Cars.UI.Cars
             set { }
         }
 
+
+        /// <summary>
+        /// Das Spontanenutzunggesperrtkennzeichen
+        /// </summary>
+        public bool Gestohlen
+        {
+            get
+            {
+                return c.Gestohlen.GetValueOrDefault(false);
+            }
+            // Wegen Binding mit der Oberfläche
+            set { }
+        }
+
     }
 }

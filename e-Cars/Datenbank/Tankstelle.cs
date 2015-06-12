@@ -16,9 +16,11 @@ namespace e_Cars.Datenbank
     {
         public Tankstelle()
         {
+            this.Fahrt = new HashSet<Fahrt>();
+            this.Fahrt1 = new HashSet<Fahrt>();
             this.Reservierung = new HashSet<Reservierung>();
-            this.Tanksaeule = new HashSet<Tanksaeule>();
             this.Reservierung1 = new HashSet<Reservierung>();
+            this.Tanksaeule = new HashSet<Tanksaeule>();
         }
     
         public int Tankstelle_ID { get; set; }
@@ -29,8 +31,10 @@ namespace e_Cars.Datenbank
         public string Stasse { get; set; }
         public string Name { get; set; }
     
+        public virtual ICollection<Fahrt> Fahrt { get; set; }
+        public virtual ICollection<Fahrt> Fahrt1 { get; set; }
         public virtual ICollection<Reservierung> Reservierung { get; set; }
-        public virtual ICollection<Tanksaeule> Tanksaeule { get; set; }
         public virtual ICollection<Reservierung> Reservierung1 { get; set; }
+        public virtual ICollection<Tanksaeule> Tanksaeule { get; set; }
     }
 }

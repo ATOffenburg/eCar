@@ -37,7 +37,7 @@
           <Property Name="Kilometerstand" Type="float" />
           <Property Name="Batterieladung" Type="int" />
           <Property Name="Wartungstermin" Type="datetime" />
-          <Property Name="StatusGeaendert" Type="bit" />
+          <Property Name="StatusGeaendert" Type="bit" Nullable="false" />
           <Property Name="Gestohlen" Type="bit" />
           <Property Name="breitengrad" Type="float" />
           <Property Name="laengengrad" Type="float" />
@@ -114,6 +114,13 @@
           <Property Name="Zeitstempel" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="ResStatus_ID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="ResStatus">
+          <Key>
+            <PropertyRef Name="ResStatus_ID" />
+          </Key>
+          <Property Name="ResStatus_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Statusbezeichnung" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Status">
           <Key>
             <PropertyRef Name="Status_ID" />
@@ -142,12 +149,12 @@
           <Property Name="Stasse" Type="varchar(max)" Nullable="false" />
           <Property Name="Name" Type="varchar(max)" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Abgabeort_Tanksaeule">
-          <End Role="Tanksaeule" Type="Self.Tanksaeule" Multiplicity="1" />
+        <Association Name="FK_Abgabeort_Tankaeule">
+          <End Role="Tankstelle" Type="Self.Tankstelle" Multiplicity="1" />
           <End Role="Fahrt" Type="Self.Fahrt" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Tanksaeule">
-              <PropertyRef Name="Tanksaeule_ID" />
+            <Principal Role="Tankstelle">
+              <PropertyRef Name="Tankstelle_ID" />
             </Principal>
             <Dependent Role="Fahrt">
               <PropertyRef Name="Abgabeort" />
@@ -167,11 +174,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Abholort_Tanksaeule">
-          <End Role="Tanksaeule" Type="Self.Tanksaeule" Multiplicity="1" />
+          <End Role="Tankstelle" Type="Self.Tankstelle" Multiplicity="1" />
           <End Role="Fahrt" Type="Self.Fahrt" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Tanksaeule">
-              <PropertyRef Name="Tanksaeule_ID" />
+            <Principal Role="Tankstelle">
+              <PropertyRef Name="Tankstelle_ID" />
             </Principal>
             <Dependent Role="Fahrt">
               <PropertyRef Name="Abholort" />
@@ -322,6 +329,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ResStatus">
+          <End Role="ResStatus" Type="Self.ResStatus" Multiplicity="1" />
+          <End Role="Reservierung" Type="Self.Reservierung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResStatus">
+              <PropertyRef Name="ResStatus_ID" />
+            </Principal>
+            <Dependent Role="Reservierung">
+              <PropertyRef Name="ResStatus_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tanksaeule_Car">
           <End Role="Car" Type="Self.Car" Multiplicity="0..1" />
           <End Role="Tanksaeule" Type="Self.Tanksaeule" Multiplicity="*" />
@@ -356,11 +375,12 @@
           <EntitySet Name="Kunde" EntityType="Self.Kunde" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rechnung" EntityType="Self.Rechnung" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reservierung" EntityType="Self.Reservierung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResStatus" EntityType="Self.ResStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tanksaeule" EntityType="Self.Tanksaeule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tankstelle" EntityType="Self.Tankstelle" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Abgabeort_Tanksaeule" Association="Self.FK_Abgabeort_Tanksaeule">
-            <End Role="Tanksaeule" EntitySet="Tanksaeule" />
+          <AssociationSet Name="FK_Abgabeort_Tankaeule" Association="Self.FK_Abgabeort_Tankaeule">
+            <End Role="Tankstelle" EntitySet="Tankstelle" />
             <End Role="Fahrt" EntitySet="Fahrt" />
           </AssociationSet>
           <AssociationSet Name="FK_Abgabeort_Tankstelle" Association="Self.FK_Abgabeort_Tankstelle">
@@ -368,7 +388,7 @@
             <End Role="Reservierung" EntitySet="Reservierung" />
           </AssociationSet>
           <AssociationSet Name="FK_Abholort_Tanksaeule" Association="Self.FK_Abholort_Tanksaeule">
-            <End Role="Tanksaeule" EntitySet="Tanksaeule" />
+            <End Role="Tankstelle" EntitySet="Tankstelle" />
             <End Role="Fahrt" EntitySet="Fahrt" />
           </AssociationSet>
           <AssociationSet Name="FK_Abholort_Tankstelle" Association="Self.FK_Abholort_Tankstelle">
@@ -419,6 +439,10 @@
             <End Role="Kunde" EntitySet="Kunde" />
             <End Role="Reservierung" EntitySet="Reservierung" />
           </AssociationSet>
+          <AssociationSet Name="FK_ResStatus" Association="Self.FK_ResStatus">
+            <End Role="ResStatus" EntitySet="ResStatus" />
+            <End Role="Reservierung" EntitySet="Reservierung" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tanksaeule_Car" Association="Self.FK_Tanksaeule_Car">
             <End Role="Car" EntitySet="Car" />
             <End Role="Tanksaeule" EntitySet="Tanksaeule" />
@@ -442,6 +466,7 @@
           <EntitySet Name="Kunde" EntityType="Projekt2Model.Kunde" />
           <EntitySet Name="Rechnung" EntityType="Projekt2Model.Rechnung" />
           <EntitySet Name="Reservierung" EntityType="Projekt2Model.Reservierung" />
+          <EntitySet Name="ResStatus" EntityType="Projekt2Model.ResStatus" />
           <EntitySet Name="Status" EntityType="Projekt2Model.Status" />
           <EntitySet Name="Tanksaeule" EntityType="Projekt2Model.Tanksaeule" />
           <EntitySet Name="Tankstelle" EntityType="Projekt2Model.Tankstelle" />
@@ -469,12 +494,12 @@
             <End Role="Car" EntitySet="Car" />
             <End Role="Tanksaeule" EntitySet="Tanksaeule" />
           </AssociationSet>
-          <AssociationSet Name="FK_Abgabeort_Tanksaeule" Association="Projekt2Model.FK_Abgabeort_Tanksaeule">
-            <End Role="Tanksaeule" EntitySet="Tanksaeule" />
+          <AssociationSet Name="FK_Abgabeort_Tankaeule" Association="Projekt2Model.FK_Abgabeort_Tankaeule">
+            <End Role="Tankstelle" EntitySet="Tankstelle" />
             <End Role="Fahrt" EntitySet="Fahrt" />
           </AssociationSet>
           <AssociationSet Name="FK_Abholort_Tanksaeule" Association="Projekt2Model.FK_Abholort_Tanksaeule">
-            <End Role="Tanksaeule" EntitySet="Tanksaeule" />
+            <End Role="Tankstelle" EntitySet="Tankstelle" />
             <End Role="Fahrt" EntitySet="Fahrt" />
           </AssociationSet>
           <AssociationSet Name="FK_Fahrt_Kunde" Association="Projekt2Model.FK_Fahrt_Kunde">
@@ -501,17 +526,21 @@
             <End Role="Kunde" EntitySet="Kunde" />
             <End Role="Reservierung" EntitySet="Reservierung" />
           </AssociationSet>
+          <AssociationSet Name="FK_Abgabeort_Tankstelle" Association="Projekt2Model.FK_Abgabeort_Tankstelle">
+            <End Role="Tankstelle" EntitySet="Tankstelle" />
+            <End Role="Reservierung" EntitySet="Reservierung" />
+          </AssociationSet>
           <AssociationSet Name="FK_Abholort_Tankstelle" Association="Projekt2Model.FK_Abholort_Tankstelle">
             <End Role="Tankstelle" EntitySet="Tankstelle" />
+            <End Role="Reservierung" EntitySet="Reservierung" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResStatus" Association="Projekt2Model.FK_ResStatus">
+            <End Role="ResStatus" EntitySet="ResStatus" />
             <End Role="Reservierung" EntitySet="Reservierung" />
           </AssociationSet>
           <AssociationSet Name="FK_Tanksaeule_Tankstelle" Association="Projekt2Model.FK_Tanksaeule_Tankstelle">
             <End Role="Tankstelle" EntitySet="Tankstelle" />
             <End Role="Tanksaeule" EntitySet="Tanksaeule" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Abgabeort_Tankstelle" Association="Projekt2Model.FK_Abgabeort_Tankstelle">
-            <End Role="Tankstelle" EntitySet="Tankstelle" />
-            <End Role="Reservierung" EntitySet="Reservierung" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Adresse">
@@ -548,14 +577,14 @@
           <Property Name="Kilometerstand" Type="Double" />
           <Property Name="Batterieladung" Type="Int32" />
           <Property Name="Wartungstermin" Type="DateTime" Precision="3" />
+          <Property Name="StatusGeaendert" Type="Boolean" Nullable="false" />
+          <Property Name="Gestohlen" Type="Boolean" />
+          <Property Name="breitengrad" Type="Double" />
+          <Property Name="laengengrad" Type="Double" />
           <NavigationProperty Name="Status" Relationship="Projekt2Model.FK_Car_Status" FromRole="Car" ToRole="Status" />
           <NavigationProperty Name="Fahrt" Relationship="Projekt2Model.FK_Fahrt_Car" FromRole="Car" ToRole="Fahrt" />
           <NavigationProperty Name="Reservierung" Relationship="Projekt2Model.FK_Reservierung_Car" FromRole="Car" ToRole="Reservierung" />
           <NavigationProperty Name="Tanksaeule" Relationship="Projekt2Model.FK_Tanksaeule_Car" FromRole="Car" ToRole="Tanksaeule" />
-          <Property Name="StatusGeaendert" Type="Boolean" />
-          <Property Name="Gestohlen" Type="Boolean" />
-          <Property Name="breitengrad" Type="Double" />
-          <Property Name="laengengrad" Type="Double" />
         </EntityType>
         <EntityType Name="Fahrt">
           <Key>
@@ -572,8 +601,8 @@
           <Property Name="Kunde_ID" Type="Int32" />
           <Property Name="Reservierung_ID" Type="Int32" />
           <NavigationProperty Name="Car" Relationship="Projekt2Model.FK_Fahrt_Car" FromRole="Fahrt" ToRole="Car" />
-          <NavigationProperty Name="Tanksaeule" Relationship="Projekt2Model.FK_Abgabeort_Tanksaeule" FromRole="Fahrt" ToRole="Tanksaeule" />
-          <NavigationProperty Name="Tanksaeule1" Relationship="Projekt2Model.FK_Abholort_Tanksaeule" FromRole="Fahrt" ToRole="Tanksaeule" />
+          <NavigationProperty Name="Tankstelle" Relationship="Projekt2Model.FK_Abgabeort_Tankaeule" FromRole="Fahrt" ToRole="Tankstelle" />
+          <NavigationProperty Name="Tankstelle1" Relationship="Projekt2Model.FK_Abholort_Tanksaeule" FromRole="Fahrt" ToRole="Tankstelle" />
           <NavigationProperty Name="Kunde" Relationship="Projekt2Model.FK_Fahrt_Kunde" FromRole="Fahrt" ToRole="Kunde" />
           <NavigationProperty Name="Reservierung" Relationship="Projekt2Model.FK_Fahrt_Reservierung" FromRole="Fahrt" ToRole="Reservierung" />
         </EntityType>
@@ -594,8 +623,8 @@
           <Property Name="Aktiv" Type="Boolean" Nullable="false" />
           <Property Name="Sperrdatum" Type="DateTime" Precision="0" />
           <Property Name="Sperrvermerk" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Kunde" Relationship="Projekt2Model.FK_Karte_Kunde" FromRole="Karte" ToRole="Kunde" />
           <Property Name="Seriennummer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kunde" Relationship="Projekt2Model.FK_Karte_Kunde" FromRole="Karte" ToRole="Kunde" />
         </EntityType>
         <EntityType Name="Kunde">
           <Key>
@@ -642,12 +671,21 @@
           <Property Name="Car_ID" Type="Int32" />
           <Property Name="Kunde_ID" Type="Int32" />
           <Property Name="Zeitstempel" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ResStatus_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Car" Relationship="Projekt2Model.FK_Reservierung_Car" FromRole="Reservierung" ToRole="Car" />
           <NavigationProperty Name="Fahrt" Relationship="Projekt2Model.FK_Fahrt_Reservierung" FromRole="Reservierung" ToRole="Fahrt" />
           <NavigationProperty Name="Kunde" Relationship="Projekt2Model.FK_Reservierung_Kunde" FromRole="Reservierung" ToRole="Kunde" />
-          <NavigationProperty Name="Tankstelle" Relationship="Projekt2Model.FK_Abholort_Tankstelle" FromRole="Reservierung" ToRole="Tankstelle" />
-          <NavigationProperty Name="Tankstelle1" Relationship="Projekt2Model.FK_Abgabeort_Tankstelle" FromRole="Reservierung" ToRole="Tankstelle" />
-          <Property Name="ResStatus_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tankstelle" Relationship="Projekt2Model.FK_Abgabeort_Tankstelle" FromRole="Reservierung" ToRole="Tankstelle" />
+          <NavigationProperty Name="Tankstelle1" Relationship="Projekt2Model.FK_Abholort_Tankstelle" FromRole="Reservierung" ToRole="Tankstelle" />
+          <NavigationProperty Name="ResStatus" Relationship="Projekt2Model.FK_ResStatus" FromRole="Reservierung" ToRole="ResStatus" />
+        </EntityType>
+        <EntityType Name="ResStatus">
+          <Key>
+            <PropertyRef Name="ResStatus_ID" />
+          </Key>
+          <Property Name="ResStatus_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Statusbezeichnung" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Reservierung" Relationship="Projekt2Model.FK_ResStatus" FromRole="ResStatus" ToRole="Reservierung" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -666,8 +704,6 @@
           <Property Name="Tanksaeule_Nr" Type="Int32" Nullable="false" />
           <Property Name="Car_ID" Type="Int32" />
           <NavigationProperty Name="Car" Relationship="Projekt2Model.FK_Tanksaeule_Car" FromRole="Tanksaeule" ToRole="Car" />
-          <NavigationProperty Name="Fahrt" Relationship="Projekt2Model.FK_Abgabeort_Tanksaeule" FromRole="Tanksaeule" ToRole="Fahrt" />
-          <NavigationProperty Name="Fahrt1" Relationship="Projekt2Model.FK_Abholort_Tanksaeule" FromRole="Tanksaeule" ToRole="Fahrt" />
           <NavigationProperty Name="Tankstelle" Relationship="Projekt2Model.FK_Tanksaeule_Tankstelle" FromRole="Tanksaeule" ToRole="Tankstelle" />
         </EntityType>
         <EntityType Name="Tankstelle">
@@ -681,9 +717,11 @@
           <Property Name="Ort" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Stasse" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Reservierung" Relationship="Projekt2Model.FK_Abholort_Tankstelle" FromRole="Tankstelle" ToRole="Reservierung" />
+          <NavigationProperty Name="Fahrt" Relationship="Projekt2Model.FK_Abgabeort_Tankaeule" FromRole="Tankstelle" ToRole="Fahrt" />
+          <NavigationProperty Name="Fahrt1" Relationship="Projekt2Model.FK_Abholort_Tanksaeule" FromRole="Tankstelle" ToRole="Fahrt" />
+          <NavigationProperty Name="Reservierung" Relationship="Projekt2Model.FK_Abgabeort_Tankstelle" FromRole="Tankstelle" ToRole="Reservierung" />
+          <NavigationProperty Name="Reservierung1" Relationship="Projekt2Model.FK_Abholort_Tankstelle" FromRole="Tankstelle" ToRole="Reservierung" />
           <NavigationProperty Name="Tanksaeule" Relationship="Projekt2Model.FK_Tanksaeule_Tankstelle" FromRole="Tankstelle" ToRole="Tanksaeule" />
-          <NavigationProperty Name="Reservierung1" Relationship="Projekt2Model.FK_Abgabeort_Tankstelle" FromRole="Tankstelle" ToRole="Reservierung" />
         </EntityType>
         <Association Name="FK_Kunde_Adresse">
           <End Type="Projekt2Model.Adresse" Role="Adresse" Multiplicity="1" />
@@ -757,12 +795,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Abgabeort_Tanksaeule">
-          <End Type="Projekt2Model.Tanksaeule" Role="Tanksaeule" Multiplicity="1" />
+        <Association Name="FK_Abgabeort_Tankaeule">
+          <End Type="Projekt2Model.Tankstelle" Role="Tankstelle" Multiplicity="1" />
           <End Type="Projekt2Model.Fahrt" Role="Fahrt" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Tanksaeule">
-              <PropertyRef Name="Tanksaeule_ID" />
+            <Principal Role="Tankstelle">
+              <PropertyRef Name="Tankstelle_ID" />
             </Principal>
             <Dependent Role="Fahrt">
               <PropertyRef Name="Abgabeort" />
@@ -770,11 +808,11 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Abholort_Tanksaeule">
-          <End Type="Projekt2Model.Tanksaeule" Role="Tanksaeule" Multiplicity="1" />
+          <End Type="Projekt2Model.Tankstelle" Role="Tankstelle" Multiplicity="1" />
           <End Type="Projekt2Model.Fahrt" Role="Fahrt" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Tanksaeule">
-              <PropertyRef Name="Tanksaeule_ID" />
+            <Principal Role="Tankstelle">
+              <PropertyRef Name="Tankstelle_ID" />
             </Principal>
             <Dependent Role="Fahrt">
               <PropertyRef Name="Abholort" />
@@ -853,6 +891,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Abgabeort_Tankstelle">
+          <End Type="Projekt2Model.Tankstelle" Role="Tankstelle" Multiplicity="0..1" />
+          <End Type="Projekt2Model.Reservierung" Role="Reservierung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tankstelle">
+              <PropertyRef Name="Tankstelle_ID" />
+            </Principal>
+            <Dependent Role="Reservierung">
+              <PropertyRef Name="Abgabeort" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Abholort_Tankstelle">
           <End Type="Projekt2Model.Tankstelle" Role="Tankstelle" Multiplicity="1" />
           <End Type="Projekt2Model.Reservierung" Role="Reservierung" Multiplicity="*" />
@@ -865,6 +915,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ResStatus">
+          <End Type="Projekt2Model.ResStatus" Role="ResStatus" Multiplicity="1" />
+          <End Type="Projekt2Model.Reservierung" Role="Reservierung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResStatus">
+              <PropertyRef Name="ResStatus_ID" />
+            </Principal>
+            <Dependent Role="Reservierung">
+              <PropertyRef Name="ResStatus_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tanksaeule_Tankstelle">
           <End Type="Projekt2Model.Tankstelle" Role="Tankstelle" Multiplicity="1" />
           <End Type="Projekt2Model.Tanksaeule" Role="Tanksaeule" Multiplicity="*" />
@@ -874,18 +936,6 @@
             </Principal>
             <Dependent Role="Tanksaeule">
               <PropertyRef Name="Tankstelle_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Abgabeort_Tankstelle">
-          <End Type="Projekt2Model.Tankstelle" Role="Tankstelle" Multiplicity="0..1" />
-          <End Type="Projekt2Model.Reservierung" Role="Reservierung" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tankstelle">
-              <PropertyRef Name="Tankstelle_ID" />
-            </Principal>
-            <Dependent Role="Reservierung">
-              <PropertyRef Name="Abgabeort" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1010,6 +1060,14 @@
                 <ScalarProperty Name="Endzeit" ColumnName="Endzeit" />
                 <ScalarProperty Name="Startzeit" ColumnName="Startzeit" />
                 <ScalarProperty Name="Reservierung_ID" ColumnName="Reservierung_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResStatus">
+            <EntityTypeMapping TypeName="Projekt2Model.ResStatus">
+              <MappingFragment StoreEntitySet="ResStatus">
+                <ScalarProperty Name="Statusbezeichnung" ColumnName="Statusbezeichnung" />
+                <ScalarProperty Name="ResStatus_ID" ColumnName="ResStatus_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

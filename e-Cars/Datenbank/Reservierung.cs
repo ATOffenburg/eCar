@@ -34,5 +34,6 @@ namespace e_Cars.Datenbank
         public virtual Kunde Kunde { get; set; }
         public virtual Tankstelle Tankstelle { get; set; }
         public virtual Tankstelle Tankstelle1 { get; set; }
+        public virtual ResStatus ResStatus { get; set; }
     }
 }

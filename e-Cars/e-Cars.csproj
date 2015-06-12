@@ -143,6 +143,9 @@
     <Compile Include="Datenbank\Reservierung.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Datenbank\ResStatus.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Datenbank\Status.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

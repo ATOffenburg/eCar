@@ -248,9 +248,7 @@ namespace e_Cars.UI.Cars
                 return;
             }
 
-
-            saveOperation();
-            
+            saveOperation();            
         }
 
         /// <summary>
@@ -266,9 +264,26 @@ namespace e_Cars.UI.Cars
                 if (con.Car.Any(s => s.Seriennummer == c.Seriennummer))
                 {
                     MessageBox.Show("Seriennummer bereits vergeben!");
-                    TextBoxSeriennummer.Focus();
                     return;
                 }
+
+                Tanksaeule freeTs = null;
+
+                foreach (Tanksaeule ts in con.Tanksaeule.Where(s => s.Tankstelle_ID == selectedtankstelle.Tankstelle_ID))
+                {
+                    if (ts.Car_ID == null)
+                    {
+                        freeTs = ts;
+                        break;
+                    }
+                }
+
+                if (freeTs == null)
+                {
+                    MessageBox.Show("Die Tanksäulen an der Tankstelle sind alle belegt!");
+                    return;
+                }
+
 
                 c.Batterieladung = Batterieladung;
                 c.Kilometerstand = Kilometerstand;
@@ -278,6 +293,11 @@ namespace e_Cars.UI.Cars
 
                 con.Car.Add(c);
                 con.SaveChanges();
+
+                freeTs.Car_ID = c.Car_ID;
+                con.Entry(freeTs).State = System.Data.Entity.EntityState.Modified;
+                con.SaveChanges();
+
                 MessageBox.Show("Das Fehrzeug wurde angelegt!");
                 clearFields();
             }
@@ -342,7 +362,8 @@ namespace e_Cars.UI.Cars
             Gesperrt = false;
             ReservierungGesperrt = false;
             SpontaneNutzungGesperrt = false;
-
+            selectedTankstelle = null;
+            
         }
 
         /// <summary>

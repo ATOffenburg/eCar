@@ -12,14 +12,16 @@ namespace e_Cars.Datenbank
     using System;
     using System.Collections.Generic;
     
-    public partial class Tanksaeule
+    public partial class ResStatus
     {
-        public int Tanksaeule_ID { get; set; }
-        public int Tankstelle_ID { get; set; }
-        public int Tanksaeule_Nr { get; set; }
-        public Nullable<int> Car_ID { get; set; }
+        public ResStatus()
+        {
+            this.Reservierung = new HashSet<Reservierung>();
+        }
     
-        public virtual Car Car { get; set; }
-        public virtual Tankstelle Tankstelle { get; set; }
+        public int ResStatus_ID { get; set; }
+        public string Statusbezeichnung { get; set; }
+    
+        public virtual ICollection<Reservierung> Reservierung { get; set; }
     }
 }
