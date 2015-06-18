@@ -384,23 +384,44 @@ namespace e_Cars.UI.Tankstellen
             ta.Stasse = ti.Strasse;
             ta.Tankstelle_ID = ti.ID;
 
-            ta = connect.Tankstelle.Add(ta);
+            connect.Tankstelle.Add(ta);
             connect.SaveChanges();
-           
-            List<TanksaeuleInfo> listTanksaeule = new List<TanksaeuleInfo>();
 
-            ti.ID = ta.Tankstelle_ID;
+            Tanksaeule t1 = new Tanksaeule();
+            t1.Tanksaeule_Nr = 1;
+            t1.Tankstelle_ID = ta.Tankstelle_ID;
+            connect.Tanksaeule.Add(t1);
 
-            var tanks = from t in connect.Tanksaeule
-                        where t.Tankstelle_ID == ti.ID
-                        select t;
+            Tanksaeule t2 = new Tanksaeule();
+            t2.Tanksaeule_Nr = 2;
+            t2.Tankstelle_ID = ta.Tankstelle_ID;
+            connect.Tanksaeule.Add(t2);
 
-            foreach (var vt in tanks)
-            {
-                TanksaeuleInfo tsi = new TanksaeuleInfo(vt);
-                listTanksaeule.Add(tsi);
-            }
-            listTanksaeuleInfo = listTanksaeule;
+            Tanksaeule t3 = new Tanksaeule();
+            t3.Tanksaeule_Nr = 3;
+            t3.Tankstelle_ID = ta.Tankstelle_ID;
+            connect.Tanksaeule.Add(t3);
+
+            Tanksaeule t4 = new Tanksaeule();
+            t4.Tanksaeule_Nr = 4;
+            t4.Tankstelle_ID = ta.Tankstelle_ID;
+            connect.Tanksaeule.Add(t4);
+
+            connect.SaveChanges();
+            //List<TanksaeuleInfo> listTanksaeule = new List<TanksaeuleInfo>();
+
+            //ti.ID = ta.Tankstelle_ID;
+
+            //var tanks = from t in connect.Tanksaeule
+            //            where t.Tankstelle_ID == ti.ID
+            //            select t;
+
+            //foreach (var vt in tanks)
+            //{
+            //    TanksaeuleInfo tsi = new TanksaeuleInfo(vt);
+            //    listTanksaeule.Add(tsi);
+            //}
+            //listTanksaeuleInfo = listTanksaeule;
             
 
             sthChanged = true;

@@ -175,6 +175,37 @@ namespace e_Cars.UI.Cars
             }
         }
 
+        private List<Tanksaeule> listtanksaeule;
+        /// <summary>
+        /// Accessor Methode für eine Liste der Zapfsaeulen
+        /// </summary>
+        public List<Tanksaeule> listTanksaeule
+        {
+            get { return listtanksaeule; }
+            set
+            {
+                listtanksaeule = value;
+                NotifyPropertyChanged("listTanksaeule");
+            }
+        }
+
+        private Tanksaeule selectedtanksaeule;
+        /// <summary>
+        /// Accessor Methode für den gewählte Zapfsaeule
+        /// </summary>
+        public Tanksaeule selectedTanksaeule
+        {
+            get { return selectedtanksaeule; }
+            set
+            {
+                if (selectedtanksaeule != value)
+                {
+                    selectedtanksaeule = value;
+                    NotifyPropertyChanged("selectedTanksaeule");
+                }
+            }
+        }
+
         private bool gestohlen;
         /// <summary>
         /// Accessor Methode für das Gestohlen Kennzeichen
@@ -208,6 +239,7 @@ namespace e_Cars.UI.Cars
             using (Projekt2Entities con = new Projekt2Entities())
             {
                 listStatus = con.Status.ToList();
+                listTanksaeule = con.Tanksaeule.ToList();
             }
 
             this.DataContext = this;
@@ -228,6 +260,8 @@ namespace e_Cars.UI.Cars
                 Gestohlen = ci.c.Gestohlen.GetValueOrDefault(false);
 
                 selectedStatus = listStatus.SingleOrDefault(s => s.Status_ID == ci.c.Status_ID);
+
+                selectedTanksaeule = listTanksaeule.SingleOrDefault(s => s.Car_ID == ci.c.Car_ID);
 
             }
         }
@@ -322,14 +356,26 @@ namespace e_Cars.UI.Cars
             Tankvorgaenge = Tankvorgaenge;
         }
 
-
-
         public bool saveOperation()
         {
             using (Projekt2Entities con = new Projekt2Entities())
             {
-
                 Car c = con.Car.Single(s => s.Car_ID == ci.c.Car_ID);
+                bool bTanksaeuleChanged = false;
+
+                if (selectedTanksaeule != null)
+                {
+
+                    if (c.Tanksaeule.FirstOrDefault() != null){
+
+                        if (c.Tanksaeule.FirstOrDefault().Tanksaeule_ID != selectedTanksaeule.Tanksaeule_ID)
+                        {
+                            bTanksaeuleChanged = true;
+                        }
+                    } else {
+                        bTanksaeuleChanged = true;
+                    }
+                }
 
                 // Prüfe ob Seriennummer geändert
                 if (
@@ -348,7 +394,7 @@ namespace e_Cars.UI.Cars
 
                     || !Equals(ci.c.Gestohlen, Gestohlen)
 
-
+                    || bTanksaeuleChanged
                     )
                 {
                     // Wenn ja die Änderungen speichern...
@@ -364,6 +410,12 @@ namespace e_Cars.UI.Cars
                     c.Tankvorgaenge = Tankvorgaenge;
 
                     c.Status_ID = selectedStatus.Status_ID;
+
+                    c.Tanksaeule.Clear();
+                    if (selectedTanksaeule != null)
+                    {
+                        c.Tanksaeule.Add(con.Tanksaeule.SingleOrDefault(s => s.Tanksaeule_ID == selectedTanksaeule.Tanksaeule_ID));
+                    }
 
                     c.Gestohlen = Gestohlen;
 

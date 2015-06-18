@@ -78,8 +78,11 @@ namespace e_Cars.UI.Tankstellen
 
                 if (tnew.sthChanged != false)
                 {
-                    listTankstelleInfo.Add(tnew.tAngelegt);
-                    myListView.Items.Refresh();
+
+                    listTankstelleInfo = getListOfTankstelleInfo(null);
+
+                    //listTankstelleInfo.Add(tnew.tAngelegt);
+                    //myListView.Items.Refresh();
                 }
             }
         }

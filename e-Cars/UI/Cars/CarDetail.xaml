@@ -6,7 +6,7 @@
              xmlns:loc="clr-namespace:e_Cars.UI.Cars"
              mc:Ignorable="d"
              Style="{StaticResource UserControlStyle}"
-             d:DesignHeight="400" d:DesignWidth="600">
+             d:DesignHeight="500" d:DesignWidth="700">
 
     <UserControl.Resources>
         <loc:IntToProzentConverter x:Key="converter" />
@@ -52,7 +52,7 @@
                                     <TextBox x:Name="TextBoxTankvorgaenge" MaxLength="7" LostFocus="TextBoxTankvorgaenge_LostFocus" DataObject.Pasting="TextBoxPasting" PreviewTextInput="Event_PreviewTextInput" Text="{Binding Path=Tankvorgaenge, UpdateSourceTrigger=PropertyChanged}" Margin="120,138,10,0" VerticalAlignment="Top"/>
 
                                     <Label x:Name="LabelStatus" Margin="10,165,0,0" Content="Status: " VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
-                                 
+
                                     <ComboBox x:Name="ComboBoxStatus" Margin="120,168,10,0" VerticalAlignment="Top" ItemsSource="{Binding Path=listStatus}" SelectedItem="{Binding selectedStatus}" IsSynchronizedWithCurrentItem="True">
 
                                         <ComboBox.ItemTemplate>
@@ -68,6 +68,28 @@
 
                                     <CheckBox x:Name="CheckBoxGestohlen" Margin="15,200,5,0" Content="Gestohlen" IsChecked="{Binding Path=Gestohlen, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Grid.ColumnSpan="2"></CheckBox>
 
+                                </Grid>
+                            </GroupBox>
+                        </Grid>
+
+                        <Grid>
+                            <GroupBox Header="Tankstelle" VerticalAlignment="Top" Margin="5">
+                                <Grid>
+                                    <Label x:Name="LabelTanksaeule" Margin="10,0,0,0" Content="Säule: " VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
+
+                                    <ComboBox x:Name="ComboBoxTanksaeule" Margin="120,0,10,0" VerticalAlignment="Top" ItemsSource="{Binding Path=listTanksaeule}" SelectedItem="{Binding selectedTanksaeule}" IsSynchronizedWithCurrentItem="True">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    
+                                                    <Label Content="Tankstelle: " ></Label>
+                                                    <TextBlock Text="{Binding Tankstelle_ID}" Width="30" Margin="0,2,5,2" />
+                                                    <Label Content="Säule: " ></Label>
+                                                    <TextBlock Text="{Binding Tanksaeule_Nr}" Margin="0,2,5,0" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
 
                                 </Grid>
                             </GroupBox>
