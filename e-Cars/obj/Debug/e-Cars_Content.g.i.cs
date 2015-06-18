@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("datenbank/model1.edmx.sql")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("html/gmaps.html")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("html/map.html")]
 

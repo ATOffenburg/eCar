@@ -77,6 +77,7 @@ namespace e_Cars.UI.Cars
             List<CarInfo> listCarsInfo = new List<CarInfo>();
             using (Projekt2Entities con = new Projekt2Entities())
             {
+
                 foreach (Car c in con.Car)
                 {
                     CarInfo ci = new CarInfo(c);
@@ -85,6 +86,7 @@ namespace e_Cars.UI.Cars
                         listCarsInfo.Add(ci);
                     }
                 }
+               
             }
             return listCarsInfo;
         }

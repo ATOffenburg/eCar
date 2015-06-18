@@ -425,6 +425,7 @@
   </ItemGroup>
   <ItemGroup>
     <SplashScreen Include="e-car.png" />
+    <Content Include="Datenbank\Model1.edmx.sql" />
     <Content Include="html\GMaps.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Projekt2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Projekt2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Adresse">
           <Key>
             <PropertyRef Name="Adress_ID" />
@@ -49,8 +49,8 @@
           <Property Name="Fahrt_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Abholort" Type="int" Nullable="false" />
           <Property Name="Abgabeort" Type="int" Nullable="false" />
-          <Property Name="Startzeit" Type="datetime2" Precision="7" />
-          <Property Name="Endzeit" Type="datetime2" Precision="7" />
+          <Property Name="Startzeit" Type="datetime" />
+          <Property Name="Endzeit" Type="datetime" />
           <Property Name="Start_KM" Type="float" />
           <Property Name="End_KM" Type="float" />
           <Property Name="Car_ID" Type="int" />
@@ -72,7 +72,7 @@
           <Property Name="Karten_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Kunde_ID" Type="int" Nullable="false" />
           <Property Name="Aktiv" Type="bit" Nullable="false" />
-          <Property Name="Sperrdatum" Type="date" />
+          <Property Name="Sperrdatum" Type="datetime" />
           <Property Name="Sperrvermerk" Type="nvarchar" MaxLength="50" />
           <Property Name="Seriennummer" Type="nvarchar" MaxLength="50" />
         </EntityType>
@@ -89,7 +89,7 @@
           <Property Name="Bank_ID" Type="int" Nullable="false" />
           <Property Name="Gesperrt" Type="bit" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="FKopie" Type="image" />
+          <Property Name="FKopie" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Rechnung">
           <Key>
@@ -98,20 +98,20 @@
           <Property Name="Rechnung_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Kunden_ID" Type="int" Nullable="false" />
           <Property Name="Betrag" Type="float" Nullable="false" />
-          <Property Name="Datum" Type="date" Nullable="false" />
+          <Property Name="Datum" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Reservierung">
           <Key>
             <PropertyRef Name="Reservierung_ID" />
           </Key>
           <Property Name="Reservierung_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Startzeit" Type="datetime2" Precision="7" Nullable="false" />
-          <Property Name="Endzeit" Type="datetime2" Precision="7" />
+          <Property Name="Startzeit" Type="datetime" Nullable="false" />
+          <Property Name="Endzeit" Type="datetime" />
           <Property Name="Abholort" Type="int" Nullable="false" />
           <Property Name="Abgabeort" Type="int" />
           <Property Name="Car_ID" Type="int" />
           <Property Name="Kunde_ID" Type="int" />
-          <Property Name="Zeitstempel" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Zeitstempel" Type="datetime" Nullable="false" />
           <Property Name="ResStatus_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ResStatus">
@@ -593,8 +593,8 @@
           <Property Name="Fahrt_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Abholort" Type="Int32" Nullable="false" />
           <Property Name="Abgabeort" Type="Int32" Nullable="false" />
-          <Property Name="Startzeit" Type="DateTime" Precision="7" />
-          <Property Name="Endzeit" Type="DateTime" Precision="7" />
+          <Property Name="Startzeit" Type="DateTime" Precision="3" />
+          <Property Name="Endzeit" Type="DateTime" Precision="3" />
           <Property Name="Start_KM" Type="Double" />
           <Property Name="End_KM" Type="Double" />
           <Property Name="Car_ID" Type="Int32" />
@@ -621,7 +621,7 @@
           <Property Name="Karten_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Kunde_ID" Type="Int32" Nullable="false" />
           <Property Name="Aktiv" Type="Boolean" Nullable="false" />
-          <Property Name="Sperrdatum" Type="DateTime" Precision="0" />
+          <Property Name="Sperrdatum" Type="DateTime" Precision="3" />
           <Property Name="Sperrvermerk" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Seriennummer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Kunde" Relationship="Projekt2Model.FK_Karte_Kunde" FromRole="Karte" ToRole="Kunde" />
@@ -656,7 +656,7 @@
           <Property Name="Rechnung_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Kunden_ID" Type="Int32" Nullable="false" />
           <Property Name="Betrag" Type="Double" Nullable="false" />
-          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Kunde" Relationship="Projekt2Model.FK_Rechnung_Kunde1" FromRole="Rechnung" ToRole="Kunde" />
         </EntityType>
         <EntityType Name="Reservierung">
@@ -664,13 +664,13 @@
             <PropertyRef Name="Reservierung_ID" />
           </Key>
           <Property Name="Reservierung_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Startzeit" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="Endzeit" Type="DateTime" Precision="7" />
+          <Property Name="Startzeit" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Endzeit" Type="DateTime" Precision="3" />
           <Property Name="Abholort" Type="Int32" Nullable="false" />
           <Property Name="Abgabeort" Type="Int32" />
           <Property Name="Car_ID" Type="Int32" />
           <Property Name="Kunde_ID" Type="Int32" />
-          <Property Name="Zeitstempel" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Zeitstempel" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ResStatus_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Car" Relationship="Projekt2Model.FK_Reservierung_Car" FromRole="Reservierung" ToRole="Car" />
           <NavigationProperty Name="Fahrt" Relationship="Projekt2Model.FK_Fahrt_Reservierung" FromRole="Reservierung" ToRole="Fahrt" />
@@ -943,8 +943,8 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Projekt2ModelStoreContainer" CdmEntityContainer="Projekt2Entities">
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Projekt2ModelStoreContainer" CdmEntityContainer="Projekt2Entities">
           <EntitySetMapping Name="Adresse">
             <EntityTypeMapping TypeName="Projekt2Model.Adresse">
               <MappingFragment StoreEntitySet="Adresse">
@@ -1103,8 +1103,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
         </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -1118,7 +1117,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
       </DesignerInfoPropertySet>
     </Options>
