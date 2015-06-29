@@ -56,6 +56,15 @@ namespace e_Cars.UI.Kunden
 
         /// <summary>
         /// Accessor-Methode für das Entity Objekt
+        /// zum Füllen oder holen des Wertes von Kunden_ID
+        /// </summary>
+        public String ID
+        {
+            get { return "" + kunde.Kunde_ID; }
+        }
+
+        /// <summary>
+        /// Accessor-Methode für das Entity Objekt
         /// zum Füllen oder holen des Wertes von Kunden_Vorname
         /// </summary>
         public String Vorname

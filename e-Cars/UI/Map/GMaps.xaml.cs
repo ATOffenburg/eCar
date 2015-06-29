@@ -126,6 +126,9 @@ namespace e_Cars.UI.Map
 
         private void ComboBoxTankst_Fahrz_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+            try { 
+
             if (e.AddedItems.Count != 0)
             {
 
@@ -145,7 +148,10 @@ namespace e_Cars.UI.Map
                 }
 
             }
-        }
+            }
+            catch (Exception) { }
+                
+        } 
     }
 
     /// <summary>

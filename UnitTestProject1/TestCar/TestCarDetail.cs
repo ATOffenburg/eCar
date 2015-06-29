@@ -34,7 +34,6 @@ namespace UnitTestProject1.TestCar
             c = con.Car.SingleOrDefault(s => s.Car_ID == 15);
             Assert.AreEqual(5, c.Kilometerstand);
 
-
             // Änderungen wider rückgangig machen...
             cdetail = new CarDetail(null, new CarInfo(c));
             c.Kilometerstand = saveKilometerstand;
