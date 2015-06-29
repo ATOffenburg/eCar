@@ -227,7 +227,7 @@ namespace e_Cars.UI.Kartenverwaltung
             ka.Aktiv = ki.Aktiv;
             ka.Sperrdatum = ki.Sperrdatum;
             ka.Sperrvermerk = ki.Sperrvermerk;
-            ka.Seriennummer = ka.Seriennummer;
+            ka.Seriennummer = ki.Seriennummer;
 
             connect.Karte.Add(ka);
 
