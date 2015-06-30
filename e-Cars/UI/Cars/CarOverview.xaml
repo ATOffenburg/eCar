@@ -44,7 +44,11 @@
                             <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Wartungstermin}">
                                 <GridViewColumnHeader Click="SortClick" Tag="Wartungstermin" Content="Wartungstermin" />
                             </GridViewColumn>
-                            
+
+                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Status}">
+                                <GridViewColumnHeader Click="SortClick" Tag="Status" Content="Status" />
+                            </GridViewColumn>
+
                             <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Kilometer}">
                                 <GridViewColumnHeader Click="SortClick" Tag="Kilometer" Content="Kilometer" />
                             </GridViewColumn>

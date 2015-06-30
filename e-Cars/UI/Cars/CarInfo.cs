@@ -53,6 +53,22 @@ namespace e_Cars.UI.Cars
             }
         }
 
+
+        /// <summary>
+        ///  Der Kilometer
+        /// </summary>
+        public string Status
+        {
+            get
+            {
+                if (c.Status_ID != null)
+                {
+                    return c.Status_ID.GetValueOrDefault(0).ToString();
+                }
+                return null;
+            }
+        }
+
         /// <summary>
         ///  Der Kilometer
         /// </summary>

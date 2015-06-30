@@ -261,7 +261,11 @@ namespace e_Cars.UI.Cars
 
                 selectedStatus = listStatus.SingleOrDefault(s => s.Status_ID == ci.c.Status_ID);
 
-                selectedTanksaeule = listTanksaeule.SingleOrDefault(s => s.Car_ID == ci.c.Car_ID);
+          //      selectedTanksaeule = listTanksaeule.SingleOrDefault(s => s.Car_ID == ci.c.Car_ID);
+
+
+                selectedTanksaeule = listTanksaeule.FirstOrDefault(s => s.Car_ID == ci.c.Car_ID);
+
 
             }
         }
