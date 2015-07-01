@@ -31,6 +31,8 @@ namespace e_Cars.UI.Reservierungen
         /// </summary>
         public Kunde k { get; set; }
 
+        public ResStatus status { get; set; }
+
         /// <summary>
         /// Fahrzeug
         /// </summary>
@@ -47,7 +49,7 @@ namespace e_Cars.UI.Reservierungen
             Abgabeort = res.Tankstelle;
             c = res.Car;
             k = res.Kunde;
-
+            status = res.ResStatus;
         }
 
         /// <summary>

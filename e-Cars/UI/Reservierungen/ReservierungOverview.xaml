@@ -73,6 +73,11 @@
                             <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=Zeitstempel, StringFormat='dd.MM.yy HH:mm'}">
                                 <GridViewColumnHeader Click="SortClick" Tag="Zeitstempel" Content="Zeitstempel" />
                             </GridViewColumn>
+
+                            <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Path=status.Statusbezeichnung}">
+                                <GridViewColumnHeader Click="SortClick" Tag="status.Statusbezeichnung" Content="Status" />
+                            </GridViewColumn>
+
                         </GridView>
                     </ListView.View>
                 </ListView>

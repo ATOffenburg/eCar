@@ -259,6 +259,10 @@ namespace e_Cars.UI.Reservierungen
                 {
                     res.Abholort = selectedTankstelle.Tankstelle_ID;
                     res.Startzeit = ReservierungStart;
+                    res.Endzeit = ReservierungEnde;
+
+                    res.ResStatus_ID = selectedResStatus.ResStatus_ID;
+
                     res.Kunde_ID = selectedUser.Kunde_ID;
                     res.Zeitstempel = DateTime.Now;
 
