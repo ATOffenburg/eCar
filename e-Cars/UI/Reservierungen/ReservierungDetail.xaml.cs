@@ -82,6 +82,62 @@ namespace e_Cars.UI.Reservierungen
             }
         }
 
+        private List<Tankstelle> listetankstellen2;
+        /// <summary>
+        /// Accessor Methode für eine Liste mit allen Tankstellen
+        /// </summary>
+        public List<Tankstelle> listeTankstellen2
+        {
+            get { return listetankstellen2; }
+            set
+            {
+                listetankstellen2 = value;
+                NotifyPropertyChanged("listeTankstellen2");
+            }
+        }
+
+        private Tankstelle selectedtankstelle2;
+        /// <summary>
+        /// Accessor Methode für die ausgewählte Tankstelle
+        /// </summary>
+        public Tankstelle selectedTankstelle2
+        {
+            get { return selectedtankstelle2; }
+            set
+            {
+                selectedtankstelle2 = value;
+                NotifyPropertyChanged("selectedTankstelle2");
+            }
+        }
+
+        private List<ResStatus> listeresstatus;
+        /// <summary>
+        /// Accessor Methode für eine Liste mit allen Tankstellen
+        /// </summary>
+        public List<ResStatus> listeResStatus
+        {
+            get { return listeresstatus; }
+            set
+            {
+                listeresstatus = value;
+                NotifyPropertyChanged("listeResStatus");
+            }
+        }
+
+        private ResStatus selectedresstatus;
+        /// <summary>
+        /// Accessor Methode für die ausgewählte Tankstelle
+        /// </summary>
+        public ResStatus selectedResStatus
+        {
+            get { return selectedresstatus; }
+            set
+            {
+                selectedresstatus = value;
+                NotifyPropertyChanged("selectedResStatus");
+            }
+        }
+
         private DateTime reservierungstart;
 
         /// <summary>
@@ -98,6 +154,21 @@ namespace e_Cars.UI.Reservierungen
             }
         }
 
+        private DateTime reservierungende;
+        /// <summary>
+        /// Accessor Methode für das Start Datum der Reservierung
+        /// </summary>
+        public DateTime ReservierungEnde
+        {
+
+            get { return reservierungende; }
+            set
+            {
+                reservierungende = value;
+                NotifyPropertyChanged("ReservierungEnde");
+            }
+        }
+
         /// <summary>
         /// Konstruktor
         /// </summary>
@@ -111,13 +182,33 @@ namespace e_Cars.UI.Reservierungen
             using (Projekt2Entities con = new Projekt2Entities())
             {
                 listeTankstellen = con.Tankstelle.ToList();
+                listeTankstellen2 = con.Tankstelle.ToList();
+
+                listeResStatus = con.ResStatus.ToList();
                 listeKunden = con.Kunde.ToList();
 
                 InitializeComponent();
                 this.DataContext = this;
 
                 ReservierungStart = ri.Startzeit;
-                selectedTankstelle = listeTankstellen.SingleOrDefault(s => s.Tankstelle_ID == ri.Abholort.Tankstelle_ID);
+
+                ReservierungEnde = ri.Endzeit.GetValueOrDefault();
+
+                if (ri.Abholort != null)
+                {
+                    selectedTankstelle = listeTankstellen.SingleOrDefault(s => s.Tankstelle_ID == ri.Abholort.Tankstelle_ID);
+                }
+
+                if (ri.Abgabeort != null)
+                {
+                    selectedTankstelle2 = listeTankstellen2.SingleOrDefault(s => s.Tankstelle_ID == ri.Abgabeort.Tankstelle_ID);
+                }
+
+                if (ri.res != null)
+                {
+                    selectedResStatus = listeResStatus.SingleOrDefault(s => s.ResStatus_ID == ri.res.ResStatus_ID);
+                }
+
                 selectedUser = listeKunden.SingleOrDefault(s => s.Kunde_ID == ri.k.Kunde_ID);
             }
 

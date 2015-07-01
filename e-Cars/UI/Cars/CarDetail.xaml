@@ -29,7 +29,7 @@
                     <StackPanel>
 
                         <Grid>
-                            <Button x:Name="ButtonFahrzeugOrten" Content="Fahrzeug orten..." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="130" Grid.ColumnSpan="2" Click="ButtonFahrzeugOrten_Click"/>
+                            <Button x:Name="ButtonFahrzeugOrten" Visibility="Collapsed" Content="Fahrzeug orten..." HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="130" Grid.ColumnSpan="2" Click="ButtonFahrzeugOrten_Click"/>
                             <Button x:Name="ButtonFahrtenliste" Content="Fahrtenliste..." HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="130" Grid.ColumnSpan="2" Click="ButtonFahrtenliste_Click"/>
                             <Button x:Name="ButtonReservierung" Content="Reservierungen..." HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Width="130" Grid.ColumnSpan="2" Click="ButtonReservierung_Click"/>
                         </Grid>
@@ -68,6 +68,9 @@
 
                                     <CheckBox x:Name="CheckBoxGestohlen" Margin="15,200,5,0" Content="Gestohlen" IsChecked="{Binding Path=Gestohlen, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Grid.ColumnSpan="2"></CheckBox>
 
+                                    <CheckBox x:Name="CheckBoxStatusImECarSetzen" Margin="15,220,5,0" Content="Status im E-Car setzen" IsChecked="{Binding Path=SetStatusInECar, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Grid.ColumnSpan="2"></CheckBox>
+
+
                                 </Grid>
                             </GroupBox>
                         </Grid>
@@ -81,7 +84,9 @@
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    
+
+                                                    <Label Content="Name: " ></Label>
+                                                    <TextBlock Text="{Binding Tankstelle.Name}" Margin="0,2,5,2" />
                                                     <Label Content="Tankstelle: " ></Label>
                                                     <TextBlock Text="{Binding Tankstelle_ID}" Width="30" Margin="0,2,5,2" />
                                                     <Label Content="Säule: " ></Label>

@@ -220,7 +220,23 @@ namespace e_Cars.UI.Cars
             }
         }
 
+        private bool setstatusinecar;
+        /// <summary>
+        /// Accessor Methode für das SetStatusInECar Kennzeichen
+        /// </summary>
+        public bool SetStatusInECar
+        {
+            get { return setstatusinecar; }
+            set
+            {
+                setstatusinecar = value;
+                NotifyPropertyChanged("SetStatusInECar");
+            }
+        }
 
+
+        private Projekt2Entities con = null;
+        
         /// <summary>
         /// Konstruktor für die CarDetail Klasse
         /// </summary>
@@ -236,11 +252,10 @@ namespace e_Cars.UI.Cars
                 InitializeComponent();
             }
 
-            using (Projekt2Entities con = new Projekt2Entities())
-            {
-                listStatus = con.Status.ToList();
-                listTanksaeule = con.Tanksaeule.ToList();
-            }
+            con = new Projekt2Entities();
+            listStatus = con.Status.ToList();
+            listTanksaeule = con.Tanksaeule.ToList();
+            
 
             this.DataContext = this;
 
@@ -259,13 +274,11 @@ namespace e_Cars.UI.Cars
 
                 Gestohlen = ci.c.Gestohlen.GetValueOrDefault(false);
 
+                SetStatusInECar = ci.c.StatusGeaendert;
+
                 selectedStatus = listStatus.SingleOrDefault(s => s.Status_ID == ci.c.Status_ID);
 
-          //      selectedTanksaeule = listTanksaeule.SingleOrDefault(s => s.Car_ID == ci.c.Car_ID);
-
-
                 selectedTanksaeule = listTanksaeule.FirstOrDefault(s => s.Car_ID == ci.c.Car_ID);
-
 
             }
         }
@@ -322,8 +335,6 @@ namespace e_Cars.UI.Cars
         {
 
             bool bChanged = saveOperation();
-            
-
             if (bChanged)
             {
                 MessageBox.Show("Änderungen gespeichert.");
@@ -398,6 +409,8 @@ namespace e_Cars.UI.Cars
 
                     || !Equals(ci.c.Gestohlen, Gestohlen)
 
+                    || !Equals(ci.c.StatusGeaendert, SetStatusInECar)
+
                     || bTanksaeuleChanged
                     )
                 {
@@ -422,6 +435,7 @@ namespace e_Cars.UI.Cars
                     }
 
                     c.Gestohlen = Gestohlen;
+                    c.StatusGeaendert = SetStatusInECar;
 
                     con.Entry(c).State = System.Data.Entity.EntityState.Modified;
                     con.SaveChanges();

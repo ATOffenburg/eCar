@@ -37,12 +37,12 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
 
-                        <Label Margin="10,41,0,0" Content="Datum: "  VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
-
+                        <Label Margin="10,41,0,0" Content="Startdatum: "  VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
                         <xctk:DateTimePicker x:Name="DateTimePickerReservierung" Format="Custom" Value="{Binding ReservierungStart}" FormatString="dd.MM.yyyy HH:mm tt" HorizontalAlignment="Left" Margin="120,42,0,0" VerticalAlignment="Top" Width="140" />
-                        
-                        <Label Margin="10,72,0,0" Content="Dauer: "  VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
-                        <TextBox Margin="120,78,10,0" VerticalAlignment="Top" IsEnabled="False" />
+
+                        <Label Margin="10,71,0,0" Content="Enddatum: "  VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
+                        <xctk:DateTimePicker x:Name="DateTimePickerReservierung2" Format="Custom" Value="{Binding ReservierungEnde}" FormatString="dd.MM.yyyy HH:mm tt" HorizontalAlignment="Left" Margin="120,72,0,0" VerticalAlignment="Top" Width="140" />
+
                     </Grid>
                 </GroupBox>
 
@@ -58,8 +58,8 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    
-                    
+
+
 
                 </GroupBox>
 

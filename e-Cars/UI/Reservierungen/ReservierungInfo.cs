@@ -43,8 +43,8 @@ namespace e_Cars.UI.Reservierungen
         public ReservierungInfo(Reservierung res)
         {
             this.res = res;
-            Abholort = res.Tankstelle;
-            Abgabeort = res.Tankstelle1;
+            Abholort = res.Tankstelle1;
+            Abgabeort = res.Tankstelle;
             c = res.Car;
             k = res.Kunde;
 

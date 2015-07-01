@@ -7,7 +7,7 @@
                Style="{StaticResource UserControlStyle}"
              Loaded="UserControl_Loaded"
             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="600" d:DesignWidth="600">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -36,12 +36,14 @@
                             </ComboBox.ItemTemplate>
                         </ComboBox>
 
-                        <Label Margin="10,41,0,0" Content="Datum: "  VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
-
+                        <Label Margin="10,41,0,0" Content="Startdatum: "  VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
                         <xctk:DateTimePicker x:Name="DateTimePickerReservierung" Format="Custom" Value="{Binding ReservierungStart}" FormatString="dd.MM.yyyy HH:mm tt" HorizontalAlignment="Left" Margin="120,42,0,0" VerticalAlignment="Top" Width="140" />
 
-                        <Label Margin="10,72,0,0" Content="Dauer: "  VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
-                        <TextBox Margin="120,78,10,0" VerticalAlignment="Top" IsEnabled="False" />
+                        <Label Margin="10,71,0,0" Content="Enddatum: "  VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
+                        <xctk:DateTimePicker x:Name="DateTimePickerReservierung2" Format="Custom" Value="{Binding ReservierungEnde}" FormatString="dd.MM.yyyy HH:mm tt" HorizontalAlignment="Left" Margin="120,72,0,0" VerticalAlignment="Top" Width="140" />
+
+                        <Label Visibility="Collapsed" Margin="10,102,0,0" Content="Dauer: "  VerticalAlignment="Top" HorizontalAlignment="Left" Width="105"/>
+                        <TextBox Visibility="Collapsed" Margin="120,108,10,0" VerticalAlignment="Top" IsEnabled="False" />
                     </Grid>
                 </GroupBox>
 
@@ -59,9 +61,39 @@
                     </ComboBox>
                 </GroupBox>
 
+                <GroupBox Header="Endposition" Margin="5" VerticalAlignment="Top">
+
+                    <ComboBox x:Name="ComboEndBoxPosition" Margin="10,10,10,0" ItemsSource="{Binding Path=listeTankstellen2}" SelectedItem="{Binding selectedTankstelle2}" IsSynchronizedWithCurrentItem="True">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Tankstelle_ID}" Width="30" Margin="0,2,5,2" />
+                                    <TextBlock Text="{Binding Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </GroupBox>
+
+
+                <GroupBox Header="Status" Margin="5" VerticalAlignment="Top">
+
+                    <ComboBox x:Name="ComboBoxStatus" Margin="10,10,10,0" ItemsSource="{Binding Path=listeResStatus}" SelectedItem="{Binding selectedResStatus}" IsSynchronizedWithCurrentItem="True">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding ResStatus_ID}" Width="30" Margin="0,2,5,2" />
+                                    <TextBlock Text="{Binding Statusbezeichnung}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </GroupBox>
+
+
             </StackPanel>
 
-            
+
             <Button x:Name="ButtonAenderungenSpeichern" Content="Änderungen speichern" Margin="0,0,10,10" HorizontalAlignment="Right" Width="148" Click="ButtonAenderungenSpeichern_Click" Height="20" VerticalAlignment="Bottom" Grid.Column="1" />
 
         </Grid>

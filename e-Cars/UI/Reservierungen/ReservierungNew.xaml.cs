@@ -98,6 +98,21 @@ namespace e_Cars.UI.Reservierungen
             }
         }
 
+        private DateTime reservierungende;
+
+        /// <summary>
+        /// Accessor Methode für das Start Datum der Reservierung
+        /// </summary>
+        public DateTime ReservierungEnde
+        {
+
+            get { return reservierungende; }
+            set
+            {
+                reservierungende = value;
+                NotifyPropertyChanged("ReservierungEnde");
+            }
+        }
 
         /// <summary>
         /// Konstruktor
@@ -111,10 +126,11 @@ namespace e_Cars.UI.Reservierungen
             {
                 InitializeComponent();
             }
-            
-            this.DataContext = this;
 
+            this.DataContext = this;
             ReservierungStart = DateTime.Now;
+            ReservierungEnde = DateTime.Now;
+
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -148,18 +164,28 @@ namespace e_Cars.UI.Reservierungen
                 return;
             }
 
+            if (ReservierungStart.CompareTo(DateTime.Now.AddMonths(3)) > 0)
+            {
+                MessageBox.Show("Die Reservierung liegt weiter als 3 Monate in der Zukunft");
+                return;
+            }
+
+            if (ReservierungEnde.CompareTo(ReservierungStart) < 0)
+            {
+                MessageBox.Show("Das Ende ist vor dem Start!");
+                return;
+            }
+
             if (selectedTankstelle == null)
             {
                 MessageBox.Show("Abholort fehlt.");
                 return;
             }
 
-
             if (checkData())
             {
                 MessageBox.Show("Eingabe unvollständig bitte Daten prüfen.");
                 return;
-
             }
 
             Reservierung res = new Reservierung();
@@ -187,7 +213,8 @@ namespace e_Cars.UI.Reservierungen
             ReservierungStart = DateTime.Now;
         }
 
-        public bool checkData(){
+        public bool checkData()
+        {
 
 
             bool data = false;
