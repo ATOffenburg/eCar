@@ -83,7 +83,7 @@ namespace e_Cars.UI.Reservierungen
 
             AnzeigeDatum = DateTime.Now;
 
-            
+
         }
 
 
@@ -111,10 +111,81 @@ namespace e_Cars.UI.Reservierungen
                                                                 s.Startzeit.Day == AnzeigeDatum.Value.Day))
                 {
                     ReservierungInfo ri = new ReservierungInfo(res);
+
+                    if (UseFilter(filter, ri)) { 
+
                     listReservierungInfo.Add(ri);
-                }
+                    }
+                    
+                    }
             }
             return listReservierungInfo;
+        }
+
+
+        private bool UseFilter(String filter, ReservierungInfo ri)
+        {
+
+            if (String.IsNullOrWhiteSpace(filter))
+                return true;
+
+            foreach (var sel in filter.Split(new Char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+
+                if (ri.Startzeit != null)
+                {
+                    if (containsWithException(ri.Startzeit.ToLongDateString(), sel))
+                        return true;
+                }
+
+                if (ri.Endzeit != null)
+                {
+                    if (containsWithException(ri.Endzeit.GetValueOrDefault().ToLongDateString(), sel))
+                        return true;
+                }
+
+                if (ri.AbgabeortName != null)
+                {
+                    if (containsWithException(ri.AbgabeortName, sel))
+                        return true;
+                }
+
+                if (ri.AbholortName != null)
+                {
+                    if (containsWithException(ri.AbholortName, sel))
+                        return true;
+                }
+
+                if (ri.status != null)
+                {
+                    if (containsWithException(ri.status.Statusbezeichnung, sel))
+                        return true;
+                }
+
+                if (ri.KundeName != null)
+                {
+                    if (containsWithException(ri.KundeName, sel))
+                        return true;
+                }
+
+            }
+            return false;
+        }
+
+        private bool containsWithException(String s1, String s2)
+        {
+            try
+            {
+                if (s1.ToLower().Contains(s2.ToLower()))
+                {
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            return false;
         }
 
 
@@ -202,6 +273,18 @@ namespace e_Cars.UI.Reservierungen
             _CurAdorner = new SortAdorner(_CurSortCol, newDir);
             AdornerLayer.GetAdornerLayer(_CurSortCol).Add(_CurAdorner);
             myListView.Items.SortDescriptions.Add(new SortDescription(field, newDir));
+        }
+
+
+
+
+        private void TextBoxFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textbox = sender as TextBox;
+            if (textbox != null)
+            {
+                listReservierungInfo = loadReservierungsListe(textbox.Text);
+            }
         }
 
     }

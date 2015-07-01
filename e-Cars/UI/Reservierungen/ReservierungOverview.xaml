@@ -26,7 +26,7 @@
             <StackPanel>
                 <Grid>
                     <Label Margin="10,0,0,0" HorizontalAlignment="Left"  >Filter:</Label>
-                    <TextBox x:Name="TextBoxFilter" TextAlignment="Left" VerticalAlignment="Top" Margin="70,4,10,0" Height="18"/>
+                    <TextBox x:Name="TextBoxFilter" TextAlignment="Left" VerticalAlignment="Top" Margin="70,4,10,0" Height="18" TextChanged="TextBoxFilter_TextChanged"/>
                 </Grid>
                 <Grid>
                     <Label Margin="10,0,0,0" Content="Datum: " VerticalAlignment="Top" HorizontalAlignment="Left" Width="50"/>
