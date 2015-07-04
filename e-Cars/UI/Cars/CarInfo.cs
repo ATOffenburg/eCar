@@ -22,12 +22,15 @@ namespace e_Cars.UI.Cars
         {
             // Todo hier noch die daten prüfen
             this.c = c;
+            this.status = c.Status;
         }
 
         /// <summary>
         /// Hält das Car 
         /// </summary>
-        public Car c { get; set; } 
+        public Car c { get; set; }
+
+        public Status status { get; set;}
 
         /// <summary>
         /// die Seriennummer
@@ -55,7 +58,7 @@ namespace e_Cars.UI.Cars
 
 
         /// <summary>
-        ///  Der Kilometer
+        ///  Der Status
         /// </summary>
         public string Status
         {
@@ -64,6 +67,21 @@ namespace e_Cars.UI.Cars
                 if (c.Status_ID != null)
                 {
                     return c.Status_ID.GetValueOrDefault(0).ToString();
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        ///  Der Status
+        /// </summary>
+        public string StatusText
+        {
+            get
+            {
+                if (status != null)
+                {
+                    return status.Statusbezeichnung;
                 }
                 return null;
             }

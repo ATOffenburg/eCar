@@ -184,6 +184,10 @@ namespace e_Cars.UI.Cars
                 if (containsWithException(ci.Wartungstermin, sel))
                     return true;
 
+                if (containsWithException(ci.StatusText, sel))
+                    return true;
+
+
             }
             return false;
         }
